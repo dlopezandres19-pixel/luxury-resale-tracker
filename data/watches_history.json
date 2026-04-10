@@ -47,19 +47,6 @@
       "matched_keywords": []
     }
   ],
-  "TAG Heuer": [
-    {
-      "weighted_vr": 0.6568,
-      "simple_avg_vr": 0.608,
-      "min_vr": 0.4731,
-      "max_vr": 0.7138,
-      "n_watches": 5,
-      "date": "2026-04-10",
-      "fallback": true,
-      "matched_keywords": []
-    }
-  ],
-  "Hermès": [],
   "Piaget": [
     {
       "weighted_vr": 0.4091,
