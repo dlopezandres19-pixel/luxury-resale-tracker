@@ -27,6 +27,7 @@ jobs:
       - name: Run Watchcharts scraper
         run: python scraper/watchcharts_scraper.py
         continue-on-error: true
+        timeout-minutes: 15
     
       - name: Commit updated data
         run: |
