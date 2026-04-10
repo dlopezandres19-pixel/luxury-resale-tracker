@@ -98,9 +98,19 @@ def main():
                 continue
             total_w = sum(m for m, _ in bags)
             vr = round(sum(m * r for m, r in bags) / total_w, 4)
+            simple_avg = round(sum(r for _, r in bags) / len(bags), 4)
+            min_vr = round(min(r for _, r in bags), 4)
+            max_vr = round(max(r for _, r in bags), 4)
             history.setdefault(designer, [])
             history[designer] = [p for p in history[designer] if p["date"] != today]
-            history[designer].append({"date": today, "weighted_vr": vr, "n_bags": len(bags)})
+            history[designer].append({
+                "date": today,
+                "weighted_vr": vr,
+                "simple_avg_vr": simple_avg,
+                "min_vr": min_vr,
+                "max_vr": max_vr,
+                "n_bags": len(bags),
+            })
             history[designer].sort(key=lambda p: p["date"])
             print(f"  {designer}: VR={vr:.2%} (n={len(bags)})")
         except Exception as e:
