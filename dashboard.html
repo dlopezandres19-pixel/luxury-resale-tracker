@@ -8,7 +8,6 @@
   body { font-family: system-ui, sans-serif; background: #0a1628; color: #e8ecf4; padding: 20px; margin: 0; }
   h1 { color: #d4af37; font-size: 20px; text-transform: uppercase; }
   .subtitle { color: #8a9bb8; font-size: 12px; margin-bottom: 20px; }
-  #debug { background: #1a2d4a; border: 1px solid #2a4162; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 11px; margin-bottom: 20px; white-space: pre-wrap; }
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
   @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
   .panel { background: #122036; border: 1px solid #2a4162; border-radius: 8px; padding: 16px; }
@@ -31,7 +30,6 @@
 <body>
   <h1>Luxury Resale Value Retention Tracker</h1>
   <div class="subtitle" id="subtitle">Loading...</div>
-  <div id="debug">Initializing...</div>
 
   <div class="grid">
     <div class="panel">
@@ -56,12 +54,6 @@
   </div>
 
 <script>
-const dbg = document.getElementById('debug');
-function log(msg) { dbg.textContent += '\n' + msg; console.log('[dash]', msg); }
-
-log('Script started');
-log('Chart.js type: ' + typeof Chart);
-
 const BAG_BRANDS = ['Hermès','Louis Vuitton','Dior','Gucci','Saint Laurent'];
 const WATCH_BRANDS = ['Rolex','Cartier','Hublot','Piaget'];
 const COLORS = {
@@ -128,32 +120,20 @@ function renderTable(tableId, history, brands, countField){
 
 async function load(){
   try {
-    log('Fetching handbags_history.json...');
     const r1 = await fetch('./data/handbags_history.json?t='+Date.now());
-    log('  handbags status: ' + r1.status);
     if(!r1.ok) throw new Error('handbags HTTP '+r1.status);
     const bags = await r1.json();
-    log('  handbags keys: ' + Object.keys(bags).join(', '));
-
-    log('Fetching watches_history.json...');
     const r2 = await fetch('./data/watches_history.json?t='+Date.now());
-    log('  watches status: ' + r2.status);
     const watches = r2.ok ? await r2.json() : {};
-    log('  watches keys: ' + Object.keys(watches).join(', '));
-
-    log('Rendering charts...');
     renderChart('bagsChart', bags, BAG_BRANDS);
     renderChart('watchesChart', watches, WATCH_BRANDS);
-    log('Rendering tables...');
     const d1 = renderTable('bags-table', bags, BAG_BRANDS, 'n_bags');
     const d2 = renderTable('watches-table', watches, WATCH_BRANDS, 'n_watches');
     const latest = [d1,d2].filter(Boolean).sort().pop();
     document.getElementById('subtitle').textContent = 'Last update: ' + (latest || 'unknown');
-    log('DONE. Latest date: ' + latest);
-    setTimeout(() => { dbg.style.display = 'none'; }, 5000);
   } catch(e) {
-    log('ERROR: ' + e.message);
-    document.getElementById('subtitle').textContent = 'Error: ' + e.message;
+    console.error('[dash] error:', e);
+    document.getElementById('subtitle').textContent = 'Error loading data: ' + e.message;
   }
 }
 load();
