@@ -24,6 +24,10 @@ jobs:
       - name: Run Foxytotes scraper
         run: python scraper/foxytotes_scraper.py
 
+      - name: Probe Watchcharts (diagnostic)
+        run: python scraper/watchcharts_scraper.py
+        continue-on-error: true
+
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
