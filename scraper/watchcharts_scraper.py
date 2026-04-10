@@ -17,7 +17,7 @@ BRAND_IDS = {
 CURATED = {
     "Rolex":     ["Submariner", "Daytona", "GMT-Master", "Datejust", "Explorer"],
     "Cartier":   ["Santos", "Tank", "Ballon Bleu", "Panthère", "Pasha"],
-    "Hublot":    ["Big Bang", "Classic Fusion", "Spirit", "MP-", "King Power"],,
+    "Hublot":    ["Big Bang", "Classic Fusion", "Spirit", "MP-", "King Power"],
     "TAG Heuer": ["Carrera", "Monaco", "Aquaracer", "Formula 1", "Autavia"],
     "Hermès":    ["Arceau", "Cape Cod", "Heure H", "Kelly", "Slim"],
     "Piaget":    ["Polo", "Altiplano", "Possession", "Limelight", "Piaget Polo Skeleton"],
@@ -44,14 +44,14 @@ def scrape_page(scraper, url, max_retries=3):
     for attempt in range(max_retries):
         try:
             r = scraper.get(url, timeout=30)
-           if r.status_code == 403:
+            if r.status_code == 403:
                 wait = 30 * (attempt + 1)
                 print(f"    403 on attempt {attempt+1}, waiting {wait}s...")
                 time.sleep(wait)
                 continue
             if r.status_code == 400:
                 print(f"    400 Bad Request — page does not exist, stopping pagination")
-                return None  # signal "no more pages"
+                return None
             r.raise_for_status()
             return r.text
         except Exception as e:
@@ -66,7 +66,6 @@ def parse_watches(html, debug_label=""):
     watches = []
     raw_links = soup.find_all("a", href=re.compile(r"/watch_model/\d+"))
     if debug_label:
-        # Also look for common empty-state indicators
         text_lower = soup.get_text(" ", strip=True).lower()
         no_results = any(s in text_lower for s in ["no results", "no watches", "0 results"])
         print(f"    [debug {debug_label}] raw watch links: {len(raw_links)}, empty-state: {no_results}, html_len: {len(html)}")
@@ -96,7 +95,6 @@ def scrape_brand(scraper, brand, brand_id):
     all_watches = []
     seen_names = set()
     for page in range(1, MAX_PAGES_PER_BRAND + 1):
-        sep = "&" if page > 1 else ""
         page_q = f"&page={page}" if page > 1 else ""
         url = f"https://watchcharts.com/watches?filters={fparam}{page_q}"
         print(f"  {brand} page {page}: {url}")
@@ -106,7 +104,7 @@ def scrape_brand(scraper, brand, brand_id):
             print(f"    ERROR: {e}", file=sys.stderr)
             break
         if html is None:
-            break  # no more pages
+            break
         watches = parse_watches(html, debug_label=f"{brand} p{page}")
         print(f"    parsed {len(watches)} watches")
         new_count = 0
@@ -200,7 +198,7 @@ def main():
         history[brand].append(stats)
         history[brand].sort(key=lambda p: p["date"])
         print(f"  {brand}: weighted_vr={stats['weighted_vr']:.2%} (n={stats['n_watches']}, fallback={fallback})")
-        time.sleep(random.uniform(3, 6))  # polite pause between brands
+        time.sleep(random.uniform(3, 6))
 
     HISTORY_FILE.write_text(json.dumps(history, indent=2, ensure_ascii=False))
     print(f"\nSaved {HISTORY_FILE}")
