@@ -1,7 +1,37 @@
 {
-  "Hermès": [],
-  "Louis Vuitton": [],
-  "Dior": [],
-  "Gucci": [],
-  "Saint Laurent": []
+  "Hermès": [
+    {
+      "date": "2026-04-10",
+      "weighted_vr": 1.7178,
+      "n_bags": 10
+    }
+  ],
+  "Louis Vuitton": [
+    {
+      "date": "2026-04-10",
+      "weighted_vr": 1.0175,
+      "n_bags": 9
+    }
+  ],
+  "Dior": [
+    {
+      "date": "2026-04-10",
+      "weighted_vr": 0.7184,
+      "n_bags": 6
+    }
+  ],
+  "Gucci": [
+    {
+      "date": "2026-04-10",
+      "weighted_vr": 0.68,
+      "n_bags": 6
+    }
+  ],
+  "Saint Laurent": [
+    {
+      "date": "2026-04-10",
+      "weighted_vr": 0.6826,
+      "n_bags": 4
+    }
+  ]
 }
