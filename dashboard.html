@@ -44,13 +44,14 @@
     </div>
   </div>
 
-  <div class="note">
+<div class="note">
     <h3>Methodology & Notes</h3>
-    <p><strong>Value Retention (VR)</strong> = current resale value / original retail price. VR &gt; 100% means the item sells above retail; VR &lt; 100% means depreciation.</p>
-    <p><strong>Calculation.</strong> Per brand, VR is a weighted average by MSRP (handbags) or Retail Price (watches). Chart shows weighted VR per day; table shows latest snapshot with min/max dispersion and sample size (n).</p>
-    <p><strong>Sample.</strong> ~35 handbags across 5 designers (Hermès 10, LV 9, Dior 6, Gucci 6, SL 4). ~150 watches across 4 brands (Rolex, Cartier, Hublot, Piaget). Hublot &amp; Piaget run in fallback mode 🟡 (top-5 by relevance instead of curated icon list).</p>
-    <p><strong>Geographic coverage.</strong> Both sources are US/Western-centric. Does not cover Chinese (Plum, ZZER), Japanese (Komehyo) or Middle Eastern resale markets. Treat values as indicators of Western authenticated resale, not a global benchmark.</p>
-    <p><strong>Known limitations.</strong> Gucci shows a flat line because Foxytotes assigns a single 68% retention to all its Gucci bags (source-side limitation). History starts at first automated run. Scraper runs daily at 23:50 Lima.</p>
+    <p><strong>Value Retention (VR)</strong> = current resale value / original retail price. VR &gt; 100% means the item sells above retail on the secondary market; VR &lt; 100% means it has depreciated relative to its original price.</p>
+    <p><strong>How each index is calculated.</strong> For every brand, the VR shown in the chart is a weighted average by MSRP (for handbags) or Retail Price (for watches), meaning more expensive items carry proportionally more weight. This is the standard methodology used by resale indices such as Rebag Clair. The table below each chart shows the latest daily snapshot: the weighted VR, the min and max VR observed across items that day (as a measure of dispersion), and <em>n</em>, the number of items in the sample.</p>
+    <p><strong>Sample.</strong> Approximately 35 handbags across 5 designers (Hermès, Louis Vuitton, Dior, Gucci, Saint Laurent). Approximately 150 watch references across 4 brands (Rolex, Cartier, Hublot, Piaget). Where possible, each brand is measured using its icon models — for example, Rolex is tracked through the Submariner, Daytona, GMT-Master, Datejust and Explorer. Brands marked with 🟡 in the table are measured using the top 5 most-listed references on the source instead of the icon list, and should be read as indicative rather than curated.</p>
+    <p><strong>Geographic coverage.</strong> Both data sources are US and Western-centric. The tracker does not capture Chinese domestic resale (Plum, ZZER, Xianyu), the Japanese pre-owned market (Komehyo, Brand Off) or Middle Eastern private sales. Values should be interpreted as indicators of Western authenticated resale, not a global benchmark.</p>
+    <p><strong>Representativeness.</strong> The underlying transaction base of reference sources such as Rebag Clair represents well under 1% of global resale GMV. Values should be read as directional tendency indicators, not absolute market valuations. A flat line or lack of dispersion for a given brand on a given day typically reflects a source-side limitation rather than a true absence of movement.</p>
+    <p style="margin-top:14px; padding-top:10px; border-top:1px solid #2a4162; color:#5a6b85;">Data updates automatically once per day during the night. The history begins on the first day the tracker was activated and grows over time.</p>
   </div>
 
 <script>
