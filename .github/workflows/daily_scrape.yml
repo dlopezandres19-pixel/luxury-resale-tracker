@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install cloudscraper beautifulsoup4
 
       - name: Run Foxytotes scraper
         run: python scraper/foxytotes_scraper.py
