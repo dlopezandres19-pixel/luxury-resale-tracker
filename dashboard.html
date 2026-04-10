@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Resale Value Retention Tracker</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg-deep: #0a1628;
+    --bg-panel: #122036;
+    --bg-card: #1a2d4a;
+    --border: #2a4162;
+    --text-primary: #e8ecf4;
+    --text-secondary: #8a9bb8;
+    --text-muted: #5a6b85;
+    --accent-gold: #d4af37;
+    --accent-gold-dim: #a88a2c;
+    --positive: #4ade80;
+    --negative: #f87171;
+    --neutral: #8a9bb8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    padding: 24px;
+    min-height: 100vh;
+  }
+  .header {
+    text-align: left;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+  }
+  .header .subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    letter-spacing: 0.3px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }
+  .panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-gold);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .panel-source {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.4px;
+  }
+  .chart-container {
+    position: relative;
+    height: 320px;
+    margin-bottom: 20px;
+  }
+  .snapshot-header {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  th {
+    text-align: left;
+    padding: 8px 6px;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  th.num, td.num { text-align: right; }
+  td {
+    padding: 10px 6px;
+    border-bottom: 1px solid rgba(42, 65, 98, 0.4);
+    color: var(--text-primary);
+  }
+  tr:last-child td { border-bottom: none; }
+  .brand-cell { display: flex; align-items: center; gap: 6px; font-weight: 500; }
+  .mode-dot { font-size: 9px; }
+  .vr-main { color: var(--accent-gold); font-weight: 600; }
+  .delta-up { color: var(--positive); }
+  .delta-down { color: var(--negative); }
+  .delta-flat { color: var(--neutral); }
+  .note-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 10.5px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .note-box h3 {
+    font-size: 11px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .note-box p { margin-bottom: 8px; }
+  .note-box strong { color: var(--text-primary); font-weight: 600; }
+  .loading { color: var(--text-muted); padding: 40px; text-align: center; font-size: 12px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>Luxury Resale Value Retention Tracker</h1>
+    <div class="subtitle">Daily monitoring of value retention across luxury handbags &amp; watches · <span id="last-update">Loading...</span></div>
+  </div>
+
+  <div class="grid">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Handbags — Value Retention</div>
+        <div class="panel-source">Source: Foxytotes</div>
+      </div>
+      <div class="chart-container"><canvas id="bagsChart"></canvas></div>
+      <div class="snapshot-header">Latest Snapshot · <span id="bags-snapshot-date">—</span></div>
+      <table id="bags-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th class="num">VR</th>
+            <th class="num">Δ d-1</th>
+            <th class="num">Min</th>
+            <th class="num">Max</th>
+            <th class="num">n</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="6" class="loading">Loading...</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">Watches — Value Retention</div>
+        <div class="panel-source">Source: Watchcharts</div>
+      </div>
+      <div class="chart-container"><canvas id="watchesChart"></canvas></div>
+      <div class="snapshot-header">Latest Snapshot · <span id="watches-snapshot-date">—</span></div>
+      <table id="watches-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th class="num">VR</th>
+            <th class="num">Δ d-1</th>
+            <th class="num">Min</th>
+            <th class="num">Max</th>
+            <th class="num">n</th>
+          </tr>
+        </thead>
+        <tbody><tr><td colspan="6" class="loading">Loading...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <h3>Methodology &amp; Notes</h3>
+    <p><strong>What is Value Retention (VR)?</strong> The ratio of current resale value to original retail price (MSRP). VR &gt; 100% means the item sells above retail on the secondary market; VR &lt; 100% means it has depreciated.</p>
+    <p><strong>How each line is calculated.</strong> For each brand, VR is a <strong>weighted average by MSRP (handbags) or Retail Price (watches)</strong>, meaning that more expensive items carry proportionally more weight in the index. This is the standard approach used by resale indices such as Rebag Clair. The chart shows the weighted VR per brand accumulated day by day; the table below each chart shows the latest snapshot, including the <em>min</em> and <em>max</em> VR observed that day as a measure of dispersion across items, and <em>n</em> = number of items in the sample.</p>
+    <p><strong>Sample size (approximate, updated daily).</strong> Handbags: ~35 bags across 5 designers (Hermès ~10, Louis Vuitton ~9, Dior ~6, Gucci ~6, Saint Laurent ~4). Watches: ~150 references across 4 brands, filtered to icon models where possible — Rolex (Submariner, Daytona, GMT-Master, Datejust, Explorer), Cartier (Santos, Tank, Ballon Bleu, Panthère, Pasha). Hublot and Piaget currently run in <span style="color:var(--accent-gold);">fallback mode</span> (🟡) due to model-name mismatches in the source — these use the top 5 references by relevance rather than the icon list, so their figures are indicative rather than curated.</p>
+    <p><strong>Geographic coverage.</strong> Both Foxytotes and Watchcharts are <strong>US/Western-centric sources</strong>. Foxytotes aggregates from Fashionphile, Rebag, The RealReal, eBay and Vestiaire Collective; Watchcharts has global coverage but with US weighting. The tracker does <strong>not</strong> capture Chinese domestic resale (Plum, ZZER, Xianyu), Japanese pre-owned (Komehyo, Brand Off) or Middle Eastern private sales. Treat the VR numbers as indicators of <em>Western authenticated resale</em>, not a global benchmark.</p>
+    <p><strong>Representativeness.</strong> Rebag Clair (the industry benchmark) processes transactions in the low hundreds of millions USD annually and its underlying transaction base represents well under 1% of global resale GMV. Foxytotes and Watchcharts combined are estimated to observe a broader but similarly US-weighted slice of the Western authenticated resale market. Values should be read as <strong>directional tendency indicators</strong>, not absolute market valuations.</p>
+    <p><strong>Known limitations.</strong> (a) Gucci currently shows a flat line because Foxytotes applies a single 68% retention to all its Gucci bags, collapsing internal dispersion (this is a source-side limitation, not a scraper bug). (b) The history starts at the first automated run; early days will show few points. (c) The scraper runs daily at 23:50 Lima time (04:50 UTC+1) and commits the new data point automatically to the GitHub repository.</p>
+  </div>
+
+<script>
+const BASE = './data/';
+const BAG_BRANDS = ['Hermès', 'Louis Vuitton', 'Dior', 'Gucci', 'Saint Laurent'];
+const WATCH_BRANDS = ['Rolex', 'Cartier', 'Hublot', 'Piaget'];
+const COLORS = {
+  'Hermès': '#d4af37', 'Louis Vuitton': '#8b6f47', 'Dior': '#c0c0c0',
+  'Gucci': '#4ade80', 'Saint Laurent': '#f87171',
+  'Rolex': '#22d3ee', 'Cartier': '#f59e0b', 'Hublot': '#a78bfa', 'Piaget': '#ec4899',
+};
+
+function fmtPct(v, digits=1) {
+  if (v == null || isNaN(v)) return '—';
+  return (v * 100).toFixed(digits) + '%';
+}
+function fmtDelta(curr, prev) {
+  if (prev == null) return '<span class="delta-flat">—</span>';
+  const d = (curr - prev) * 100;
+  if (Math.abs(d) < 0.05) return '<span class="delta-flat">→ 0.0pp</span>';
+  const cls = d > 0 ? 'delta-up' : 'delta-down';
+  const arrow = d > 0 ? '▲' : '▼';
+  return `<span class="${cls}">${arrow} ${Math.abs(d).toFixed(1)}pp</span>`;
+}
+
+function buildDatasets(history, brands) {
+  const allDates = new Set();
+  brands.forEach(b => (history[b] || []).forEach(p => allDates.add(p.date)));
+  const dates = Array.from(allDates).sort();
+  const datasets = brands.map(brand => {
+    const points = history[brand] || [];
+    const map = Object.fromEntries(points.map(p => [p.date, p]));
+    const data = dates.map(d => {
+      const p = map[d];
+      return p ? { x: d, y: p.weighted_vr * 100, n: p.n_bags || p.n_watches, fallback: !!p.fallback } : { x: d, y: null };
+    });
+    const nPoints = points.length;
+    return {
+      label: brand,
+      data: data,
+      borderColor: COLORS[brand],
+      backgroundColor: COLORS[brand] + '33',
+      borderWidth: 2,
+      pointRadius: nPoints <= 5 ? 6 : 3,
+      pointHoverRadius: 10,
+      tension: 0.25,
+      spanGaps: true,
+    };
+  });
+  return { dates, datasets };
+}
+
+function renderChart(canvasId, history, brands) {
+  const { dates, datasets } = buildDatasets(history, brands);
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  return new Chart(ctx, {
+    type: 'line',
+    data: { labels: dates, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'nearest', intersect: false },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#e8ecf4', font: { size: 11 }, padding: 12, usePointStyle: true, pointStyle: 'circle' },
+        },
+        tooltip: {
+          backgroundColor: '#0a1628', borderColor: '#d4af37', borderWidth: 1, titleColor: '#d4af37', bodyColor: '#e8ecf4',
+          padding: 10, displayColors: true,
+          callbacks: {
+            title: (items) => items[0].label,
+            label: (item) => {
+              const p = item.raw;
+              if (p.y == null) return `${item.dataset.label}: no data`;
+              const nStr = p.n ? ` · n=${p.n}` : '';
+              const fbStr = p.fallback ? ' · fallback' : '';
+              return `${item.dataset.label}: ${p.y.toFixed(2)}%${nStr}${fbStr}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: { color: '#8a9bb8', font: { size: 10 }, maxRotation: 0 },
+          grid: { color: 'rgba(42, 65, 98, 0.3)' },
+        },
+        y: {
+          ticks: { color: '#8a9bb8', font: { size: 10 }, callback: v => v.toFixed(0) + '%' },
+          grid: { color: 'rgba(42, 65, 98, 0.3)' },
+        },
+      },
+    },
+  });
+}
+
+function renderTable(tableId, snapshotDateId, history, brands, countField) {
+  const tbody = document.querySelector(`#${tableId} tbody`);
+  const rows = [];
+  let latestDate = null;
+  brands.forEach(brand => {
+    const arr = history[brand] || [];
+    if (arr.length === 0) {
+      rows.push(`<tr><td class="brand-cell">${brand}</td><td colspan="5" style="color:var(--text-muted);">no data</td></tr>`);
+      return;
+    }
+    const last = arr[arr.length - 1];
+    const prev = arr.length >= 2 ? arr[arr.length - 2] : null;
+    if (!latestDate || last.date > latestDate) latestDate = last.date;
+    const modeDot = last.fallback ? '<span class="mode-dot">🟡</span>' : (countField === 'n_watches' ? '<span class="mode-dot">🟢</span>' : '');
+    rows.push(`
+      <tr>
+        <td class="brand-cell">${modeDot}${brand}</td>
+        <td class="num vr-main">${fmtPct(last.weighted_vr)}</td>
+        <td class="num">${fmtDelta(last.weighted_vr, prev ? prev.weighted_vr : null)}</td>
+        <td class="num">${fmtPct(last.min_vr)}</td>
+        <td class="num">${fmtPct(last.max_vr)}</td>
+        <td class="num">${last[countField] ?? '—'}</td>
+      </tr>`);
+  });
+  tbody.innerHTML = rows.join('');
+  document.getElementById(snapshotDateId).textContent = latestDate || '—';
+  return latestDate;
+}
+
+async function loadData() {
+  try {
+    const [bagsRes, watchesRes] = await Promise.all([
+      fetch(BASE + 'handbags_history.json?t=' + Date.now()),
+      fetch(BASE + 'watches_history.json?t=' + Date.now()),
+    ]);
+    const bags = await bagsRes.json();
+    const watches = watchesRes.ok ? await watchesRes.json() : {};
+    renderChart('bagsChart', bags, BAG_BRANDS);
+    renderChart('watchesChart', watches, WATCH_BRANDS);
+    const d1 = renderTable('bags-table', 'bags-snapshot-date', bags, BAG_BRANDS, 'n_bags');
+    const d2 = renderTable('watches-table', 'watches-snapshot-date', watches, WATCH_BRANDS, 'n_watches');
+    const latest = [d1, d2].filter(Boolean).sort().pop();
+    document.getElementById('last-update').textContent = 'Last update: ' + (latest || 'unknown');
+  } catch (e) {
+    console.error(e
