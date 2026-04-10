@@ -1,11 +1,11 @@
 {
   "Rolex": [
     {
-      "weighted_vr": 1.1937,
-      "simple_avg_vr": 1.3925,
+      "weighted_vr": 1.0442,
+      "simple_avg_vr": 1.2375,
       "min_vr": 0.6578,
-      "max_vr": 5.122,
-      "n_watches": 119,
+      "max_vr": 3.687,
+      "n_watches": 73,
       "date": "2026-04-10",
       "fallback": false,
       "matched_keywords": [
@@ -19,28 +19,29 @@
   ],
   "Cartier": [
     {
-      "weighted_vr": 0.7588,
-      "simple_avg_vr": 0.7903,
+      "weighted_vr": 0.7214,
+      "simple_avg_vr": 0.7622,
       "min_vr": 0.4388,
       "max_vr": 1.1833,
-      "n_watches": 47,
+      "n_watches": 66,
       "date": "2026-04-10",
       "fallback": false,
       "matched_keywords": [
         "Tank",
         "Santos",
         "Panthère",
-        "Ballon Bleu"
+        "Ballon Bleu",
+        "Pasha"
       ]
     }
   ],
   "Hublot": [
     {
-      "weighted_vr": 0.4842,
-      "simple_avg_vr": 0.4624,
+      "weighted_vr": 0.4743,
+      "simple_avg_vr": 0.4575,
       "min_vr": 0.4016,
       "max_vr": 0.554,
-      "n_watches": 4,
+      "n_watches": 5,
       "date": "2026-04-10",
       "fallback": true,
       "matched_keywords": []
@@ -59,5 +60,16 @@
     }
   ],
   "Hermès": [],
-  "Piaget": []
+  "Piaget": [
+    {
+      "weighted_vr": 0.4099,
+      "simple_avg_vr": 0.4039,
+      "min_vr": 0.3506,
+      "max_vr": 0.4535,
+      "n_watches": 5,
+      "date": "2026-04-10",
+      "fallback": true,
+      "matched_keywords": []
+    }
+  ]
 }
