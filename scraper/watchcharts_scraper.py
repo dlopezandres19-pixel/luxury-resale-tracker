@@ -1,10 +1,19 @@
-import json, sys, datetime, time, random, re
+import json, sys, datetime, time, random, re, base64
 from pathlib import Path
 import cloudscraper
 from bs4 import BeautifulSoup
 
-# Curated models per brand (Option C). Keywords matched case-insensitively
-# in the full model name (h4 + h5 concatenated).
+# Brand ID on Watchcharts (internal filter "-2")
+BRAND_IDS = {
+    "Rolex":     "24",
+    "Cartier":   "52",
+    "Hublot":    "259",
+    "TAG Heuer": "51",
+    "Hermès":    "455",
+    "Piaget":    "226",
+}
+
+# Curated models (keywords matched in h4+h5 text)
 CURATED = {
     "Rolex":     ["Submariner", "Daytona", "GMT-Master", "Datejust", "Explorer"],
     "Cartier":   ["Santos", "Tank", "Ballon Bleu", "Panthère", "Pasha"],
@@ -13,8 +22,13 @@ CURATED = {
     "Hermès":    ["Arceau", "Cape Cod", "Heure H", "Kelly", "Slim"],
     "Piaget":    ["Polo", "Altiplano", "Possession", "Limelight", "Piaget Polo Skeleton"],
 }
-MAX_PAGES = 30
+MAX_PAGES_PER_BRAND = 5
 HISTORY_FILE = Path("data/watches_history.json")
+
+def build_filter_param(brand_id):
+    """Build ?filters=... base64 string for a brand ID."""
+    payload = json.dumps({"-2": [brand_id]}, separators=(",", ":"))
+    return base64.b64encode(payload.encode()).decode()
 
 def make_scraper():
     return cloudscraper.create_scraper(
@@ -22,34 +36,32 @@ def make_scraper():
     )
 
 def parse_price(s):
-    """'$11,350' -> 11350.0"""
     m = re.search(r"\$?([\d,]+(?:\.\d+)?)", s or "")
     return float(m.group(1).replace(",", "")) if m else None
 
-def scrape_page(scraper, page_num, max_retries=3):
-    """Return list of dicts: {brand, model_full, retail, market}. Retries on 403."""
-    url = f"https://watchcharts.com/watches?page={page_num}"
+def scrape_page(scraper, url, max_retries=3):
     last_err = None
     for attempt in range(max_retries):
         try:
             r = scraper.get(url, timeout=30)
             if r.status_code == 403:
                 wait = 30 * (attempt + 1)
-                print(f"    403 on attempt {attempt+1}, waiting {wait}s before retry...")
+                print(f"    403 on attempt {attempt+1}, waiting {wait}s...")
                 time.sleep(wait)
                 continue
             r.raise_for_status()
-            break
+            return r.text
         except Exception as e:
             last_err = e
             wait = 20 * (attempt + 1)
-            print(f"    error on attempt {attempt+1}: {e}, waiting {wait}s...")
+            print(f"    error attempt {attempt+1}: {e}, waiting {wait}s...")
             time.sleep(wait)
-    else:
-        raise last_err or Exception("all retries failed")
-    soup = BeautifulSoup(r.text, "html.parser")
+    raise last_err or Exception("all retries failed")
+
+def parse_watches(html):
+    soup = BeautifulSoup(html, "html.parser")
     watches = []
-    for a in soup.find_all("a", href=re.compile(r"/watch_model/[\d]+")):
+    for a in soup.find_all("a", href=re.compile(r"/watch_model/\d+")):
         h4 = a.find("h4")
         h5 = a.find("h5")
         if not h4:
@@ -57,15 +69,6 @@ def scrape_page(scraper, page_num, max_retries=3):
         ref = h4.get_text(strip=True)
         model = h5.get_text(strip=True) if h5 else ""
         full_name = f"{ref} {model}".strip()
-        # brand = first token (Rolex, Cartier, Hublot, etc.)
-        first_token = ref.split()[0] if ref else ""
-        brand = first_token
-        # handle multi-word brands
-        if ref.lower().startswith("tag heuer"):
-            brand = "TAG Heuer"
-        elif ref.lower().startswith("hermès") or ref.lower().startswith("hermes"):
-            brand = "Hermès"
-        # extract prices from the watch-card-table
         table = a.find("table", class_=re.compile(r"watch-card-table"))
         retail = market = None
         if table:
@@ -74,30 +77,50 @@ def scrape_page(scraper, page_num, max_retries=3):
             prices = [p for p in prices if p]
             if len(prices) >= 2:
                 retail, market = prices[0], prices[1]
-            elif len(prices) == 1:
-                retail = prices[0]
         if retail and market:
-            watches.append({
-                "brand": brand,
-                "name": full_name,
-                "retail": retail,
-                "market": market,
-            })
+            watches.append({"name": full_name, "retail": retail, "market": market})
     return watches
 
-def match_curated(watches_for_brand, keywords):
-    """Return watches whose name contains any of the curated keywords."""
+def scrape_brand(scraper, brand, brand_id):
+    """Fetch all pages for one brand using the base64 filter."""
+    fparam = build_filter_param(brand_id)
+    all_watches = []
+    seen_names = set()
+    for page in range(1, MAX_PAGES_PER_BRAND + 1):
+        sep = "&" if page > 1 else ""
+        page_q = f"&page={page}" if page > 1 else ""
+        url = f"https://watchcharts.com/watches?filters={fparam}{page_q}"
+        print(f"  {brand} page {page}: {url}")
+        try:
+            html = scrape_page(scraper, url)
+        except Exception as e:
+            print(f"    ERROR: {e}", file=sys.stderr)
+            break
+        watches = parse_watches(html)
+        print(f"    parsed {len(watches)} watches")
+        new_count = 0
+        for w in watches:
+            if w["name"] not in seen_names:
+                seen_names.add(w["name"])
+                all_watches.append(w)
+                new_count += 1
+        if new_count == 0:
+            print(f"    no new watches, stopping pagination for {brand}")
+            break
+        time.sleep(random.uniform(4, 7))
+    return all_watches
+
+def match_curated(watches, keywords):
     matched = {}
-    for w in watches_for_brand:
-        name_l = w["name"].lower()
+    for w in watches:
+        nl = w["name"].lower()
         for kw in keywords:
-            if kw.lower() in name_l:
+            if kw.lower() in nl:
                 matched.setdefault(kw, []).append(w)
                 break
     return matched
 
-def compute_brand_vr(watches):
-    """Weighted by retail price."""
+def compute_stats(watches):
     if not watches:
         return None
     ratios = [(w["retail"], w["market"] / w["retail"]) for w in watches]
@@ -119,7 +142,7 @@ def compute_brand_vr(watches):
 def main():
     HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
     history = json.loads(HISTORY_FILE.read_text()) if HISTORY_FILE.exists() \
-        else {b: [] for b in CURATED}
+        else {b: [] for b in BRAND_IDS}
 
     scraper = make_scraper()
     try:
@@ -127,35 +150,21 @@ def main():
     except Exception as e:
         print(f"warmup failed: {e}")
 
-    all_watches = []
-    for page in range(1, MAX_PAGES + 1):
-        try:
-            page_watches = scrape_page(scraper, page)
-            print(f"Page {page}: {len(page_watches)} watches parsed")
-            if not page_watches:
-                print(f"  empty page, stopping")
-                break
-            all_watches.extend(page_watches)
-        except Exception as e:
-            print(f"  ERROR page {page}: {e}", file=sys.stderr)
-            break
-        time.sleep(random.uniform(4, 7))
-
-    print(f"\nTotal watches collected: {len(all_watches)}")
-
-    # group by brand
-    by_brand = {}
-    for w in all_watches:
-        by_brand.setdefault(w["brand"], []).append(w)
-    for b, lst in by_brand.items():
-        print(f"  {b}: {len(lst)} watches")
-
     today = datetime.date.today().isoformat()
-    for brand, keywords in CURATED.items():
-        brand_watches = by_brand.get(brand, [])
-        if not brand_watches:
-            print(f"\n{brand}: NO watches found in any page — skipping")
+
+    for brand, brand_id in BRAND_IDS.items():
+        print(f"\n=== {brand} (ID {brand_id}) ===")
+        try:
+            brand_watches = scrape_brand(scraper, brand, brand_id)
+        except Exception as e:
+            print(f"  FATAL: {e}", file=sys.stderr)
             continue
+        print(f"  total unique watches: {len(brand_watches)}")
+        if not brand_watches:
+            print(f"  {brand}: no data — skipping")
+            continue
+
+        keywords = CURATED[brand]
         matched = match_curated(brand_watches, keywords)
         found_kws = list(matched.keys())
         missing_kws = [k for k in keywords if k not in matched]
@@ -163,14 +172,13 @@ def main():
 
         fallback = False
         if len(found_kws) < 3:
-            # Fallback to Option B: top 5 by list order (Watchcharts relevance)
             fallback = True
             flat = brand_watches[:5]
-            print(f"\n{brand}: only {len(found_kws)}/{len(keywords)} curated models found — using FALLBACK (top 5 by relevance)")
+            print(f"  FALLBACK: only {len(found_kws)}/{len(keywords)} curated found; using top 5 by relevance")
         else:
-            print(f"\n{brand}: found {found_kws} ({len(flat)} refs); missing {missing_kws}")
+            print(f"  matched {found_kws} ({len(flat)} refs); missing {missing_kws}")
 
-        stats = compute_brand_vr(flat)
+        stats = compute_stats(flat)
         if not stats:
             continue
         stats["date"] = today
@@ -181,6 +189,7 @@ def main():
         history[brand].append(stats)
         history[brand].sort(key=lambda p: p["date"])
         print(f"  {brand}: weighted_vr={stats['weighted_vr']:.2%} (n={stats['n_watches']}, fallback={fallback})")
+        time.sleep(random.uniform(3, 6))  # polite pause between brands
 
     HISTORY_FILE.write_text(json.dumps(history, indent=2, ensure_ascii=False))
     print(f"\nSaved {HISTORY_FILE}")
