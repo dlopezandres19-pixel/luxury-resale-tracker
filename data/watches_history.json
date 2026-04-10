@@ -62,9 +62,9 @@
   "Hermès": [],
   "Piaget": [
     {
-      "weighted_vr": 0.4099,
-      "simple_avg_vr": 0.4039,
-      "min_vr": 0.3506,
+      "weighted_vr": 0.4091,
+      "simple_avg_vr": 0.4065,
+      "min_vr": 0.3637,
       "max_vr": 0.4535,
       "n_watches": 5,
       "date": "2026-04-10",
