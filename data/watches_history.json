@@ -1,0 +1,40 @@
+{
+  "Rolex": [
+    {
+      "weighted_vr": 1.0759,
+      "simple_avg_vr": 1.2616,
+      "min_vr": 0.6578,
+      "max_vr": 4.8816,
+      "n_watches": 88,
+      "date": "2026-04-10",
+      "fallback": false,
+      "matched_keywords": [
+        "Submariner",
+        "Datejust",
+        "GMT-Master",
+        "Daytona",
+        "Explorer"
+      ]
+    }
+  ],
+  "Cartier": [
+    {
+      "weighted_vr": 0.8315,
+      "simple_avg_vr": 0.8396,
+      "min_vr": 0.6231,
+      "max_vr": 1.1833,
+      "n_watches": 17,
+      "date": "2026-04-10",
+      "fallback": false,
+      "matched_keywords": [
+        "Tank",
+        "Santos",
+        "Panthère"
+      ]
+    }
+  ],
+  "Hublot": [],
+  "TAG Heuer": [],
+  "Hermès": [],
+  "Piaget": []
+}
