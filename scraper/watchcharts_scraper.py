@@ -13,7 +13,7 @@ CURATED = {
     "Hermès":    ["Arceau", "Cape Cod", "Heure H", "Kelly", "Slim"],
     "Piaget":    ["Polo", "Altiplano", "Possession", "Limelight", "Piaget Polo Skeleton"],
 }
-MAX_PAGES = 50
+MAX_PAGES = 30
 HISTORY_FILE = Path("data/watches_history.json")
 
 def make_scraper():
@@ -26,11 +26,27 @@ def parse_price(s):
     m = re.search(r"\$?([\d,]+(?:\.\d+)?)", s or "")
     return float(m.group(1).replace(",", "")) if m else None
 
-def scrape_page(scraper, page_num):
-    """Return list of dicts: {brand, model_full, retail, market}."""
+def scrape_page(scraper, page_num, max_retries=3):
+    """Return list of dicts: {brand, model_full, retail, market}. Retries on 403."""
     url = f"https://watchcharts.com/watches?page={page_num}"
-    r = scraper.get(url, timeout=30)
-    r.raise_for_status()
+    last_err = None
+    for attempt in range(max_retries):
+        try:
+            r = scraper.get(url, timeout=30)
+            if r.status_code == 403:
+                wait = 30 * (attempt + 1)
+                print(f"    403 on attempt {attempt+1}, waiting {wait}s before retry...")
+                time.sleep(wait)
+                continue
+            r.raise_for_status()
+            break
+        except Exception as e:
+            last_err = e
+            wait = 20 * (attempt + 1)
+            print(f"    error on attempt {attempt+1}: {e}, waiting {wait}s...")
+            time.sleep(wait)
+    else:
+        raise last_err or Exception("all retries failed")
     soup = BeautifulSoup(r.text, "html.parser")
     watches = []
     for a in soup.find_all("a", href=re.compile(r"/watch_model/[\d]+")):
@@ -123,7 +139,7 @@ def main():
         except Exception as e:
             print(f"  ERROR page {page}: {e}", file=sys.stderr)
             break
-        time.sleep(random.uniform(1.5, 3))
+        time.sleep(random.uniform(4, 7))
 
     print(f"\nTotal watches collected: {len(all_watches)}")
 
