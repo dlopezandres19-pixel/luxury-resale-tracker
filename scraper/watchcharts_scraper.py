@@ -5,28 +5,23 @@ from bs4 import BeautifulSoup
 
 # Brand ID on Watchcharts (internal filter "-2")
 BRAND_IDS = {
-    "Rolex":     "24",
-    "Cartier":   "52",
-    "Hublot":    "259",
-    "TAG Heuer": "51",
-    "Hermès":    "455",
-    "Piaget":    "226",
+    "Rolex":   "24",
+    "Cartier": "52",
+    "Hublot":  "259",
+    "Piaget":  "226",
 }
 
-# Curated models (keywords matched in h4+h5 text)
+# Curated models (keywords matched in h4+h5 text, case-insensitive)
 CURATED = {
-    "Rolex":     ["Submariner", "Daytona", "GMT-Master", "Datejust", "Explorer"],
-    "Cartier":   ["Santos", "Tank", "Ballon Bleu", "Panthère", "Pasha"],
-    "Hublot":    ["Big Bang", "Classic Fusion", "Spirit", "MP-", "King Power"],
-    "TAG Heuer": ["Carrera", "Monaco", "Aquaracer", "Formula 1", "Autavia"],
-    "Hermès":    ["Arceau", "Cape Cod", "Heure H", "Kelly", "Slim"],
-    "Piaget":    ["Polo", "Altiplano", "Possession", "Limelight", "Piaget Polo Skeleton"],
+    "Rolex":   ["Submariner", "Daytona", "GMT-Master", "Datejust", "Explorer"],
+    "Cartier": ["Santos", "Tank", "Ballon Bleu", "Panthère", "Pasha"],
+    "Hublot":  ["Big Bang", "Classic Fusion", "Spirit", "MP-", "King Power"],
+    "Piaget":  ["Polo", "Altiplano", "Possession", "Limelight"],
 }
 MAX_PAGES_PER_BRAND = 5
 HISTORY_FILE = Path("data/watches_history.json")
 
 def build_filter_param(brand_id):
-    """Build ?filters=... base64 string for a brand ID."""
     payload = json.dumps({"-2": [brand_id]}, separators=(",", ":"))
     return base64.b64encode(payload.encode()).decode()
 
@@ -61,15 +56,11 @@ def scrape_page(scraper, url, max_retries=3):
             time.sleep(wait)
     raise last_err or Exception("all retries failed")
 
-def parse_watches(html, debug_label=""):
+def parse_watches(html):
     soup = BeautifulSoup(html, "html.parser")
     watches = []
-    raw_links = soup.find_all("a", href=re.compile(r"/watch_model/\d+"))
-    if debug_label:
-        text_lower = soup.get_text(" ", strip=True).lower()
-        no_results = any(s in text_lower for s in ["no results", "no watches", "0 results"])
-        print(f"    [debug {debug_label}] raw watch links: {len(raw_links)}, empty-state: {no_results}, html_len: {len(html)}")
-    for a in raw_links:
+    seen_in_page = set()
+    for a in soup.find_all("a", href=re.compile(r"/watch_model/\d+")):
         h4 = a.find("h4")
         h5 = a.find("h5")
         if not h4:
@@ -77,6 +68,8 @@ def parse_watches(html, debug_label=""):
         ref = h4.get_text(strip=True)
         model = h5.get_text(strip=True) if h5 else ""
         full_name = f"{ref} {model}".strip()
+        if full_name in seen_in_page:
+            continue
         table = a.find("table", class_=re.compile(r"watch-card-table"))
         retail = market = None
         if table:
@@ -86,18 +79,18 @@ def parse_watches(html, debug_label=""):
             if len(prices) >= 2:
                 retail, market = prices[0], prices[1]
         if retail and market:
+            seen_in_page.add(full_name)
             watches.append({"name": full_name, "retail": retail, "market": market})
     return watches
 
 def scrape_brand(scraper, brand, brand_id):
-    """Fetch all pages for one brand using the base64 filter."""
     fparam = build_filter_param(brand_id)
     all_watches = []
     seen_names = set()
     for page in range(1, MAX_PAGES_PER_BRAND + 1):
         page_q = f"&page={page}" if page > 1 else ""
         url = f"https://watchcharts.com/watches?filters={fparam}{page_q}"
-        print(f"  {brand} page {page}: {url}")
+        print(f"  {brand} page {page}")
         try:
             html = scrape_page(scraper, url)
         except Exception as e:
@@ -105,7 +98,7 @@ def scrape_brand(scraper, brand, brand_id):
             break
         if html is None:
             break
-        watches = parse_watches(html, debug_label=f"{brand} p{page}")
+        watches = parse_watches(html)
         print(f"    parsed {len(watches)} watches")
         new_count = 0
         for w in watches:
@@ -199,6 +192,12 @@ def main():
         history[brand].sort(key=lambda p: p["date"])
         print(f"  {brand}: weighted_vr={stats['weighted_vr']:.2%} (n={stats['n_watches']}, fallback={fallback})")
         time.sleep(random.uniform(3, 6))
+
+    # Clean up any old Hermès/TAG Heuer entries from previous runs
+    for old_brand in ["TAG Heuer", "Hermès"]:
+        if old_brand in history:
+            del history[old_brand]
+            print(f"Removed {old_brand} from history (deprecated)")
 
     HISTORY_FILE.write_text(json.dumps(history, indent=2, ensure_ascii=False))
     print(f"\nSaved {HISTORY_FILE}")
