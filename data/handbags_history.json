@@ -31,6 +31,14 @@
       "min_vr": 0.93,
       "max_vr": 2.424,
       "n_bags": 10
+    },
+    {
+      "date": "2026-04-18",
+      "weighted_vr": 1.7178,
+      "simple_avg_vr": 1.5713,
+      "min_vr": 0.93,
+      "max_vr": 2.424,
+      "n_bags": 10
     }
   ],
   "Louis Vuitton": [
@@ -60,6 +68,14 @@
     },
     {
       "date": "2026-04-17",
+      "weighted_vr": 1.0175,
+      "simple_avg_vr": 0.9083,
+      "min_vr": 0.371,
+      "max_vr": 1.866,
+      "n_bags": 9
+    },
+    {
+      "date": "2026-04-18",
       "weighted_vr": 1.0175,
       "simple_avg_vr": 0.9083,
       "min_vr": 0.371,
@@ -99,6 +115,14 @@
       "min_vr": 0.62,
       "max_vr": 0.85,
       "n_bags": 6
+    },
+    {
+      "date": "2026-04-18",
+      "weighted_vr": 0.7184,
+      "simple_avg_vr": 0.7238,
+      "min_vr": 0.62,
+      "max_vr": 0.85,
+      "n_bags": 6
     }
   ],
   "Gucci": [
@@ -133,6 +157,14 @@
       "min_vr": 0.68,
       "max_vr": 0.68,
       "n_bags": 6
+    },
+    {
+      "date": "2026-04-18",
+      "weighted_vr": 0.68,
+      "simple_avg_vr": 0.68,
+      "min_vr": 0.68,
+      "max_vr": 0.68,
+      "n_bags": 6
     }
   ],
   "Saint Laurent": [
@@ -162,6 +194,14 @@
     },
     {
       "date": "2026-04-17",
+      "weighted_vr": 0.6826,
+      "simple_avg_vr": 0.7065,
+      "min_vr": 0.59,
+      "max_vr": 0.936,
+      "n_bags": 4
+    },
+    {
+      "date": "2026-04-18",
       "weighted_vr": 0.6826,
       "simple_avg_vr": 0.7065,
       "min_vr": 0.59,
