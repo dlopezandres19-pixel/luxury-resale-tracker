@@ -527,6 +527,22 @@
         "Submariner",
         "Explorer"
       ]
+    },
+    {
+      "weighted_vr": 1.0941,
+      "simple_avg_vr": 1.3164,
+      "min_vr": 0.6669,
+      "max_vr": 5.0011,
+      "n_watches": 75,
+      "date": "2026-05-15",
+      "fallback": false,
+      "matched_keywords": [
+        "Datejust",
+        "Submariner",
+        "GMT-Master",
+        "Daytona",
+        "Explorer"
+      ]
     }
   ],
   "Cartier": [
@@ -1052,6 +1068,21 @@
         "Panthère",
         "Ballon Bleu"
       ]
+    },
+    {
+      "weighted_vr": 0.7377,
+      "simple_avg_vr": 0.7776,
+      "min_vr": 0.4021,
+      "max_vr": 1.1762,
+      "n_watches": 63,
+      "date": "2026-05-15",
+      "fallback": false,
+      "matched_keywords": [
+        "Santos",
+        "Tank",
+        "Panthère",
+        "Ballon Bleu"
+      ]
     }
   ],
   "Hublot": [
@@ -1394,6 +1425,16 @@
       "date": "2026-05-14",
       "fallback": true,
       "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4271,
+      "simple_avg_vr": 0.4292,
+      "min_vr": 0.3992,
+      "max_vr": 0.481,
+      "n_watches": 5,
+      "date": "2026-05-15",
+      "fallback": true,
+      "matched_keywords": []
     }
   ],
   "Piaget": [
@@ -1734,6 +1775,16 @@
       "max_vr": 0.4398,
       "n_watches": 5,
       "date": "2026-05-14",
+      "fallback": true,
+      "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4003,
+      "simple_avg_vr": 0.3997,
+      "min_vr": 0.3543,
+      "max_vr": 0.4387,
+      "n_watches": 5,
+      "date": "2026-05-15",
       "fallback": true,
       "matched_keywords": []
     }
