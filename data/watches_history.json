@@ -1176,6 +1176,21 @@
         "Panthère",
         "Ballon Bleu"
       ]
+    },
+    {
+      "weighted_vr": 0.7773,
+      "simple_avg_vr": 0.7983,
+      "min_vr": 0.4027,
+      "max_vr": 1.1782,
+      "n_watches": 41,
+      "date": "2026-05-21",
+      "fallback": false,
+      "matched_keywords": [
+        "Tank",
+        "Santos",
+        "Panthère",
+        "Ballon Bleu"
+      ]
     }
   ],
   "Hublot": [
