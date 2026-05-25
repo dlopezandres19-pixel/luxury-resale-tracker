@@ -1221,6 +1221,20 @@
         "Tank",
         "Panthère"
       ]
+    },
+    {
+      "weighted_vr": 0.8446,
+      "simple_avg_vr": 0.8509,
+      "min_vr": 0.6243,
+      "max_vr": 1.1725,
+      "n_watches": 18,
+      "date": "2026-05-25",
+      "fallback": false,
+      "matched_keywords": [
+        "Tank",
+        "Santos",
+        "Panthère"
+      ]
     }
   ],
   "Hublot": [
