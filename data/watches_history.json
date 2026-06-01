@@ -591,6 +591,22 @@
         "Explorer",
         "Datejust"
       ]
+    },
+    {
+      "weighted_vr": 1.1715,
+      "simple_avg_vr": 1.2267,
+      "min_vr": 0.7884,
+      "max_vr": 2.2513,
+      "n_watches": 18,
+      "date": "2026-06-01",
+      "fallback": false,
+      "matched_keywords": [
+        "GMT-Master",
+        "Submariner",
+        "Daytona",
+        "Explorer",
+        "Datejust"
+      ]
     }
   ],
   "Cartier": [
