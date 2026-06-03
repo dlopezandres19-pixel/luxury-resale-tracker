@@ -607,6 +607,22 @@
         "Explorer",
         "Datejust"
       ]
+    },
+    {
+      "weighted_vr": 1.0618,
+      "simple_avg_vr": 1.255,
+      "min_vr": 0.6925,
+      "max_vr": 3.7579,
+      "n_watches": 71,
+      "date": "2026-06-03",
+      "fallback": false,
+      "matched_keywords": [
+        "Submariner",
+        "GMT-Master",
+        "Datejust",
+        "Daytona",
+        "Explorer"
+      ]
     }
   ],
   "Cartier": [
@@ -1280,6 +1296,20 @@
         "Tank",
         "Panthère",
         "Ballon Bleu"
+      ]
+    },
+    {
+      "weighted_vr": 0.836,
+      "simple_avg_vr": 0.8535,
+      "min_vr": 0.6178,
+      "max_vr": 1.1682,
+      "n_watches": 27,
+      "date": "2026-06-03",
+      "fallback": false,
+      "matched_keywords": [
+        "Santos",
+        "Tank",
+        "Panthère"
       ]
     }
   ],
