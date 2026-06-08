@@ -1805,6 +1805,16 @@
       "date": "2026-06-05",
       "fallback": true,
       "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4723,
+      "simple_avg_vr": 0.4545,
+      "min_vr": 0.4053,
+      "max_vr": 0.5513,
+      "n_watches": 5,
+      "date": "2026-06-08",
+      "fallback": true,
+      "matched_keywords": []
     }
   ],
   "Piaget": [
