@@ -1420,6 +1420,21 @@
         "Panthère",
         "Ballon Bleu"
       ]
+    },
+    {
+      "weighted_vr": 0.7548,
+      "simple_avg_vr": 0.7846,
+      "min_vr": 0.3896,
+      "max_vr": 1.176,
+      "n_watches": 63,
+      "date": "2026-06-13",
+      "fallback": false,
+      "matched_keywords": [
+        "Tank",
+        "Santos",
+        "Panthère",
+        "Ballon Bleu"
+      ]
     }
   ],
   "Hublot": [
@@ -1882,6 +1897,16 @@
       "date": "2026-06-12",
       "fallback": true,
       "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4663,
+      "simple_avg_vr": 0.4478,
+      "min_vr": 0.402,
+      "max_vr": 0.5513,
+      "n_watches": 5,
+      "date": "2026-06-13",
+      "fallback": true,
+      "matched_keywords": []
     }
   ],
   "Piaget": [
@@ -2322,6 +2347,16 @@
       "max_vr": 0.5366,
       "n_watches": 5,
       "date": "2026-06-12",
+      "fallback": true,
+      "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4366,
+      "simple_avg_vr": 0.4395,
+      "min_vr": 0.3895,
+      "max_vr": 0.5318,
+      "n_watches": 5,
+      "date": "2026-06-13",
       "fallback": true,
       "matched_keywords": []
     }
