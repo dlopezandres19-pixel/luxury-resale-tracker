@@ -1907,6 +1907,16 @@
       "date": "2026-06-13",
       "fallback": true,
       "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4659,
+      "simple_avg_vr": 0.4473,
+      "min_vr": 0.4005,
+      "max_vr": 0.5513,
+      "n_watches": 5,
+      "date": "2026-06-17",
+      "fallback": true,
+      "matched_keywords": []
     }
   ],
   "Piaget": [
@@ -2367,6 +2377,16 @@
       "max_vr": 0.5248,
       "n_watches": 5,
       "date": "2026-06-14",
+      "fallback": true,
+      "matched_keywords": []
+    },
+    {
+      "weighted_vr": 0.4239,
+      "simple_avg_vr": 0.421,
+      "min_vr": 0.3444,
+      "max_vr": 0.5233,
+      "n_watches": 5,
+      "date": "2026-06-17",
       "fallback": true,
       "matched_keywords": []
     }
