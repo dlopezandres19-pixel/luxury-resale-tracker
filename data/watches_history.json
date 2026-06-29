@@ -1590,6 +1590,22 @@
         "Ballon Bleu",
         "Pasha"
       ]
+    },
+    {
+      "weighted_vr": 0.76,
+      "simple_avg_vr": 0.7875,
+      "min_vr": 0.4461,
+      "max_vr": 1.1743,
+      "n_watches": 53,
+      "date": "2026-06-29",
+      "fallback": false,
+      "matched_keywords": [
+        "Tank",
+        "Santos",
+        "Panthère",
+        "Ballon Bleu",
+        "Pasha"
+      ]
     }
   ],
   "Hublot": [
