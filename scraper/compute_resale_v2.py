@@ -71,7 +71,17 @@ def apify_get(url):
         return json.loads(r.read().decode("utf-8"))
 
 
-def fetch_dataset_items(dataset_id):
+def fetch_dataset_items(dataset_id=None, run_id=None):
+    """Fetch dataset items. If dataset_id isn't provided (or the webhook
+    template variable failed to resolve), fall back to resolving it from
+    the run_id first — actorRunId is confirmed reliably available in
+    Apify's webhook payload, unlike resource.defaultDatasetId."""
+    if not dataset_id and run_id:
+        run_info = apify_get(f"https://api.apify.com/v2/actor-runs/{run_id}")
+        dataset_id = run_info["data"]["defaultDatasetId"]
+        print(f"Resolved datasetId from runId {run_id} -> {dataset_id}")
+    if not dataset_id:
+        raise ValueError("No dataset_id available (neither passed directly nor resolvable from run_id)")
     url = f"https://api.apify.com/v2/datasets/{dataset_id}/items?format=json&clean=true"
     return apify_get(url)
 
@@ -196,12 +206,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", required=True, choices=["vestiaire", "xianyu"])
     ap.add_argument("--region", required=True, choices=["US", "EU", "CN"])
-    ap.add_argument("--dataset-id", required=True)
+    ap.add_argument("--dataset-id", default=None)
+    ap.add_argument("--run-id", default=None)
     args = ap.parse_args()
 
     msrp = load_msrp()
-    items = fetch_dataset_items(args.dataset_id)
-    print(f"Fetched {len(items)} items from dataset {args.dataset_id}")
+    items = fetch_dataset_items(dataset_id=args.dataset_id, run_id=args.run_id)
+    print(f"Fetched {len(items)} items from dataset")
 
     if args.source == "vestiaire":
         snapshot = process_vestiaire(items, args.region, msrp)
