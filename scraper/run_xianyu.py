@@ -27,7 +27,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from compute_resale_v2 import process_xianyu, load_msrp, load_history, save_history
+from compute_resale_v2 import process_xianyu, load_msrp, load_history, save_history, upsert_entry
 
 XIANYU_ACTOR = "sian.agency~xianyu-goofish-product-scraper"
 MAX_RESULTS_PER_KEYWORD = 30
@@ -94,7 +94,7 @@ def main():
         for model in msrp["models"]:
             if msrp["models"][model].get("CN") is None:
                 continue
-            history.setdefault(model, []).append({
+            upsert_entry(history, model, {
                 "date": today, "vr_median": None, "vr_mean": None, "n_listings": 0,
                 "n_excluded_as_likely_replica": len(items), "avg_days_to_sell": None,
                 "avg_want_count": None, "price_median": None, "currency": "CNY",
@@ -102,7 +102,7 @@ def main():
             })
     else:
         for model, entry in snapshot.items():
-            history.setdefault(model, []).append(entry)
+            upsert_entry(history, model, entry)
             print(f"  SAVED {model}: VR median={entry['vr_median']:.3f}  n={entry['n_listings']}")
 
     save_history(history, path)
