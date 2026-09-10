@@ -46,12 +46,20 @@ MODEL_ALIASES = {
 # P2P marketplace. NOT exhaustive — a heuristic filter, not a guarantee.
 XIANYU_EXCLUDE_KEYWORDS = ["拼皮", "复刻", "高仿", "match", "顶级版", "订制", "代工"]
 # Minimum plausible resale price (CNY) below which a listing is almost
-# certainly not a genuine item of that model.
+# certainly not a genuine item of that model. Set relative to CN MSRP
+# (~75-80% of retail as a floor) — a genuine bag rarely sells for much
+# less than that even used; well-known replica price bands sit far below.
+# Revised 2026-09-10 after v1 thresholds (30k flat) let convincing
+# high-price replicas through — see _caveat in output.
 XIANYU_MIN_PRICE = {
-    "Hermès Birkin 25": 30000,
-    "Hermès Birkin 30": 32000,
-    "Hermès Kelly 25": 28000,
-    "Hermès Kelly 28": 30000,
+    "Hermès Birkin 25": 90000,
+    "Hermès Birkin 30": 95000,
+    "Hermès Kelly 25": 90000,
+    "Hermès Kelly 28": 85000,
+    "LV Neverfull MM": 9000,
+    "LV Speedy 25": 9000,
+    "LV Capucines BB": 35000,
+    "Dior Lady Dior Small": 30000,
 }
 
 
