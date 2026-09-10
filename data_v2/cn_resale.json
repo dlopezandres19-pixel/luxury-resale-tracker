@@ -11,6 +11,116 @@
       "price_median": 53400.0,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "Hermès Birkin 30": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "Hermès Kelly 25": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "Hermès Kelly 28": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "LV Neverfull MM": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "LV Speedy 25": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "LV Capucines BB": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
+    }
+  ],
+  "Dior Lady Dior Small": [
+    {
+      "date": "2026-09-10",
+      "vr_median": null,
+      "vr_mean": null,
+      "n_listings": 0,
+      "n_excluded_as_likely_replica": 25,
+      "avg_days_to_sell": null,
+      "avg_want_count": null,
+      "price_median": null,
+      "currency": "CNY",
+      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
     }
   ]
 }
