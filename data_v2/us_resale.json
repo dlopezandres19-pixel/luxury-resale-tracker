@@ -1,0 +1,26 @@
+{
+  "Hermès Birkin 30": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 1.3477,
+      "vr_mean": 1.3847,
+      "n_listings": 18,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 20080.0,
+      "currency": "USD"
+    }
+  ],
+  "Hermès Birkin 25": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 1.8719,
+      "vr_mean": 1.8697,
+      "n_listings": 12,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 25270.0,
+      "currency": "USD"
+    }
+  ]
+}
