@@ -16,18 +16,6 @@
   "Hermès Birkin 30": [
     {
       "date": "2026-09-10",
-      "vr_median": null,
-      "vr_mean": null,
-      "n_listings": 0,
-      "n_excluded_as_likely_replica": 25,
-      "avg_days_to_sell": null,
-      "avg_want_count": null,
-      "price_median": null,
-      "currency": "CNY",
-      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
-    },
-    {
-      "date": "2026-09-10",
       "vr_median": 0.984,
       "vr_mean": 1.123,
       "n_listings": 15,
@@ -40,18 +28,6 @@
     }
   ],
   "Hermès Kelly 25": [
-    {
-      "date": "2026-09-10",
-      "vr_median": null,
-      "vr_mean": null,
-      "n_listings": 0,
-      "n_excluded_as_likely_replica": 25,
-      "avg_days_to_sell": null,
-      "avg_want_count": null,
-      "price_median": null,
-      "currency": "CNY",
-      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
-    },
     {
       "date": "2026-09-10",
       "vr_median": 1.3043,
@@ -68,18 +44,6 @@
   "Hermès Kelly 28": [
     {
       "date": "2026-09-10",
-      "vr_median": null,
-      "vr_mean": null,
-      "n_listings": 0,
-      "n_excluded_as_likely_replica": 25,
-      "avg_days_to_sell": null,
-      "avg_want_count": null,
-      "price_median": null,
-      "currency": "CNY",
-      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
-    },
-    {
-      "date": "2026-09-10",
       "vr_median": 1.0648,
       "vr_mean": 1.0328,
       "n_listings": 15,
@@ -92,18 +56,6 @@
     }
   ],
   "LV Neverfull MM": [
-    {
-      "date": "2026-09-10",
-      "vr_median": null,
-      "vr_mean": null,
-      "n_listings": 0,
-      "n_excluded_as_likely_replica": 25,
-      "avg_days_to_sell": null,
-      "avg_want_count": null,
-      "price_median": null,
-      "currency": "CNY",
-      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
-    },
     {
       "date": "2026-09-10",
       "vr_median": 0.8742,
@@ -120,18 +72,6 @@
   "LV Speedy 25": [
     {
       "date": "2026-09-10",
-      "vr_median": null,
-      "vr_mean": null,
-      "n_listings": 0,
-      "n_excluded_as_likely_replica": 25,
-      "avg_days_to_sell": null,
-      "avg_want_count": null,
-      "price_median": null,
-      "currency": "CNY",
-      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
-    },
-    {
-      "date": "2026-09-10",
       "vr_median": 0.8642,
       "vr_mean": 1.3544,
       "n_listings": 6,
@@ -144,18 +84,6 @@
     }
   ],
   "LV Capucines BB": [
-    {
-      "date": "2026-09-10",
-      "vr_median": null,
-      "vr_mean": null,
-      "n_listings": 0,
-      "n_excluded_as_likely_replica": 25,
-      "avg_days_to_sell": null,
-      "avg_want_count": null,
-      "price_median": null,
-      "currency": "CNY",
-      "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure."
-    },
     {
       "date": "2026-09-10",
       "vr_median": 0.9236,
