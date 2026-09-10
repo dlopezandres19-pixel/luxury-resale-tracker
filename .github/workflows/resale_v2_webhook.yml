@@ -17,6 +17,12 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Debug — show what the webhook actually sent
+        run: |
+          echo "source=${{ github.event.client_payload.source }}"
+          echo "region=${{ github.event.client_payload.region }}"
+          echo "datasetId=${{ github.event.client_payload.datasetId }}"
+
       - name: Compute metrics from Apify dataset
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
