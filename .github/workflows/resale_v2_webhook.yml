@@ -22,6 +22,7 @@ jobs:
           echo "source=${{ github.event.client_payload.source }}"
           echo "region=${{ github.event.client_payload.region }}"
           echo "datasetId=${{ github.event.client_payload.datasetId }}"
+          echo "runId=${{ github.event.client_payload.runId }}"
 
       - name: Compute metrics from Apify dataset
         env:
@@ -30,7 +31,8 @@ jobs:
           python scraper/compute_resale_v2.py \
             --source "${{ github.event.client_payload.source }}" \
             --region "${{ github.event.client_payload.region }}" \
-            --dataset-id "${{ github.event.client_payload.datasetId }}"
+            --dataset-id "${{ github.event.client_payload.datasetId }}" \
+            --run-id "${{ github.event.client_payload.runId }}"
 
       - name: Commit updated data
         run: |
