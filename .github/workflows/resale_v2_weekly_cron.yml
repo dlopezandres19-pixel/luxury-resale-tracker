@@ -1,0 +1,52 @@
+name: Resale V2 — Weekly Scrape (cron-driven, no webhook)
+
+# Replaces the old Apify Task + Schedule + Webhook setup. GitHub itself
+# now owns the schedule and calls Apify's synchronous run API directly —
+# no dependency on Apify webhook payload templates / macro resolution.
+#
+# Vestiaire (US/EU) is called ONCE PER MODEL (8 separate sync calls each)
+# because maxItems on that actor is a GLOBAL cap across all queries
+# (confirmed in the actor's own docs) — a single multi-query call lets
+# high-supply models (Birkin) consume the whole budget before the others
+# are ever searched.
+#
+# Xianyu (China) is called ONCE with all 8 keywords together, since that
+# actor's maxResults is documented as per-keyword, not global.
+on:
+  schedule:
+    - cron: '0 8 * * 1'   # Every Monday 08:00 UTC = 3:00 AM Lima (UTC-5)
+  workflow_dispatch: {}    # Manual "Run workflow" button in GitHub UI
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scrape Vestiaire — US (8 models, one call each)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_vestiaire_per_model.py --region US
+
+      - name: Scrape Vestiaire — EU (8 models, one call each)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_vestiaire_per_model.py --region EU
+
+      - name: Scrape Xianyu — China (1 call, 8 keywords)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_xianyu.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data_v2/
+          git diff --staged --quiet || git commit -m "chore: resale v2 weekly scrape $(date -u +%Y-%m-%d)"
+          git push
