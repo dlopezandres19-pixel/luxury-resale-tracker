@@ -110,6 +110,18 @@ def save_history(history, path):
     path.write_text(json.dumps(history, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
+def upsert_entry(history, model, entry):
+    """Add entry to history[model], replacing any existing entry for the
+    same date instead of appending a duplicate. Re-running the pipeline
+    twice in one day (e.g. while testing) should overwrite, not stack."""
+    arr = history.setdefault(model, [])
+    for i, existing in enumerate(arr):
+        if existing.get("date") == entry.get("date"):
+            arr[i] = entry
+            return
+    arr.append(entry)
+
+
 def process_vestiaire(items, region, msrp):
     """region is 'US' or 'EU'. Returns {model: snapshot_dict}."""
     today = datetime.now(timezone.utc).date().isoformat()
@@ -230,7 +242,7 @@ def main():
             for model in msrp["models"]:
                 if msrp["models"][model].get("CN") is None:
                     continue
-                history.setdefault(model, []).append({
+                upsert_entry(history, model, {
                     "date": today,
                     "vr_median": None,
                     "vr_mean": None,
@@ -250,7 +262,7 @@ def main():
 
     history, path = load_history(args.region)
     for model, entry in snapshot.items():
-        history.setdefault(model, []).append(entry)
+        upsert_entry(history, model, entry)
         print(f"  {model}: VR median={entry['vr_median']:.3f}  n={entry['n_listings']}")
 
     save_history(history, path)
