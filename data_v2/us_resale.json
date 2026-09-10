@@ -14,16 +14,6 @@
   "Hermès Birkin 25": [
     {
       "date": "2026-09-10",
-      "vr_median": 1.8719,
-      "vr_mean": 1.8697,
-      "n_listings": 12,
-      "n_sold_snapshot": 0,
-      "avg_days_to_sell": null,
-      "price_median": 25270.0,
-      "currency": "USD"
-    },
-    {
-      "date": "2026-09-10",
       "vr_median": 1.8322,
       "vr_mean": 1.9163,
       "n_listings": 30,
