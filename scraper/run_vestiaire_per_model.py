@@ -28,7 +28,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_history, MODEL_ALIASES
+from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_history, upsert_entry, MODEL_ALIASES
 
 VESTIAIRE_ACTOR = "piotrv1001~vestiaire-collective-listings-scraper"
 MAX_ITEMS_PER_MODEL = 30
@@ -57,11 +57,20 @@ def apify_post(url, body, token, timeout=600):
 def scrape_one_model(model_name, region_cfg, token):
     """Runs the Vestiaire actor synchronously for a single model.
     Returns [] (not an exception) on failure — one bad model must not
-    stop the other 7 from being processed."""
+    stop the other 7 from being processed.
+
+    Restricts to the Handbags category (Women > Bags > Handbags) via
+    catalog filters — without this, small leather goods (wallets,
+    cardholders, keychains from the same model line) get matched by the
+    text search and badly skew VR downward. Facet IDs are best-effort
+    from the actor's own README example; verify against real output if
+    a model's price_median still looks implausibly low.
+    """
     url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
     body = {
         "searchQueries": [model_name],
         "maxItems": MAX_ITEMS_PER_MODEL,
+        "filters": {"categoryLvl0.id": ["5"], "categoryLvl1.id": ["59"], "universe.id": ["1"]},
         **region_cfg,
     }
     try:
@@ -102,7 +111,7 @@ def main():
 
     history, path = load_history(args.region)
     for model, entry in snapshot.items():
-        history.setdefault(model, []).append(entry)
+        upsert_entry(history, model, entry)
         print(f"  SAVED {model}: VR median={entry['vr_median']:.3f}  n={entry['n_listings']}")
 
     save_history(history, path)
