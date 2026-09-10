@@ -209,6 +209,31 @@ def main():
         snapshot = process_xianyu(items, msrp)
 
     if not snapshot:
+        if args.source == "xianyu":
+            # For China specifically, "everything got filtered out as a likely
+            # replica" is a legitimate, meaningful result — not a bug. Record
+            # it explicitly instead of failing silently or erroring out.
+            print("All listings excluded as likely replicas — recording a zero-signal snapshot for each tracked model.")
+            history, path = load_history(args.region)
+            today = datetime.now(timezone.utc).date().isoformat()
+            for model in msrp["models"]:
+                if msrp["models"][model].get("CN") is None:
+                    continue
+                history.setdefault(model, []).append({
+                    "date": today,
+                    "vr_median": None,
+                    "vr_mean": None,
+                    "n_listings": 0,
+                    "n_excluded_as_likely_replica": len(items),
+                    "avg_days_to_sell": None,
+                    "avg_want_count": None,
+                    "price_median": None,
+                    "currency": "CNY",
+                    "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure.",
+                })
+            save_history(history, path)
+            print(f"Saved (zero-signal) -> {path}")
+            return
         print("WARNING: no models matched — nothing to write. Check MODEL_ALIASES / dataset fields.")
         sys.exit(1)
 
