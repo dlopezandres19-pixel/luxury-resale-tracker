@@ -9,6 +9,16 @@
       "avg_days_to_sell": null,
       "price_median": 17373.0,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-10",
+      "vr_median": 1.4858,
+      "vr_mean": 1.556,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 15750.0,
+      "currency": "EUR"
     }
   ],
   "Hermès Birkin 25": [
@@ -20,6 +30,76 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 24727.5,
+      "currency": "EUR"
+    },
+    {
+      "date": "2026-09-10",
+      "vr_median": 2.5443,
+      "vr_mean": 2.4391,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 24425.0,
+      "currency": "EUR"
+    }
+  ],
+  "Dior Lady Dior Small": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 0.1944,
+      "vr_mean": 0.231,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1108.0,
+      "currency": "EUR"
+    }
+  ],
+  "Hermès Kelly 25": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 2.3896,
+      "vr_mean": 2.3566,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 22940.5,
+      "currency": "EUR"
+    }
+  ],
+  "Hermès Kelly 28": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 1.0703,
+      "vr_mean": 1.1261,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 10810.5,
+      "currency": "EUR"
+    }
+  ],
+  "LV Capucines BB": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 0.3226,
+      "vr_mean": 0.3219,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1968.0,
+      "currency": "EUR"
+    }
+  ],
+  "LV Speedy 25": [
+    {
+      "date": "2026-09-10",
+      "vr_median": 0.5182,
+      "vr_mean": 0.6887,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 855.0,
       "currency": "EUR"
     }
   ]
