@@ -21,7 +21,7 @@ jobs:
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: |
-          python compute_resale_v2.py \
+          python scraper/compute_resale_v2.py \
             --source "${{ github.event.client_payload.source }}" \
             --region "${{ github.event.client_payload.region }}" \
             --dataset-id "${{ github.event.client_payload.datasetId }}"
