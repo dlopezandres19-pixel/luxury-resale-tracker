@@ -1,0 +1,35 @@
+name: Resale V2 — Ingest Apify Run
+
+# Fires when Apify's webhook calls the GitHub repository_dispatch API
+# after a scheduled scrape finishes (ACTOR.RUN.SUCCEEDED). See setup
+# instructions in README_RESALE_V2.md for the webhook config.
+on:
+  repository_dispatch:
+    types: [apify-run-finished]
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compute metrics from Apify dataset
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: |
+          python compute_resale_v2.py \
+            --source "${{ github.event.client_payload.source }}" \
+            --region "${{ github.event.client_payload.region }}" \
+            --dataset-id "${{ github.event.client_payload.datasetId }}"
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data_v2/
+          git diff --staged --quiet || git commit -m "chore: resale v2 update (${{ github.event.client_payload.source }}/${{ github.event.client_payload.region }}) $(date -u +%Y-%m-%d)"
+          git push
