@@ -1,0 +1,15 @@
+{
+  "_README": "Precios de retail oficiales (MSRP) por modelo y región. Última actualización: September 10th, 2026. Source: LVMH webpage (LV/Dior — fuente primaria oficial). Hermès Birkin and Kelly prices are based on reputable price guides and boutique references, as these models are not consistently listed on the official Hermès website. Actualizar manualmente cuando haya un aumento de precio anunciado (usualmente 1-2 veces al año).",
+  "_last_verified": "2026-09-10",
+  "models": {
+    "Hermès Birkin 25":   { "US": 13500, "EU": 9600,  "CN": 115000, "ref": "Togo", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "Hermès Birkin 30":   { "US": 14900, "EU": 10600, "CN": 125000, "ref": "Togo", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "Hermès Kelly 25":    { "US": 13700, "EU": 9600,  "CN": 115000, "ref": "Togo Retourne", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "Hermès Kelly 28":    { "US": 14400, "EU": 10100, "CN": 108000, "ref": "Togo", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "LV Neverfull MM":    { "US": 2240,  "EU": 1550,  "CN": 15100, "ref": "Monogram, M46987", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "LV Speedy 25":       { "US": 1980,  "EU": 1650,  "CN": 15100, "ref": "Monogram Bandoulière, M46977", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "LV Capucines BB":    { "US": 7200,  "EU": 6100,  "CN": 55000, "ref": "Taurillon, M29602", "_confidence": {"US":"high","EU":"high","CN":"medium"} },
+    "Dior Lady Dior Small": { "US": 6400, "EU": 5700, "CN": 49500, "ref": "Black Cannage Lambskin, M0531OUQA_M900", "_confidence": {"US":"medium","EU":"medium","CN":"medium"} }
+  },
+  "currency_by_region": { "US": "USD", "EU": "EUR", "CN": "CNY" }
+}
