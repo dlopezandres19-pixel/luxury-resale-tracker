@@ -68,17 +68,19 @@ MODEL_CONFIGS = [
                           "keyholder", "bb", "mini"],
     },
     {
-        "query": "Speedy 25",
+        "query": "Speedy Bandouliere 25",
         "max_listings": 50,
         "min_price": 500,
         "canonical": "LV Speedy 25",
-        "title_must": ["speedy"],
-        # NOTE: "bandouliere" alone is NOT excluded — the legitimate model is
-        # "Speedy Bandouliere Bag Monogram Canvas 25". Only exclude wrong sizes.
+        # We track M46977 = Speedy Bandoulière Monogram Canvas 25 (with strap).
+        # title_must enforces bandouliere to exclude the Speedy Handbag (no strap)
+        # which sells for ~$500-800 less and is a different product.
+        "title_must": ["speedy", "bandouliere"],
         "title_exclude": ["speedy 30", "speedy 35", "speedy 40",
                           "bandouliere 30", "bandoulière 30",
                           "bandouliere 35", "bandoulière 35",
                           "bandouliere 40", "bandoulière 40",
+                          "damier", "giant", "wild at heart",
                           "charm", "wallet", "insert", "key holder", "keyholder"],
     },
     # ── Hermès ───────────────────────────────────────────────────────────
