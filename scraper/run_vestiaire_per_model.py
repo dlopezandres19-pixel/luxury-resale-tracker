@@ -1,19 +1,15 @@
 """
 run_vestiaire_per_model.py
 ─────────────────────────────────────────────────────────────────────────
-Calls the Vestiaire actor ONCE with all 6 model queries together.
+Calls the Vestiaire actor once PER MODEL to guarantee each model gets
+its own maxItems budget. A single multi-query call distributes items by
+relevance (Birkin dominates and starves Kelly/LV) — confirmed Sep 2026.
 
-Key finding (Sep 2026): maxItems is a GLOBAL cap per actor call AND
-per Apify session — calling the actor N times with maxItems=30 each
-still shares the same global budget, so only the first model gets data.
-Solution: one call with all 6 queries and maxItems=180 (6×30).
-
-The actor returns a `searchQuery` field on each item indicating which
-query produced it — we use that + `_canonicalModel` tagging to route
-items back to the correct model in process_vestiaire().
+Root cause of previous failures: timeout was 600s, not enough for
+Vestiaire with residential proxies. Fixed to 1800s (30 min) per call.
 
 Actor: piotrv1001/vestiaire-collective-listings-scraper
-Cost: $0.005/listing × 180 = $0.90/run max
+Cost: $0.005/listing × 20 items × 6 models = $0.60/run
 
 Usage:
     python run_vestiaire_per_model.py --region EU
@@ -34,17 +30,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_history, upsert_entry
 
 VESTIAIRE_ACTOR = "piotrv1001~vestiaire-collective-listings-scraper"
-
-# maxItems = 6 models × 30 items each = 180 total
-MAX_ITEMS_TOTAL = 120
+MAX_ITEMS_PER_MODEL = 20
 
 REGION_CONFIG = {
     "EU": {"country": "FR", "currency": "EUR"},
 }
 
-# Short queries that Vestiaire's search engine understands.
-# Key → canonical model name in msrp_reference.json
-# Value → search query string (no accents, no brand prefix for LV)
+# Short queries that Vestiaire's search understands.
+# No accents, no brand prefix for LV — confirmed working Sep 2026.
 VESTIAIRE_QUERIES = {
     "Hermès Birkin 25": "Birkin 25",
     "Hermès Birkin 30": "Birkin 30",
@@ -56,6 +49,8 @@ VESTIAIRE_QUERIES = {
 
 
 def apify_post(url, body, token, timeout=1800):
+    """POST with 3-attempt retry. Timeout 1800s — Vestiaire with residential
+    proxies is slow; 600s was timing out before results came back."""
     data = json.dumps(body).encode("utf-8")
     req = Request(f"{url}?token={token}", data=data, headers={"Content-Type": "application/json"}, method="POST")
     last_err = None
@@ -70,6 +65,26 @@ def apify_post(url, body, token, timeout=1800):
     raise last_err
 
 
+def scrape_one_model(canonical, query, region_cfg, token):
+    """One actor call per model with its own maxItems budget."""
+    url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
+    body = {
+        "searchQueries": [query],
+        "maxItems": MAX_ITEMS_PER_MODEL,
+        "fetchProductDetails": False,
+        **region_cfg,
+    }
+    try:
+        items = apify_post(url, body, token)
+        print(f"  {canonical}: {len(items)} listings")
+        for item in items:
+            item["_canonicalModel"] = canonical
+        return items
+    except Exception as e:
+        print(f"  {canonical}: FAILED after retries ({e}) — skipping")
+        return []
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--region", required=True, choices=["EU"])
@@ -79,41 +94,17 @@ def main():
     region_cfg = REGION_CONFIG[args.region]
     msrp = load_msrp()
 
-    # Build reverse map: query string → canonical model name
-    query_to_canonical = {v: k for k, v in VESTIAIRE_QUERIES.items()}
-
-    url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
-    body = {
-        "searchQueries": list(VESTIAIRE_QUERIES.values()),
-        "maxItems": MAX_ITEMS_TOTAL,
-        "fetchProductDetails": False,
-        **region_cfg,
-    }
-
-    print(f"Scraping {len(VESTIAIRE_QUERIES)} models for region {args.region} in one call (maxItems={MAX_ITEMS_TOTAL})...")
-    try:
-        items = apify_post(url, body, token)
-        print(f"  Total raw items: {len(items)}")
-    except Exception as e:
-        print(f"  FAILED after retries ({e}) — not writing anything.")
-        sys.exit(1)
-
-    if not items:
-        print("WARNING: zero listings returned — not writing anything.")
-        sys.exit(1)
-
-    # Tag each item with its canonical model name using the searchQuery field
-    for item in items:
-        sq = item.get("searchQuery", "")
-        item["_canonicalModel"] = query_to_canonical.get(sq)
-
-    # Log per-model counts
-    from collections import Counter
-    counts = Counter(item.get("_canonicalModel") for item in items)
+    all_items = []
+    print(f"Scraping {len(VESTIAIRE_QUERIES)} models for region {args.region} (one call each, maxItems={MAX_ITEMS_PER_MODEL})...")
     for canonical, query in VESTIAIRE_QUERIES.items():
-        print(f"  {canonical}: {counts.get(canonical, 0)} listings")
+        items = scrape_one_model(canonical, query, region_cfg, token)
+        all_items.extend(items)
 
-    snapshot = process_vestiaire(items, args.region, msrp)
+    if not all_items:
+        print("WARNING: zero listings across ALL models — not writing anything.")
+        sys.exit(1)
+
+    snapshot = process_vestiaire(all_items, args.region, msrp)
     if not snapshot:
         print("WARNING: fetched listings but none matched after processing.")
         sys.exit(1)
