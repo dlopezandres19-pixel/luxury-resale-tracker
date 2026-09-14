@@ -40,6 +40,9 @@ MODEL_ALIASES = {
     "kelly 28":     "Hermès Kelly 28",
     "neverfull mm": "LV Neverfull MM",
     "speedy 25":    "LV Speedy 25",
+    # SKU-based aliases for Xianyu (CN) — more precise than text keywords
+    "m46987":       "LV Neverfull MM",       # Neverfull MM Monogram
+    "m46977":       "LV Speedy 25",          # Speedy Bandoulière 25 Monogram
 }
 
 # Xianyu-specific: reject listings whose title contains any of these —
