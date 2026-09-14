@@ -117,7 +117,7 @@ def process_vestiaire(items, region, msrp):
     today = datetime.now(timezone.utc).date().isoformat()
     by_model = {}
     for it in items:
-        model = canonical_model(it.get("model", "") or it.get("searchQuery", ""))
+        model = it.get("_canonicalModel") or canonical_model(it.get("model", "") or it.get("searchQuery", ""))
         if not model or model not in msrp["models"]:
             continue
         by_model.setdefault(model, []).append(it)
