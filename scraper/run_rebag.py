@@ -55,55 +55,58 @@ MIN_RELIABLE_SAMPLE = 10
 #   title_must    → ALL of these substrings must appear in title (lowercased)
 #   title_exclude → ANY of these substrings disqualifies the listing
 MODEL_CONFIGS = [
-    # ── Louis Vuitton ────────────────────────────────────────────────────
+    # ── Louis Vuitton — Clair Code queries + title filter for contamination ──
     {
-        "query": "HB.LV.NV.MNCA.MM",      # Clair Code = Neverfull MM Monogram
+        "query": "HB.LV.NV.MNCA.MM",
         "max_listings": 50,
         "min_price": 600,
         "canonical": "LV Neverfull MM",
-        # Clair Code guarantees exact model — no title filtering needed.
-        "title_must": [],
-        "title_exclude": [],
+        # Clair Code brings mostly correct results but also other brands
+        # (Omega watches, Mulberry bags) — title filter removes them.
+        "title_must": ["neverfull"],
+        "title_exclude": ["pochette", "wallet", "insert", "charm", "key holder",
+                          "keyholder", "bb", "mini", "pm", "gm"],
     },
     {
-        "query": "HB.LV.SYB.MNCA.25",     # Clair Code = Speedy Bandoulière 25 Monogram
+        "query": "HB.LV.SYB.MNCA.25",
         "max_listings": 50,
         "min_price": 500,
         "canonical": "LV Speedy 25",
-        "title_must": [],
-        "title_exclude": [],
+        "title_must": ["speedy"],
+        "title_exclude": ["speedy 30", "speedy 35", "speedy 40",
+                          "charm", "wallet", "insert", "key holder", "keyholder"],
     },
-    # ── Hermès ───────────────────────────────────────────────────────────
+    # ── Hermès — title filters (Clair Codes return 0 — material too specific) ──
     {
-        "query": "HB.HM.BIK.BTPH.25",     # Clair Code = Birkin 25 Togo
+        "query": "Birkin 25",
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Birkin 25",
-        "title_must": [],
+        "title_must": ["birkin handbag", "25"],
         "title_exclude": [],
     },
     {
-        "query": "HB.HM.BIK.BLFPH.30",    # Clair Code = Birkin 30 Togo
+        "query": "Birkin 30",
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Birkin 30",
-        "title_must": [],
+        "title_must": ["birkin handbag", "30"],
         "title_exclude": [],
     },
     {
-        "query": "HB.HM.KY.BRWTGH.25",    # Clair Code = Kelly 25 Togo Retourne
+        "query": "Kelly 25",
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Kelly 25",
-        "title_must": [],
+        "title_must": ["kelly handbag", "25"],
         "title_exclude": [],
     },
     {
-        "query": "HB.HM.KY.BRWTGH.28",    # Clair Code = Kelly 28 Togo
+        "query": "Kelly 28",
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Kelly 28",
-        "title_must": [],
+        "title_must": ["kelly handbag", "28"],
         "title_exclude": [],
     },
 ]
