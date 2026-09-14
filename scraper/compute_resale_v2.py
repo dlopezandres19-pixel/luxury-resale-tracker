@@ -37,8 +37,6 @@ MODEL_ALIASES = {
     "kelly 28": "Hermès Kelly 28",
     "neverfull": "LV Neverfull MM",
     "speedy": "LV Speedy 25",
-    "capucines": "LV Capucines BB",
-    "lady dior": "Dior Lady Dior Small",
 }
 
 # Xianyu-specific: reject listings whose title contains any of these —
@@ -58,8 +56,6 @@ XIANYU_MIN_PRICE = {
     "Hermès Kelly 28": 85000,
     "LV Neverfull MM": 9000,
     "LV Speedy 25": 9000,
-    "LV Capucines BB": 35000,
-    "Dior Lady Dior Small": 30000,
 }
 
 
@@ -162,6 +158,7 @@ def process_vestiaire(items, region, msrp):
             "n_sold_snapshot": len(sold),
             "avg_days_to_sell": round(statistics.mean(days_to_sell), 1) if days_to_sell else None,
             "price_median": round(statistics.median(prices), 2),
+            "msrp_used": region_msrp,
             "currency": listings[0].get("priceCurrency", "USD" if region == "US" else "EUR"),
         }
     return out
@@ -208,6 +205,7 @@ def process_xianyu(items, msrp):
             "avg_days_to_sell": None,  # not available from this source
             "avg_want_count": round(statistics.mean(want_counts), 1) if want_counts else None,
             "price_median": round(statistics.median(prices), 2),
+            "msrp_used": region_msrp,
             "currency": "CNY",
             "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering",
         }
@@ -251,6 +249,7 @@ def main():
                     "avg_days_to_sell": None,
                     "avg_want_count": None,
                     "price_median": None,
+                    "msrp_used": msrp["models"][model].get("CN"),
                     "currency": "CNY",
                     "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure.",
                 })
