@@ -8,7 +8,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 20080.0,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 14900
     },
     {
       "date": "2026-09-14",
@@ -18,7 +19,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 19592.5,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 14900
     }
   ],
   "Hermès Birkin 25": [
@@ -30,19 +32,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 24735.0,
-      "currency": "USD"
-    }
-  ],
-  "Dior Lady Dior Small": [
-    {
-      "date": "2026-09-10",
-      "vr_median": 0.1976,
-      "vr_mean": 0.2955,
-      "n_listings": 30,
-      "n_sold_snapshot": 0,
-      "avg_days_to_sell": null,
-      "price_median": 1264.5,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 13500
     }
   ],
   "Hermès Kelly 25": [
@@ -54,7 +45,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 26205.0,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 13700
     }
   ],
   "Hermès Kelly 28": [
@@ -66,7 +58,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 20230.0,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 14400
     },
     {
       "date": "2026-09-14",
@@ -76,7 +69,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 20905.0,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 14400
     }
   ],
   "LV Neverfull MM": [
@@ -88,7 +82,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 1251.0,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 2240
     },
     {
       "date": "2026-09-14",
@@ -98,7 +93,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 1149.5,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 2240
     }
   ],
   "LV Speedy 25": [
@@ -110,7 +106,8 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 1769.5,
-      "currency": "USD"
+      "currency": "USD",
+      "msrp_used": 1980
     }
   ]
 }
