@@ -33,17 +33,16 @@ XIANYU_ACTOR = "sian.agency~xianyu-goofish-product-scraper"
 MAX_RESULTS_PER_KEYWORD = 30
 
 # Chinese search terms — one per tracked model.
-# IMPORTANT: "路易威登 Neverfull MM" (not just "Neverfull") so that the
-# _sourceKeyword returned by the actor contains "neverfull mm", which
-# canonical_model() can match to "LV Neverfull MM" via MODEL_ALIASES.
-# Same logic: "Speedy 25" already specific enough (keyword includes size).
+# LV: using SKU codes (M46987 = Neverfull MM, M46977 = Speedy Bandoulière 25)
+# for maximum precision — SKUs appear in Xianyu listings and eliminate
+# size/version ambiguity. Confirmed from listing screenshots (Sep 2026).
 CHINESE_KEYWORDS = [
     "爱马仕 Birkin 25",
     "爱马仕 Birkin 30",
     "爱马仕 Kelly 25",
     "爱马仕 Kelly 28",
-    "路易威登 Neverfull MM",   # was: "路易威登 Neverfull" — too broad, matched GM/PM
-    "路易威登 Speedy 25",
+    "M46987",   # LV Neverfull MM Monogram
+    "M46977",   # LV Speedy Bandoulière 25 Monogram
 ]
 
 
