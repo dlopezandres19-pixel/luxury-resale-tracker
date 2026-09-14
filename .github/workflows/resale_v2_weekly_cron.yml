@@ -4,14 +4,15 @@ name: Resale V2 — Weekly Scrape (cron-driven, no webhook)
 # now owns the schedule and calls Apify's synchronous run API directly —
 # no dependency on Apify webhook payload templates / macro resolution.
 #
-# Vestiaire (US/EU) is called ONCE PER MODEL (8 separate sync calls each)
-# because maxItems on that actor is a GLOBAL cap across all queries
-# (confirmed in the actor's own docs) — a single multi-query call lets
-# high-supply models (Birkin) consume the whole budget before the others
-# are ever searched.
+# US: now scraped from Rebag (authenticated resale, better data quality
+# than Vestiaire for the US market). One call per model, same pattern as
+# Vestiaire — Rebag's actor also accepts per-query maxListingsPerQuery.
 #
-# Xianyu (China) is called ONCE with all 8 keywords together, since that
-# actor's maxResults is documented as per-keyword, not global.
+# EU: Vestiaire (unchanged) — still the dominant EU resale platform.
+# Called ONCE PER MODEL because maxItems is a GLOBAL cap on that actor.
+#
+# China: Xianyu (unchanged) — one call with all keywords together.
+
 on:
   schedule:
     - cron: '0 8 * * 1'   # Every Monday 08:00 UTC = 3:00 AM Lima (UTC-5)
@@ -28,17 +29,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Scrape Vestiaire — US (8 models, one call each)
+      - name: Scrape Rebag — US (6 models, one call each)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python scraper/run_vestiaire_per_model.py --region US
+        run: python scraper/run_rebag.py
 
-      - name: Scrape Vestiaire — EU (8 models, one call each)
+      - name: Scrape Vestiaire — EU (6 models, one call each)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_vestiaire_per_model.py --region EU
 
-      - name: Scrape Xianyu — China (1 call, 8 keywords)
+      - name: Scrape Xianyu — China (1 call, 6 keywords)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_xianyu.py
