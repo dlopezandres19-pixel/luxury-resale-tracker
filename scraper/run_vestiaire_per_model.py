@@ -36,7 +36,7 @@ from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_h
 VESTIAIRE_ACTOR = "piotrv1001~vestiaire-collective-listings-scraper"
 
 # maxItems = 6 models × 30 items each = 180 total
-MAX_ITEMS_TOTAL = 180
+MAX_ITEMS_TOTAL = 120
 
 REGION_CONFIG = {
     "EU": {"country": "FR", "currency": "EUR"},
@@ -55,7 +55,7 @@ VESTIAIRE_QUERIES = {
 }
 
 
-def apify_post(url, body, token, timeout=600):
+def apify_post(url, body, token, timeout=1800):
     data = json.dumps(body).encode("utf-8")
     req = Request(f"{url}?token={token}", data=data, headers={"Content-Type": "application/json"}, method="POST")
     last_err = None
