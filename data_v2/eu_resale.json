@@ -26,12 +26,12 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 2.5156,
-      "vr_mean": 2.4496,
+      "vr_median": 2.5151,
+      "vr_mean": 2.4386,
       "n_listings": 30,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 24150.0,
+      "price_median": 24145.0,
       "msrp_used": 9600,
       "currency": "EUR"
     }
