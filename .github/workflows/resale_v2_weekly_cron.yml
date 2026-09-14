@@ -2,7 +2,8 @@ name: Resale V2 — Weekly Scrape (cron-driven, no webhook)
 
 # US: Rebag (Clair Codes para LV, title filters para Hermès)
 # EU: Vestiaire Collective (one call per model, maxItems=20, timeout=1800s)
-# China: Xianyu (SKUs M46987/M46977 para LV, keywords chinos para Hermès)
+# China Resale: Xianyu (SKUs M46987/M46977 para LV, keywords chinos para Hermès)
+# China Social: Douyin (5 marcas, engagement score semanal)
 
 on:
   schedule:
@@ -30,10 +31,15 @@ jobs:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_vestiaire_per_model.py --region EU
 
-      - name: Scrape Xianyu — China (1 call, 6 keywords)
+      - name: Scrape Xianyu — China Resale (1 call, 6 keywords)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_xianyu.py
+
+      - name: Scrape Douyin — China Social (5 brands, weekly engagement)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_douyin.py
 
       - name: Commit updated data
         run: |
