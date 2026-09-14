@@ -1,16 +1,19 @@
 """
 run_vestiaire_per_model.py
 ─────────────────────────────────────────────────────────────────────────
-Fixes the "maxItems is a GLOBAL cap across all queries" limitation of the
-Vestiaire actor (confirmed in its own docs) by calling the actor once PER
-MODEL, synchronously, each with its own maxItems budget. This guarantees
-every one of the 6 tracked models gets scraped, instead of high-supply
-models (Birkin) eating the whole shared budget.
+Calls the Vestiaire actor ONCE with all 6 model queries together.
+
+Key finding (Sep 2026): maxItems is a GLOBAL cap per actor call AND
+per Apify session — calling the actor N times with maxItems=30 each
+still shares the same global budget, so only the first model gets data.
+Solution: one call with all 6 queries and maxItems=180 (6×30).
+
+The actor returns a `searchQuery` field on each item indicating which
+query produced it — we use that + `_canonicalModel` tagging to route
+items back to the correct model in process_vestiaire().
 
 Actor: piotrv1001/vestiaire-collective-listings-scraper
-Confirmed input schema (from Apify JSON tab, Sep 2026):
-  searchQueries, maxItems, country, currency, fetchProductDetails
-  (language, sizeType, filters are NOT accepted — actor ignores/resets them)
+Cost: $0.005/listing × 180 = $0.90/run max
 
 Usage:
     python run_vestiaire_per_model.py --region EU
@@ -28,16 +31,27 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_history, upsert_entry, MODEL_ALIASES
+from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_history, upsert_entry
 
 VESTIAIRE_ACTOR = "piotrv1001~vestiaire-collective-listings-scraper"
-MAX_ITEMS_PER_MODEL = 30
 
-# Only fields confirmed accepted by this actor (Sep 2026).
-# language, sizeType, filters were silently ignored and caused maxItems
-# to reset to the actor's default of 5 — removed to fix zero-results bug.
+# maxItems = 6 models × 30 items each = 180 total
+MAX_ITEMS_TOTAL = 180
+
 REGION_CONFIG = {
     "EU": {"country": "FR", "currency": "EUR"},
+}
+
+# Short queries that Vestiaire's search engine understands.
+# Key → canonical model name in msrp_reference.json
+# Value → search query string (no accents, no brand prefix for LV)
+VESTIAIRE_QUERIES = {
+    "Hermès Birkin 25": "Birkin 25",
+    "Hermès Birkin 30": "Birkin 30",
+    "Hermès Kelly 25":  "Kelly 25",
+    "Hermès Kelly 28":  "Kelly 28",
+    "LV Neverfull MM":  "Neverfull MM",
+    "LV Speedy 25":     "Speedy 25",
 }
 
 
@@ -56,25 +70,6 @@ def apify_post(url, body, token, timeout=600):
     raise last_err
 
 
-def scrape_one_model(model_name, region_cfg, token):
-    """Runs the Vestiaire actor synchronously for a single model.
-    Returns [] on failure so one bad model doesn't stop the others."""
-    url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
-    body = {
-        "searchQueries": [model_name],
-        "maxItems": MAX_ITEMS_PER_MODEL,
-        "fetchProductDetails": False,
-        **region_cfg,
-    }
-    try:
-        items = apify_post(url, body, token)
-        print(f"  {model_name}: {len(items)} listings")
-        return items
-    except Exception as e:
-        print(f"  {model_name}: FAILED after retries ({e}) — skipping this model this week")
-        return []
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--region", required=True, choices=["EU"])
@@ -84,36 +79,41 @@ def main():
     region_cfg = REGION_CONFIG[args.region]
     msrp = load_msrp()
 
-    # Use short, natural search terms — NOT the canonical model names.
-    # "Hermès Birkin 25" works. "LV Neverfull MM" does NOT — Vestiaire
-    # doesn't recognize "LV" as a brand prefix; use "Neverfull MM" instead.
-    # Matching back to canonical names happens via canonical_model() in
-    # compute_resale_v2.py using MODEL_ALIASES.
-    VESTIAIRE_QUERIES = {
-        "Hermès Birkin 25": "Birkin 25",
-        "Hermès Birkin 30": "Birkin 30",
-        "Hermès Kelly 25":  "Kelly 25",
-        "Hermès Kelly 28":  "Kelly 28",
-        "LV Neverfull MM":  "Neverfull MM",
-        "LV Speedy 25":     "Speedy 25",
+    # Build reverse map: query string → canonical model name
+    query_to_canonical = {v: k for k, v in VESTIAIRE_QUERIES.items()}
+
+    url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
+    body = {
+        "searchQueries": list(VESTIAIRE_QUERIES.values()),
+        "maxItems": MAX_ITEMS_TOTAL,
+        "fetchProductDetails": False,
+        **region_cfg,
     }
 
-    all_items = []
-    print(f"Scraping {len(VESTIAIRE_QUERIES)} models for region {args.region}...")
-    for canonical, query in VESTIAIRE_QUERIES.items():
-        items = scrape_one_model(query, region_cfg, token)
-        # Tag each item with the canonical model so process_vestiaire()
-        # can match it correctly regardless of what Vestiaire returns in
-        # the 'model' field.
-        for item in items:
-            item["_canonicalModel"] = canonical
-        all_items.extend(items)
-
-    if not all_items:
-        print("WARNING: zero listings across ALL models — not writing anything.")
+    print(f"Scraping {len(VESTIAIRE_QUERIES)} models for region {args.region} in one call (maxItems={MAX_ITEMS_TOTAL})...")
+    try:
+        items = apify_post(url, body, token)
+        print(f"  Total raw items: {len(items)}")
+    except Exception as e:
+        print(f"  FAILED after retries ({e}) — not writing anything.")
         sys.exit(1)
 
-    snapshot = process_vestiaire(all_items, args.region, msrp)
+    if not items:
+        print("WARNING: zero listings returned — not writing anything.")
+        sys.exit(1)
+
+    # Tag each item with its canonical model name using the searchQuery field
+    for item in items:
+        sq = item.get("searchQuery", "")
+        item["_canonicalModel"] = query_to_canonical.get(sq)
+
+    # Log per-model counts
+    from collections import Counter
+    counts = Counter(item.get("_canonicalModel") for item in items)
+    for canonical, query in VESTIAIRE_QUERIES.items():
+        print(f"  {canonical}: {counts.get(canonical, 0)} listings")
+
+    snapshot = process_vestiaire(items, args.region, msrp)
     if not snapshot:
         print("WARNING: fetched listings but none matched after processing.")
         sys.exit(1)
