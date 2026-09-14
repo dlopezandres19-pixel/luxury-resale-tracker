@@ -42,8 +42,6 @@ CHINESE_KEYWORDS = [
     "爱马仕 Kelly 28",
     "路易威登 Neverfull",
     "路易威登 Speedy 25",
-    "路易威登 Capucines",
-    "迪奥 戴妃包",
 ]
 
 
@@ -97,7 +95,8 @@ def main():
             upsert_entry(history, model, {
                 "date": today, "vr_median": None, "vr_mean": None, "n_listings": 0,
                 "n_excluded_as_likely_replica": len(items), "avg_days_to_sell": None,
-                "avg_want_count": None, "price_median": None, "currency": "CNY",
+                "avg_want_count": None, "price_median": None,
+                "msrp_used": msrp["models"][model].get("CN"), "currency": "CNY",
                 "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure.",
             })
     else:
