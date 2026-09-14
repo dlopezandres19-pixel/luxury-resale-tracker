@@ -159,6 +159,7 @@ def scrape_one_model(cfg, token):
         "searchQueries": [cfg["query"]],
         "maxListingsPerQuery": cfg["max_listings"],
         "minPrice": cfg["min_price"],
+        "proxyConfiguration": {"useApifyProxy": True, "apifyProxyGroups": ["RESIDENTIAL"]},
     }
     try:
         raw_items = apify_post(url, body, token)
