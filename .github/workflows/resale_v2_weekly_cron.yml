@@ -1,8 +1,12 @@
 name: Resale V2 — Weekly Scrape (cron-driven, no webhook)
 
+# US: Rebag (Clair Codes para LV, title filters para Hermès)
+# EU: Vestiaire Collective (one call per model, maxItems=20, timeout=1800s)
+# China: Xianyu (SKUs M46987/M46977 para LV, keywords chinos para Hermès)
+
 on:
   schedule:
-    - cron: '0 8 * * 1'
+    - cron: '0 8 * * 1'   # Every Monday 08:00 UTC = 3:00 AM Lima (UTC-5)
   workflow_dispatch: {}
 
 jobs:
@@ -21,15 +25,15 @@ jobs:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_rebag.py
 
-#      - name: Scrape Vestiaire — EU (6 models, one call each)
-#        env:
-#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-#        run: python scraper/run_vestiaire_per_model.py --region EU
+      - name: Scrape Vestiaire — EU (6 models, one call each)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_vestiaire_per_model.py --region EU
 
-#      - name: Scrape Xianyu — China (1 call, 6 keywords)
-#        env:
-#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-#        run: python scraper/run_xianyu.py
+      - name: Scrape Xianyu — China (1 call, 6 keywords)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_xianyu.py
 
       - name: Commit updated data
         run: |
