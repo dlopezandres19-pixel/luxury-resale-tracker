@@ -74,5 +74,18 @@
       "currency": "EUR",
       "msrp_used": 1650
     }
+  ],
+  "LV Neverfull MM": [
+    {
+      "date": "2026-09-14",
+      "vr_median": 0.5319,
+      "vr_mean": 0.5351,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 824.5,
+      "msrp_used": 1550,
+      "currency": "EUR"
+    }
   ]
 }
