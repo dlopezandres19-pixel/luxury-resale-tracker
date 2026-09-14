@@ -27,13 +27,13 @@
     {
       "date": "2026-09-14",
       "vr_median": 2.5156,
-      "vr_mean": 2.4374,
+      "vr_mean": 2.4496,
       "n_listings": 30,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 24150.0,
-      "currency": "EUR",
-      "msrp_used": 9600
+      "msrp_used": 9600,
+      "currency": "EUR"
     }
   ],
   "Hermès Kelly 25": [

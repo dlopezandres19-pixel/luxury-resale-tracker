@@ -13,14 +13,16 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 1.3149,
-      "vr_mean": 1.3619,
-      "n_listings": 30,
-      "n_sold_snapshot": 0,
+      "vr_median": 1.2829,
+      "vr_mean": 1.3023,
+      "n_listings": 9,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
       "avg_days_to_sell": null,
-      "price_median": 19592.5,
+      "price_median": 19115,
+      "msrp_used": 14900,
       "currency": "USD",
-      "msrp_used": 14900
+      "_source": "rebag"
     }
   ],
   "Hermès Birkin 25": [
@@ -34,6 +36,19 @@
       "price_median": 24735.0,
       "currency": "USD",
       "msrp_used": 13500
+    },
+    {
+      "date": "2026-09-14",
+      "vr_median": 1.7635,
+      "vr_mean": 1.8989,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 23807.5,
+      "msrp_used": 13500,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Kelly 25": [
@@ -47,6 +62,19 @@
       "price_median": 26205.0,
       "currency": "USD",
       "msrp_used": 13700
+    },
+    {
+      "date": "2026-09-14",
+      "vr_median": 1.9464,
+      "vr_mean": 1.9374,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 26665.0,
+      "msrp_used": 13700,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Kelly 28": [
@@ -63,14 +91,16 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 1.4517,
-      "vr_mean": 1.4278,
-      "n_listings": 30,
-      "n_sold_snapshot": 0,
+      "vr_median": 1.4045,
+      "vr_mean": 1.3713,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
       "avg_days_to_sell": null,
-      "price_median": 20905.0,
+      "price_median": 20225.0,
+      "msrp_used": 14400,
       "currency": "USD",
-      "msrp_used": 14400
+      "_source": "rebag"
     }
   ],
   "LV Neverfull MM": [
@@ -87,14 +117,16 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 0.5132,
-      "vr_mean": 0.6719,
-      "n_listings": 30,
-      "n_sold_snapshot": 0,
+      "vr_median": 0.779,
+      "vr_mean": 0.8781,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
       "avg_days_to_sell": null,
-      "price_median": 1149.5,
+      "price_median": 1745.0,
+      "msrp_used": 2240,
       "currency": "USD",
-      "msrp_used": 2240
+      "_source": "rebag"
     }
   ],
   "LV Speedy 25": [
@@ -108,6 +140,19 @@
       "price_median": 1769.5,
       "currency": "USD",
       "msrp_used": 1980
+    },
+    {
+      "date": "2026-09-14",
+      "vr_median": 0.625,
+      "vr_mean": 0.6439,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1237.5,
+      "msrp_used": 1980,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ]
 }
