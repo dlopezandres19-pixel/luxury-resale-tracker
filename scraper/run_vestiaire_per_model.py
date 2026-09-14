@@ -38,13 +38,15 @@ REGION_CONFIG = {
 
 # Short queries that Vestiaire's search understands.
 # No accents, no brand prefix for LV — confirmed working Sep 2026.
+# Speedy: "Speedy Bandouliere 25" specifically to track M46977 (with strap)
+# and avoid mixing with Speedy Handbag (no strap, ~€500-800 cheaper).
 VESTIAIRE_QUERIES = {
     "Hermès Birkin 25": "Birkin 25",
     "Hermès Birkin 30": "Birkin 30",
     "Hermès Kelly 25":  "Kelly 25",
     "Hermès Kelly 28":  "Kelly 28",
     "LV Neverfull MM":  "Neverfull MM",
-    "LV Speedy 25":     "Speedy 25",
+    "LV Speedy 25":     "Speedy Bandouliere 25",
 }
 
 
