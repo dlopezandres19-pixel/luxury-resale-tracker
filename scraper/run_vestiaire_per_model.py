@@ -90,10 +90,10 @@ def main():
     # Matching back to canonical names happens via canonical_model() in
     # compute_resale_v2.py using MODEL_ALIASES.
     VESTIAIRE_QUERIES = {
-        "Hermès Birkin 25": "Hermès Birkin 25",
-        "Hermès Birkin 30": "Hermès Birkin 30",
-        "Hermès Kelly 25":  "Hermès Kelly 25",
-        "Hermès Kelly 28":  "Hermès Kelly 28",
+        "Hermès Birkin 25": "Birkin 25",
+        "Hermès Birkin 30": "Birkin 30",
+        "Hermès Kelly 25":  "Kelly 25",
+        "Hermès Kelly 28":  "Kelly 28",
         "LV Neverfull MM":  "Neverfull MM",
         "LV Speedy 25":     "Speedy 25",
     }
