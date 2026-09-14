@@ -9,6 +9,16 @@
       "avg_days_to_sell": null,
       "price_median": 20080.0,
       "currency": "USD"
+    },
+    {
+      "date": "2026-09-14",
+      "vr_median": 1.3149,
+      "vr_mean": 1.3619,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 19592.5,
+      "currency": "USD"
     }
   ],
   "Hermès Birkin 25": [
@@ -57,6 +67,16 @@
       "avg_days_to_sell": null,
       "price_median": 20230.0,
       "currency": "USD"
+    },
+    {
+      "date": "2026-09-14",
+      "vr_median": 1.4517,
+      "vr_mean": 1.4278,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 20905.0,
+      "currency": "USD"
     }
   ],
   "LV Neverfull MM": [
@@ -68,6 +88,16 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 1251.0,
+      "currency": "USD"
+    },
+    {
+      "date": "2026-09-14",
+      "vr_median": 0.5132,
+      "vr_mean": 0.6719,
+      "n_listings": 30,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1149.5,
       "currency": "USD"
     }
   ],
