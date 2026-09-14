@@ -37,12 +37,12 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 2.3344,
-      "vr_mean": 2.3862,
+      "vr_median": 2.4726,
+      "vr_mean": 2.4086,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 22410.5,
+      "price_median": 23736.5,
       "msrp_used": 9600,
       "currency": "EUR"
     }
@@ -62,7 +62,7 @@
     {
       "date": "2026-09-14",
       "vr_median": 2.4336,
-      "vr_mean": 2.351,
+      "vr_mean": 2.345,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
@@ -109,12 +109,12 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 0.5252,
-      "vr_mean": 0.7453,
+      "vr_median": 0.7439,
+      "vr_mean": 0.8215,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 866.5,
+      "price_median": 1227.5,
       "msrp_used": 1650,
       "currency": "EUR"
     }
@@ -122,12 +122,12 @@
   "LV Neverfull MM": [
     {
       "date": "2026-09-14",
-      "vr_median": 0.5177,
-      "vr_mean": 0.5223,
+      "vr_median": 0.5123,
+      "vr_mean": 0.5174,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 802.5,
+      "price_median": 794.0,
       "msrp_used": 1550,
       "currency": "EUR"
     }
