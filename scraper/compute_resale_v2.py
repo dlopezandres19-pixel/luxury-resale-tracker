@@ -30,13 +30,16 @@ MSRP_PATH = REPO_ROOT / "msrp_reference.json"
 
 # Maps the free-text "model" field returned by each scraper to our
 # canonical model names used as keys in msrp_reference.json.
+# IMPORTANT: aliases must be specific enough to not cross-match sizes.
+# "neverfull mm" (not "neverfull") avoids matching GM/PM listings.
+# "speedy 25"    (not "speedy")    avoids matching Speedy 30/35/40.
 MODEL_ALIASES = {
-    "birkin 25": "Hermès Birkin 25",
-    "birkin 30": "Hermès Birkin 30",
-    "kelly 25": "Hermès Kelly 25",
-    "kelly 28": "Hermès Kelly 28",
-    "neverfull": "LV Neverfull MM",
-    "speedy": "LV Speedy 25",
+    "birkin 25":    "Hermès Birkin 25",
+    "birkin 30":    "Hermès Birkin 30",
+    "kelly 25":     "Hermès Kelly 25",
+    "kelly 28":     "Hermès Kelly 28",
+    "neverfull mm": "LV Neverfull MM",
+    "speedy 25":    "LV Speedy 25",
 }
 
 # Xianyu-specific: reject listings whose title contains any of these —
@@ -44,18 +47,14 @@ MODEL_ALIASES = {
 # P2P marketplace. NOT exhaustive — a heuristic filter, not a guarantee.
 XIANYU_EXCLUDE_KEYWORDS = ["拼皮", "复刻", "高仿", "match", "顶级版", "订制", "代工"]
 # Minimum plausible resale price (CNY) below which a listing is almost
-# certainly not a genuine item of that model. Set relative to CN MSRP
-# (~75-80% of retail as a floor) — a genuine bag rarely sells for much
-# less than that even used; well-known replica price bands sit far below.
-# Revised 2026-09-10 after v1 thresholds (30k flat) let convincing
-# high-price replicas through — see _caveat in output.
+# certainly not a genuine item of that model.
 XIANYU_MIN_PRICE = {
     "Hermès Birkin 25": 90000,
     "Hermès Birkin 30": 95000,
-    "Hermès Kelly 25": 90000,
-    "Hermès Kelly 28": 85000,
-    "LV Neverfull MM": 9000,
-    "LV Speedy 25": 9000,
+    "Hermès Kelly 25":  90000,
+    "Hermès Kelly 28":  85000,
+    "LV Neverfull MM":   9000,
+    "LV Speedy 25":      9000,
 }
 
 
@@ -68,10 +67,6 @@ def apify_get(url):
 
 
 def fetch_dataset_items(dataset_id=None, run_id=None):
-    """Fetch dataset items. If dataset_id isn't provided (or the webhook
-    template variable failed to resolve), fall back to resolving it from
-    the run_id first — actorRunId is confirmed reliably available in
-    Apify's webhook payload, unlike resource.defaultDatasetId."""
     if not dataset_id and run_id:
         run_info = apify_get(f"https://api.apify.com/v2/actor-runs/{run_id}")
         dataset_id = run_info["data"]["defaultDatasetId"]
@@ -108,8 +103,7 @@ def save_history(history, path):
 
 def upsert_entry(history, model, entry):
     """Add entry to history[model], replacing any existing entry for the
-    same date instead of appending a duplicate. Re-running the pipeline
-    twice in one day (e.g. while testing) should overwrite, not stack."""
+    same date instead of appending a duplicate."""
     arr = history.setdefault(model, [])
     for i, existing in enumerate(arr):
         if existing.get("date") == entry.get("date"):
@@ -165,9 +159,7 @@ def process_vestiaire(items, region, msrp):
 
 
 def process_xianyu(items, msrp):
-    """China. Filters likely-replica listings before computing anything.
-    No `sold`/`createdAt` available from this source — liquidity is
-    limited to wantCount (demand proxy), NOT true days-to-sell."""
+    """China. Filters likely-replica listings before computing anything."""
     today = datetime.now(timezone.utc).date().isoformat()
     by_model = {}
     n_excluded_keyword = 0
@@ -202,7 +194,7 @@ def process_xianyu(items, msrp):
             "vr_mean": round(statistics.mean(vr_values), 4),
             "n_listings": len(listings),
             "n_excluded_as_likely_replica": n_excluded_keyword + n_excluded_price,
-            "avg_days_to_sell": None,  # not available from this source
+            "avg_days_to_sell": None,
             "avg_want_count": round(statistics.mean(want_counts), 1) if want_counts else None,
             "price_median": round(statistics.median(prices), 2),
             "msrp_used": region_msrp,
@@ -231,9 +223,6 @@ def main():
 
     if not snapshot:
         if args.source == "xianyu":
-            # For China specifically, "everything got filtered out as a likely
-            # replica" is a legitimate, meaningful result — not a bug. Record
-            # it explicitly instead of failing silently or erroring out.
             print("All listings excluded as likely replicas — recording a zero-signal snapshot for each tracked model.")
             history, path = load_history(args.region)
             today = datetime.now(timezone.utc).date().isoformat()
@@ -242,16 +231,13 @@ def main():
                     continue
                 upsert_entry(history, model, {
                     "date": today,
-                    "vr_median": None,
-                    "vr_mean": None,
-                    "n_listings": 0,
+                    "vr_median": None, "vr_mean": None, "n_listings": 0,
                     "n_excluded_as_likely_replica": len(items),
-                    "avg_days_to_sell": None,
-                    "avg_want_count": None,
+                    "avg_days_to_sell": None, "avg_want_count": None,
                     "price_median": None,
                     "msrp_used": msrp["models"][model].get("CN"),
                     "currency": "CNY",
-                    "_caveat": "No listings passed the authenticity price/keyword filter this run — Xianyu is unauthenticated, this is a valid (if uninformative) result, not a failure.",
+                    "_caveat": "No listings passed the authenticity price/keyword filter this run.",
                 })
             save_history(history, path)
             print(f"Saved (zero-signal) -> {path}")
