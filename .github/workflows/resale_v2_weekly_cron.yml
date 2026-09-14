@@ -1,22 +1,9 @@
 name: Resale V2 — Weekly Scrape (cron-driven, no webhook)
 
-# Replaces the old Apify Task + Schedule + Webhook setup. GitHub itself
-# now owns the schedule and calls Apify's synchronous run API directly —
-# no dependency on Apify webhook payload templates / macro resolution.
-#
-# US: now scraped from Rebag (authenticated resale, better data quality
-# than Vestiaire for the US market). One call per model, same pattern as
-# Vestiaire — Rebag's actor also accepts per-query maxListingsPerQuery.
-#
-# EU: Vestiaire (unchanged) — still the dominant EU resale platform.
-# Called ONCE PER MODEL because maxItems is a GLOBAL cap on that actor.
-#
-# China: Xianyu (unchanged) — one call with all keywords together.
-
 on:
   schedule:
     - cron: '0 8 * * 1'   # Every Monday 08:00 UTC = 3:00 AM Lima (UTC-5)
-  workflow_dispatch: {}    # Manual "Run workflow" button in GitHub UI
+  workflow_dispatch: {}
 
 jobs:
   scrape:
@@ -29,20 +16,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Scrape Rebag — US (6 models, one call each)
-        env:
-          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python scraper/run_rebag.py
+#      - name: Scrape Rebag — US (6 models, one call each)
+#        env:
+#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+#        run: python scraper/run_rebag.py
 
       - name: Scrape Vestiaire — EU (6 models, one call each)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_vestiaire_per_model.py --region EU
 
-      - name: Scrape Xianyu — China (1 call, 6 keywords)
-        env:
-          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python scraper/run_xianyu.py
+#      - name: Scrape Xianyu — China (1 call, 6 keywords)
+#        env:
+#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+#        run: python scraper/run_xianyu.py
 
       - name: Commit updated data
         run: |
