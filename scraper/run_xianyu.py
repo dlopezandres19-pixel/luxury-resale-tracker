@@ -1,7 +1,7 @@
 """
 run_xianyu.py
 ─────────────────────────────────────────────────────────────────────────
-Calls the Xianyu/Goofish actor synchronously with all 8 model keywords in
+Calls the Xianyu/Goofish actor synchronously with all 6 model keywords in
 one bulk call — this actor's maxResults IS documented as per-keyword (not
 global like Vestiaire's), so a single call is sufficient here.
 
@@ -32,15 +32,17 @@ from compute_resale_v2 import process_xianyu, load_msrp, load_history, save_hist
 XIANYU_ACTOR = "sian.agency~xianyu-goofish-product-scraper"
 MAX_RESULTS_PER_KEYWORD = 30
 
-# Chinese search terms — one per tracked model. Order doesn't matter;
-# matching back to canonical model names happens via MODEL_ALIASES in
-# compute_resale_v2.py, keyed off _sourceKeyword / itemTitle content.
+# Chinese search terms — one per tracked model.
+# IMPORTANT: "路易威登 Neverfull MM" (not just "Neverfull") so that the
+# _sourceKeyword returned by the actor contains "neverfull mm", which
+# canonical_model() can match to "LV Neverfull MM" via MODEL_ALIASES.
+# Same logic: "Speedy 25" already specific enough (keyword includes size).
 CHINESE_KEYWORDS = [
     "爱马仕 Birkin 25",
     "爱马仕 Birkin 30",
     "爱马仕 Kelly 25",
     "爱马仕 Kelly 28",
-    "路易威登 Neverfull",
+    "路易威登 Neverfull MM",   # was: "路易威登 Neverfull" — too broad, matched GM/PM
     "路易威登 Speedy 25",
 ]
 
@@ -84,8 +86,6 @@ def main():
     history, path = load_history("CN")
 
     if not snapshot:
-        # All items got filtered out as likely replicas — a valid, meaningful
-        # result for China, not a failure. Record it explicitly per model.
         print("All listings excluded as likely replicas — recording a zero-signal snapshot for each tracked model.")
         from datetime import datetime, timezone
         today = datetime.now(timezone.utc).date().isoformat()
