@@ -57,70 +57,53 @@ MIN_RELIABLE_SAMPLE = 10
 MODEL_CONFIGS = [
     # ── Louis Vuitton ────────────────────────────────────────────────────
     {
-        "query": "Neverfull MM",
+        "query": "HB.LV.NV.MNCA.MM",      # Clair Code = Neverfull MM Monogram
         "max_listings": 50,
         "min_price": 600,
         "canonical": "LV Neverfull MM",
-        # Rebag title: "Neverfull Tote Monogram Canvas MM" — must contain "mm"
-        # to avoid mixing GM/PM sizes (6,185 total Neverfull listings on Rebag).
-        "title_must": ["neverfull", "mm"],
-        "title_exclude": ["pochette", "wallet", "insert", "charm", "key holder",
-                          "keyholder", "bb", "mini"],
+        # Clair Code guarantees exact model — no title filtering needed.
+        "title_must": [],
+        "title_exclude": [],
     },
     {
-        "query": "Speedy Bandouliere 25",
+        "query": "HB.LV.SYB.MNCA.25",     # Clair Code = Speedy Bandoulière 25 Monogram
         "max_listings": 50,
         "min_price": 500,
         "canonical": "LV Speedy 25",
-        # We track M46977 = Speedy Bandoulière Monogram Canvas 25 (with strap).
-        # title_must enforces bandouliere to exclude the Speedy Handbag (no strap)
-        # which sells for ~$500-800 less and is a different product.
-        "title_must": ["speedy", "bandouliere"],
-        "title_exclude": ["speedy 30", "speedy 35", "speedy 40",
-                          "bandouliere 30", "bandoulière 30",
-                          "bandouliere 35", "bandoulière 35",
-                          "bandouliere 40", "bandoulière 40",
-                          "damier", "giant", "wild at heart",
-                          "charm", "wallet", "insert", "key holder", "keyholder"],
+        "title_must": [],
+        "title_exclude": [],
     },
     # ── Hermès ───────────────────────────────────────────────────────────
-    # Birkin 30: low inventory on Rebag (~3 listings observed), included
-    # anyway for historical tracking — n_listings_warning flag set when
-    # sample < MIN_RELIABLE_SAMPLE so dashboard can flag low confidence.
     {
-        "query": "Birkin 25",
+        "query": "HB.HM.BIK.BTPH.25",     # Clair Code = Birkin 25 Togo
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Birkin 25",
-        # Rebag title pattern: "Birkin Handbag [Color] [Material] ... 25"
-        # "birkin handbag" + "25" rules out all other Birkin sizes and
-        # non-bag items (charms, straps) without needing an exclude list.
-        "title_must": ["birkin handbag", "25"],
+        "title_must": [],
         "title_exclude": [],
     },
     {
-        "query": "Birkin 30",
+        "query": "HB.HM.BIK.BLFPH.30",    # Clair Code = Birkin 30 Togo
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Birkin 30",
-        "title_must": ["birkin handbag", "30"],
+        "title_must": [],
         "title_exclude": [],
     },
     {
-        "query": "Kelly 25",
+        "query": "HB.HM.KY.BRWTGH.25",    # Clair Code = Kelly 25 Togo Retourne
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Kelly 25",
-        # Rebag title pattern: "Kelly Handbag [Color] [Material] ... 25"
-        "title_must": ["kelly handbag", "25"],
+        "title_must": [],
         "title_exclude": [],
     },
     {
-        "query": "Kelly 28",
+        "query": "HB.HM.KY.BRWTGH.28",    # Clair Code = Kelly 28 Togo
         "max_listings": 50,
         "min_price": 8000,
         "canonical": "Hermès Kelly 28",
-        "title_must": ["kelly handbag", "28"],
+        "title_must": [],
         "title_exclude": [],
     },
 ]
