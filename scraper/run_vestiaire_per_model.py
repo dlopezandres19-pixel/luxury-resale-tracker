@@ -4,15 +4,15 @@ run_vestiaire_per_model.py
 Fixes the "maxItems is a GLOBAL cap across all queries" limitation of the
 Vestiaire actor (confirmed in its own docs) by calling the actor once PER
 MODEL, synchronously, each with its own maxItems budget. This guarantees
-every one of the 8 tracked models gets scraped, instead of high-supply
+every one of the 6 tracked models gets scraped, instead of high-supply
 models (Birkin) eating the whole shared budget.
 
-Replaces the old Apify-Task + Schedule + Webhook setup for Vestiaire.
-GitHub Actions itself now triggers this on a weekly cron — no webhook,
-no "defaultDatasetId" macro dependency.
+Actor: piotrv1001/vestiaire-collective-listings-scraper
+Confirmed input schema (from Apify JSON tab, Sep 2026):
+  searchQueries, maxItems, country, currency, fetchProductDetails
+  (language, sizeType, filters are NOT accepted — actor ignores/resets them)
 
 Usage:
-    python run_vestiaire_per_model.py --region US
     python run_vestiaire_per_model.py --region EU
 
 Env vars required:
@@ -32,14 +32,16 @@ from compute_resale_v2 import process_vestiaire, load_msrp, load_history, save_h
 
 VESTIAIRE_ACTOR = "piotrv1001~vestiaire-collective-listings-scraper"
 MAX_ITEMS_PER_MODEL = 30
+
+# Only fields confirmed accepted by this actor (Sep 2026).
+# language, sizeType, filters were silently ignored and caused maxItems
+# to reset to the actor's default of 5 — removed to fix zero-results bug.
 REGION_CONFIG = {
-    "US": {"country": "US", "currency": "USD", "language": "en", "sizeType": "US"},
-    "EU": {"country": "FR", "currency": "EUR", "language": "en", "sizeType": "US"},
+    "EU": {"country": "FR", "currency": "EUR"},
 }
 
 
 def apify_post(url, body, token, timeout=600):
-    """POST with retry — one flaky call shouldn't kill the whole run."""
     data = json.dumps(body).encode("utf-8")
     req = Request(f"{url}?token={token}", data=data, headers={"Content-Type": "application/json"}, method="POST")
     last_err = None
@@ -49,28 +51,19 @@ def apify_post(url, body, token, timeout=600):
                 return json.loads(r.read().decode("utf-8"))
         except (HTTPError, URLError) as e:
             last_err = e
-            print(f"  attempt {attempt}/3 failed: {e} — retrying in 15s" if attempt < 3 else f"  attempt {attempt}/3 failed: {e} — giving up on this model")
+            print(f"  attempt {attempt}/3 failed: {e}" + (" — retrying in 15s" if attempt < 3 else " — giving up"))
             time.sleep(15)
     raise last_err
 
 
 def scrape_one_model(model_name, region_cfg, token):
     """Runs the Vestiaire actor synchronously for a single model.
-    Returns [] (not an exception) on failure — one bad model must not
-    stop the other 7 from being processed.
-
-    Restricts to the Handbags category (Women > Bags > Handbags) via
-    catalog filters — without this, small leather goods (wallets,
-    cardholders, keychains from the same model line) get matched by the
-    text search and badly skew VR downward. Facet IDs are best-effort
-    from the actor's own README example; verify against real output if
-    a model's price_median still looks implausibly low.
-    """
+    Returns [] on failure so one bad model doesn't stop the others."""
     url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
     body = {
         "searchQueries": [model_name],
         "maxItems": MAX_ITEMS_PER_MODEL,
-        "filters": {"categoryLvl0.id": ["5"], "categoryLvl1.id": ["59"], "universe.id": ["1"]},
+        "fetchProductDetails": False,
         **region_cfg,
     }
     try:
@@ -84,29 +77,45 @@ def scrape_one_model(model_name, region_cfg, token):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--region", required=True, choices=["US", "EU"])
+    ap.add_argument("--region", required=True, choices=["EU"])
     args = ap.parse_args()
 
     token = os.environ["APIFY_TOKEN"]
     region_cfg = REGION_CONFIG[args.region]
     msrp = load_msrp()
 
+    # Use short, natural search terms — NOT the canonical model names.
+    # "Hermès Birkin 25" works. "LV Neverfull MM" does NOT — Vestiaire
+    # doesn't recognize "LV" as a brand prefix; use "Neverfull MM" instead.
+    # Matching back to canonical names happens via canonical_model() in
+    # compute_resale_v2.py using MODEL_ALIASES.
+    VESTIAIRE_QUERIES = {
+        "Hermès Birkin 25": "Hermès Birkin 25",
+        "Hermès Birkin 30": "Hermès Birkin 30",
+        "Hermès Kelly 25":  "Hermès Kelly 25",
+        "Hermès Kelly 28":  "Hermès Kelly 28",
+        "LV Neverfull MM":  "Neverfull MM",
+        "LV Speedy 25":     "Speedy 25",
+    }
+
     all_items = []
-    print(f"Scraping {len(MODEL_ALIASES)} models for region {args.region}...")
-    # Use the canonical model names (values of MODEL_ALIASES), not the
-    # short aliases, so the search query itself is a real, specific term.
-    canonical_models = sorted(set(MODEL_ALIASES.values()))
-    for model in canonical_models:
-        items = scrape_one_model(model, region_cfg, token)
+    print(f"Scraping {len(VESTIAIRE_QUERIES)} models for region {args.region}...")
+    for canonical, query in VESTIAIRE_QUERIES.items():
+        items = scrape_one_model(query, region_cfg, token)
+        # Tag each item with the canonical model so process_vestiaire()
+        # can match it correctly regardless of what Vestiaire returns in
+        # the 'model' field.
+        for item in items:
+            item["_canonicalModel"] = canonical
         all_items.extend(items)
 
     if not all_items:
-        print("WARNING: zero listings across ALL models — something is likely broken upstream (not just one model). Not writing anything this run.")
+        print("WARNING: zero listings across ALL models — not writing anything.")
         sys.exit(1)
 
     snapshot = process_vestiaire(all_items, args.region, msrp)
     if not snapshot:
-        print("WARNING: fetched listings but none matched a tracked model after processing. Check MODEL_ALIASES.")
+        print("WARNING: fetched listings but none matched after processing.")
         sys.exit(1)
 
     history, path = load_history(args.region)
