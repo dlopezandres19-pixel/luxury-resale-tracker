@@ -117,13 +117,13 @@
     },
     {
       "date": "2026-09-14",
-      "vr_median": 0.9308,
-      "vr_mean": 1.2299,
-      "n_listings": 9,
-      "n_listings_warning": true,
+      "vr_median": 0.5625,
+      "vr_mean": 0.5984,
+      "n_listings": 10,
+      "n_listings_warning": false,
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
-      "price_median": 2085,
+      "price_median": 1260.0,
       "msrp_used": 2240,
       "currency": "USD",
       "_source": "rebag"
