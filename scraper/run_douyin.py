@@ -33,8 +33,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data_v2"
 OUTPUT_FILE = DATA_DIR / "douyin_data.json"
 
-DOUYIN_ACTOR = "khadinakbar~douyin-search-scraper"
-MAX_RESULTS_TOTAL = 50  # shared across all keywords — ~10 per brand
+DOUYIN_ACTOR = "natanielsantos~douyin-scraper"
+MAX_ITEMS_PER_BRAND = 10  # per keyword search
 
 # Brand keywords in Chinese — how consumers actually search on Douyin.
 # Also include English names as Douyin indexes both.
@@ -47,7 +47,7 @@ BRAND_KEYWORDS = {
 }
 
 
-def apify_post(url, body, token, timeout=600):
+def apify_post(url, body, token, timeout=1800):
     data = json.dumps(body).encode("utf-8")
     req = Request(
         f"{url}?token={token}",
@@ -71,10 +71,12 @@ def apify_post(url, body, token, timeout=600):
 
 
 def compute_brand_scores(items):
-    """Groups items by searchKeyword and computes engagement score per brand."""
+    """Groups items by searchQuery/_query field and computes engagement score per brand.
+    natanielsantos actor returns items with a 'query' or searchTerm field."""
     by_keyword = {}
     for item in items:
-        kw = item.get("searchKeyword", "")
+        # natanielsantos actor stores the search term in 'query' field
+        kw = item.get("query", item.get("searchQuery", item.get("hashtag", "")))
         by_keyword.setdefault(kw, []).append(item)
 
     scores = {}
@@ -85,13 +87,13 @@ def compute_brand_scores(items):
             continue
 
         total_views    = sum(v.get("playCount", 0) or 0 for v in brand_items)
-        total_likes    = sum(v.get("likeCount", 0) or 0 for v in brand_items)
-        total_comments = sum(v.get("commentCount", 0) or 0 for v in brand_items)
-        total_shares   = sum(v.get("shareCount", 0) or 0 for v in brand_items)
-        total_collects = sum(v.get("collectCount", 0) or 0 for v in brand_items)
+        # natanielsantos uses statistics.diggCount for likes
+        total_likes    = sum((v.get("statistics", {}) or {}).get("diggCount", v.get("likeCount", 0) or 0) for v in brand_items)
+        total_comments = sum((v.get("statistics", {}) or {}).get("commentCount", v.get("commentCount", 0) or 0) for v in brand_items)
+        total_shares   = sum((v.get("statistics", {}) or {}).get("shareCount", v.get("shareCount", 0) or 0) for v in brand_items)
+        total_collects = sum((v.get("statistics", {}) or {}).get("collectCount", v.get("collectCount", 0) or 0) for v in brand_items)
         total_engagement = total_likes + total_comments + total_shares + total_collects
 
-        # Score in millions — comparable scale to WeChat Index
         score = round(
             (total_views / 1_000_000) + (total_engagement * 5 / 1_000_000), 3
         )
@@ -141,19 +143,16 @@ def main():
 
     url = f"https://api.apify.com/v2/acts/{DOUYIN_ACTOR}/run-sync-get-dataset-items"
     body = {
-        "searchQueries": list(BRAND_KEYWORDS.values()),
-        "maxResults": MAX_RESULTS_TOTAL,
-        "sortBy": "most_liked",
-        "publishTime": "week",
-        "duration": "any",
-        "proxyConfiguration": {
-            "useApifyProxy": True,
-            "apifyProxyGroups": ["RESIDENTIAL"],
-            "apifyProxyCountry": "HK",
-        },
+        "searchTermsOrHashtags": list(BRAND_KEYWORDS.values()),
+        "searchSortFilter": "most_liked",
+        "searchPublishTimeFilter": "last_week",
+        "maxItemsPerUrl": MAX_ITEMS_PER_BRAND,
+        "scrapePlayCount": True,
+        "shouldDownloadVideos": False,
+        "shouldDownloadCovers": False,
     }
 
-    print(f"Scraping Douyin for {len(BRAND_KEYWORDS)} brands (maxResults={MAX_RESULTS_TOTAL})...")
+    print(f"Scraping Douyin for {len(BRAND_KEYWORDS)} brands ({MAX_ITEMS_PER_BRAND} videos each)...")
     try:
         items = apify_post(url, body, token)
         print(f"  Total raw videos: {len(items)}")
