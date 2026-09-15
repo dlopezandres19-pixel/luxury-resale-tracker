@@ -75,8 +75,7 @@ def compute_brand_scores(items):
     natanielsantos actor returns items with a 'query' or searchTerm field."""
     by_keyword = {}
     for item in items:
-        # natanielsantos actor stores the search term in 'query' field
-        kw = item.get("query", item.get("searchQuery", item.get("hashtag", "")))
+        kw = item.get("searchKeyword", "")
         by_keyword.setdefault(kw, []).append(item)
 
     scores = {}
