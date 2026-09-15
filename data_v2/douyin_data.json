@@ -2,14 +2,14 @@
   "Hermès": [
     {
       "date": "2026-09-15",
-      "score": 0.049,
+      "score": 7163,
       "total_views": 0,
-      "total_likes": 2842,
-      "total_comments": 44,
-      "total_shares": 420,
-      "total_collects": 1602,
-      "total_engagement": 4908,
-      "n_videos": 9,
+      "total_likes": 3859,
+      "total_comments": 120,
+      "total_shares": 1418,
+      "total_collects": 1766,
+      "total_engagement": 7163,
+      "n_videos": 8,
       "keyword": "爱马仕"
     }
   ],
@@ -30,42 +30,42 @@
   "Cartier": [
     {
       "date": "2026-09-15",
-      "score": 0.02,
+      "score": 2047,
       "total_views": 0,
-      "total_likes": 1440,
-      "total_comments": 34,
-      "total_shares": 206,
-      "total_collects": 323,
-      "total_engagement": 2003,
-      "n_videos": 4,
+      "total_likes": 1478,
+      "total_comments": 35,
+      "total_shares": 207,
+      "total_collects": 327,
+      "total_engagement": 2047,
+      "n_videos": 6,
       "keyword": "卡地亚"
     }
   ],
   "Gucci": [
     {
       "date": "2026-09-15",
-      "score": 0.803,
+      "score": 79608,
       "total_views": 0,
-      "total_likes": 44959,
-      "total_comments": 4110,
-      "total_shares": 27071,
-      "total_collects": 4159,
-      "total_engagement": 80299,
-      "n_videos": 5,
+      "total_likes": 43975,
+      "total_comments": 4090,
+      "total_shares": 27120,
+      "total_collects": 4423,
+      "total_engagement": 79608,
+      "n_videos": 10,
       "keyword": "古驰"
     }
   ],
   "Louis Vuitton": [
     {
       "date": "2026-09-15",
-      "score": 0.02,
+      "score": 2205,
       "total_views": 0,
-      "total_likes": 1413,
-      "total_comments": 149,
-      "total_shares": 291,
-      "total_collects": 123,
-      "total_engagement": 1976,
-      "n_videos": 4,
+      "total_likes": 1531,
+      "total_comments": 189,
+      "total_shares": 355,
+      "total_collects": 130,
+      "total_engagement": 2205,
+      "n_videos": 6,
       "keyword": "Louis Vuitton"
     }
   ]
