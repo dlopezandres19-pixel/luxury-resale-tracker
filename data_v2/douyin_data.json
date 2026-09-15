@@ -2,13 +2,13 @@
   "Hermès": [
     {
       "date": "2026-09-15",
-      "score": 0.287,
+      "score": 0.049,
       "total_views": 0,
-      "total_likes": 47900,
-      "total_comments": 516,
-      "total_shares": 6002,
-      "total_collects": 2926,
-      "total_engagement": 57344,
+      "total_likes": 2842,
+      "total_comments": 44,
+      "total_shares": 420,
+      "total_collects": 1602,
+      "total_engagement": 4908,
       "n_videos": 9,
       "keyword": "爱马仕"
     }
@@ -16,13 +16,13 @@
   "Dior": [
     {
       "date": "2026-09-15",
-      "score": 0.372,
+      "score": 0.737,
       "total_views": 0,
-      "total_likes": 62295,
-      "total_comments": 1080,
-      "total_shares": 7941,
-      "total_collects": 3040,
-      "total_engagement": 74356,
+      "total_likes": 61914,
+      "total_comments": 1073,
+      "total_shares": 7861,
+      "total_collects": 2825,
+      "total_engagement": 73673,
       "n_videos": 10,
       "keyword": "迪奥"
     }
@@ -30,13 +30,13 @@
   "Cartier": [
     {
       "date": "2026-09-15",
-      "score": 0.006,
+      "score": 0.02,
       "total_views": 0,
-      "total_likes": 622,
-      "total_comments": 11,
-      "total_shares": 147,
-      "total_collects": 329,
-      "total_engagement": 1109,
+      "total_likes": 1440,
+      "total_comments": 34,
+      "total_shares": 206,
+      "total_collects": 323,
+      "total_engagement": 2003,
       "n_videos": 4,
       "keyword": "卡地亚"
     }
@@ -44,15 +44,29 @@
   "Gucci": [
     {
       "date": "2026-09-15",
-      "score": 0.392,
+      "score": 0.803,
       "total_views": 0,
-      "total_likes": 43800,
-      "total_comments": 4117,
-      "total_shares": 26399,
-      "total_collects": 4083,
-      "total_engagement": 78399,
-      "n_videos": 9,
+      "total_likes": 44959,
+      "total_comments": 4110,
+      "total_shares": 27071,
+      "total_collects": 4159,
+      "total_engagement": 80299,
+      "n_videos": 5,
       "keyword": "古驰"
+    }
+  ],
+  "Louis Vuitton": [
+    {
+      "date": "2026-09-15",
+      "score": 0.02,
+      "total_views": 0,
+      "total_likes": 1413,
+      "total_comments": 149,
+      "total_shares": 291,
+      "total_collects": 123,
+      "total_engagement": 1976,
+      "n_videos": 4,
+      "keyword": "Louis Vuitton"
     }
   ]
 }
