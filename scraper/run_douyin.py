@@ -40,7 +40,7 @@ MAX_ITEMS_PER_BRAND = 10  # per keyword search
 # Also include English names as Douyin indexes both.
 BRAND_KEYWORDS = {
     "Hermès":        "爱马仕",
-    "Louis Vuitton": "路易威登",
+    "Louis Vuitton": "Louis Vuitton",  # 路易威登 returns 0 — LV/Louis Vuitton both work
     "Dior":          "迪奥",
     "Cartier":       "卡地亚",
     "Gucci":         "古驰",
@@ -93,9 +93,9 @@ def compute_brand_scores(items):
         total_collects = sum((v.get("statistics", {}) or {}).get("collectCount", v.get("collectCount", 0) or 0) for v in brand_items)
         total_engagement = total_likes + total_comments + total_shares + total_collects
 
-        score = round(
-            (total_views / 1_000_000) + (total_engagement * 5 / 1_000_000), 3
-        )
+        # Score in millions — based on engagement (views not available from this actor)
+        # engagement × 10 gives scale comparable to WeChat Index
+        score = round(total_engagement / 100_000, 3)
 
         scores[brand] = {
             "score":            score,
