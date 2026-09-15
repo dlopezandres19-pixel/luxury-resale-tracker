@@ -94,7 +94,7 @@ def compute_brand_scores(items):
 
         # Score in millions — based on engagement (views not available from this actor)
         # engagement × 10 gives scale comparable to WeChat Index
-        score = round(total_engagement / 100_000, 3)
+        score = round(total_engagement / 1_000, 3)  # score in thousands (K)
 
         scores[brand] = {
             "score":            score,
