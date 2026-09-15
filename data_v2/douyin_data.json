@@ -1,0 +1,58 @@
+{
+  "Hermès": [
+    {
+      "date": "2026-09-15",
+      "score": 0.287,
+      "total_views": 0,
+      "total_likes": 47900,
+      "total_comments": 516,
+      "total_shares": 6002,
+      "total_collects": 2926,
+      "total_engagement": 57344,
+      "n_videos": 9,
+      "keyword": "爱马仕"
+    }
+  ],
+  "Dior": [
+    {
+      "date": "2026-09-15",
+      "score": 0.372,
+      "total_views": 0,
+      "total_likes": 62295,
+      "total_comments": 1080,
+      "total_shares": 7941,
+      "total_collects": 3040,
+      "total_engagement": 74356,
+      "n_videos": 10,
+      "keyword": "迪奥"
+    }
+  ],
+  "Cartier": [
+    {
+      "date": "2026-09-15",
+      "score": 0.006,
+      "total_views": 0,
+      "total_likes": 622,
+      "total_comments": 11,
+      "total_shares": 147,
+      "total_collects": 329,
+      "total_engagement": 1109,
+      "n_videos": 4,
+      "keyword": "卡地亚"
+    }
+  ],
+  "Gucci": [
+    {
+      "date": "2026-09-15",
+      "score": 0.392,
+      "total_views": 0,
+      "total_likes": 43800,
+      "total_comments": 4117,
+      "total_shares": 26399,
+      "total_collects": 4083,
+      "total_engagement": 78399,
+      "n_videos": 9,
+      "keyword": "古驰"
+    }
+  ]
+}
