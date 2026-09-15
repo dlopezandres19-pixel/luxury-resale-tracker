@@ -40,8 +40,7 @@ MAX_ITEMS_PER_BRAND = 10  # per keyword search
 # Also include English names as Douyin indexes both.
 BRAND_KEYWORDS = {
     "Hermès":        "爱马仕",
-    "Louis Vuitton": "Louis Vuitton",  # 路易威登 returns 0 — LV/Louis Vuitton both work
-    "Dior":          "迪奥",
+    "Louis Vuitton": "Louis Vuitton",
     "Cartier":       "卡地亚",
     "Gucci":         "古驰",
 }
