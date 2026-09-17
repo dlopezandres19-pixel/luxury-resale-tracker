@@ -16,22 +16,22 @@ jobs:
         with:
           python-version: "3.12"
 
-#      - name: Scrape Rebag — US (6 models, one call each)
-#        env:
-#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-#        run: python scraper/run_rebag.py
+      - name: Scrape Rebag — US (6 models, one call each)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_rebag.py
 
-#      - name: Scrape Vestiaire — EU (6 models, one call each)
-#        env:
-#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-#        run: python scraper/run_vestiaire_per_model.py --region EU
+      - name: Scrape Vestiaire — EU (6 models, one call each)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_vestiaire_per_model.py --region EU
 
-#      - name: Scrape Xianyu — China Resale (1 call, 6 keywords)
-#        env:
-#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-#        run: python scraper/run_xianyu.py
+      - name: Scrape Xianyu — China Resale (1 call, 6 keywords)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_xianyu.py
 
-      - name: Scrape Douyin — China Social (5 brands, weekly engagement)
+      - name: Scrape Douyin — China Social (4 brands, weekly engagement)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_douyin.py
