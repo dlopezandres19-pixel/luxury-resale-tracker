@@ -55,20 +55,19 @@ MIN_RELIABLE_SAMPLE = 10
 #   title_must    → ALL of these substrings must appear in title (lowercased)
 #   title_exclude → ANY of these substrings disqualifies the listing
 MODEL_CONFIGS = [
-    # ── Louis Vuitton — Clair Code queries + title filter for contamination ──
+    # ── Louis Vuitton — text search + title filters ──────────────────────────
     {
-        "query": "HB.LV.NV.MNCA.MM",
+        "query": "Neverfull MM",
         "max_listings": 50,
         "min_price": 600,
         "canonical": "LV Neverfull MM",
-        # Clair Code brings mostly correct results but also other brands
-        # (Omega watches, Mulberry bags) — title filter removes them.
+        # Text search — title_must ["neverfull", "mm"] ensures only MM size.
         "title_must": ["neverfull", "mm"],
         "title_exclude": ["pochette", "wallet", "insert", "charm", "key holder",
                           "keyholder", "bb", "mini"],
     },
     {
-        "query": "HB.LV.SYB.MNCA.25",
+        "query": "Speedy Bandouliere 25",
         "max_listings": 50,
         "min_price": 500,
         "canonical": "LV Speedy 25",
@@ -87,7 +86,7 @@ MODEL_CONFIGS = [
         "title_exclude": ["mini", "east west", "charm", "key", "wallet"],
     },
     {
-        # Clair Code HB.LV.AA.MNCA.BB works perfectly for Alma BB Monogram Canvas.
+        # Text search — title_must ["alma", "bb"] filters out PM/MM/GM sizes.
         "query": "Alma BB",
         "max_listings": 50,
         "min_price": 1200,
