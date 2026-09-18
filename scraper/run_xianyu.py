@@ -41,8 +41,10 @@ CHINESE_KEYWORDS = [
     "爱马仕 Birkin 30",
     "爱马仕 Kelly 25",
     "爱马仕 Kelly 28",
-    "M46987",   # LV Neverfull MM Monogram
-    "M46977",   # LV Speedy Bandoulière 25 Monogram
+    "M46987",           # LV Neverfull MM Monogram
+    "M46977",           # LV Speedy Bandoulière 25 Monogram
+    "LV Pochette Métis", # Confirmed more precise than just "Pochette Métis"
+    "Louis Vuitton alma bb",  # Confirmed more precise than just "Alma BB"
 ]
 
 
