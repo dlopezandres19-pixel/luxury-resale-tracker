@@ -63,9 +63,9 @@ MODEL_CONFIGS = [
         "canonical": "LV Neverfull MM",
         # Clair Code brings mostly correct results but also other brands
         # (Omega watches, Mulberry bags) — title filter removes them.
-        "title_must": ["neverfull"],
+        "title_must": ["neverfull", "mm"],
         "title_exclude": ["pochette", "wallet", "insert", "charm", "key holder",
-                          "keyholder", "bb", "mini", "pm", "gm"],
+                          "keyholder", "bb", "mini"],
     },
     {
         "query": "HB.LV.SYB.MNCA.25",
@@ -83,17 +83,17 @@ MODEL_CONFIGS = [
         "max_listings": 50,
         "min_price": 1500,
         "canonical": "LV Pochette Métis",
-        "title_must": ["pochette metis", "monogram canvas"],
-        "title_exclude": ["empreinte", "reverse", "giant", "mini", "east west"],
+        "title_must": ["pochette metis"],
+        "title_exclude": ["mini", "east west", "charm", "key", "wallet"],
     },
     {
         # Clair Code HB.LV.AA.MNCA.BB works perfectly for Alma BB Monogram Canvas.
-        "query": "HB.LV.AA.MNCA.BB",
+        "query": "Alma BB",
         "max_listings": 50,
         "min_price": 1200,
         "canonical": "LV Alma BB",
-        "title_must": ["alma"],
-        "title_exclude": [],
+        "title_must": ["alma", "bb"],
+        "title_exclude": ["charm", "key", "wallet", "pm", "mm", "gm"],
     },
     # ── Hermès — title filters (Clair Codes return 0 — material too specific) ──
     {
