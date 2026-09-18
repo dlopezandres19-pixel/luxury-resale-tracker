@@ -1,5 +1,5 @@
 {
-  "Hermès Birkin 30": [
+  "Herm\u00e8s Birkin 30": [
     {
       "date": "2026-09-10",
       "vr_median": 1.3477,
@@ -38,7 +38,7 @@
       "_source": "rebag"
     }
   ],
-  "Hermès Birkin 25": [
+  "Herm\u00e8s Birkin 25": [
     {
       "date": "2026-09-10",
       "vr_median": 1.8322,
@@ -77,7 +77,7 @@
       "_source": "rebag"
     }
   ],
-  "Hermès Kelly 25": [
+  "Herm\u00e8s Kelly 25": [
     {
       "date": "2026-09-10",
       "vr_median": 1.9128,
@@ -116,7 +116,7 @@
       "_source": "rebag"
     }
   ],
-  "Hermès Kelly 28": [
+  "Herm\u00e8s Kelly 28": [
     {
       "date": "2026-09-10",
       "vr_median": 1.4049,
@@ -158,27 +158,30 @@
   "LV Neverfull MM": [
     {
       "date": "2026-09-10",
-      "vr_median": 0.5585,
-      "vr_mean": 0.729,
+      "vr_median": 0.808,
+      "vr_mean": 0.8489,
       "n_listings": 30,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1251.0,
+      "price_median": 1810.0,
       "currency": "USD",
-      "msrp_used": 2240
+      "msrp_used": 2240,
+      "_source": "rebag",
+      "_note": "Backfilled from 2026-09-18: prior dates used Clair Code query with inconsistent sample"
     },
     {
       "date": "2026-09-14",
-      "vr_median": 0.5625,
-      "vr_mean": 0.5491,
+      "vr_median": 0.808,
+      "vr_mean": 0.8489,
       "n_listings": 8,
       "n_listings_warning": true,
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
-      "price_median": 1260.0,
+      "price_median": 1810.0,
       "msrp_used": 2240,
       "currency": "USD",
-      "_source": "rebag"
+      "_source": "rebag",
+      "_note": "Backfilled from 2026-09-18: prior dates used Clair Code query with inconsistent sample"
     },
     {
       "date": "2026-09-18",
@@ -197,27 +200,30 @@
   "LV Speedy 25": [
     {
       "date": "2026-09-10",
-      "vr_median": 0.8937,
-      "vr_mean": 1.0056,
+      "vr_median": 1.1742,
+      "vr_mean": 1.2359,
       "n_listings": 30,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1769.5,
+      "price_median": 2325.0,
       "currency": "USD",
-      "msrp_used": 1980
+      "msrp_used": 1980,
+      "_source": "rebag",
+      "_note": "Backfilled from 2026-09-18: prior dates used Clair Code / low sample (n=7)"
     },
     {
       "date": "2026-09-14",
-      "vr_median": 0.7727,
-      "vr_mean": 0.7572,
+      "vr_median": 1.1742,
+      "vr_mean": 1.2359,
       "n_listings": 7,
       "n_listings_warning": true,
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
-      "price_median": 1530,
+      "price_median": 2325.0,
       "msrp_used": 1980,
       "currency": "USD",
-      "_source": "rebag"
+      "_source": "rebag",
+      "_note": "Backfilled from 2026-09-18: prior dates used Clair Code / low sample (n=7)"
     },
     {
       "date": "2026-09-18",
@@ -233,7 +239,7 @@
       "_source": "rebag"
     }
   ],
-  "LV Pochette Métis": [
+  "LV Pochette M\u00e9tis": [
     {
       "date": "2026-09-18",
       "vr_median": 0.9393,
