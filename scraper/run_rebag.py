@@ -44,7 +44,7 @@ CURRENCY = "USD"
 # Minimum listings to consider a VR median statistically reliable.
 # Models below this threshold are still saved but flagged with
 # n_listings_warning=True so the dashboard can show a confidence caveat.
-MIN_RELIABLE_SAMPLE = 10
+MIN_RELIABLE_SAMPLE = 20
 
 # ── Per-model search config ──────────────────────────────────────────────
 # Each entry:
@@ -58,7 +58,7 @@ MODEL_CONFIGS = [
     # ── Louis Vuitton — text search + title filters ──────────────────────────
     {
         "query": "Neverfull MM",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 600,
         "canonical": "LV Neverfull MM",
         # Text search — title_must ["neverfull", "mm"] ensures only MM size.
@@ -68,7 +68,7 @@ MODEL_CONFIGS = [
     },
     {
         "query": "Speedy Bandouliere 25",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 500,
         "canonical": "LV Speedy 25",
         "title_must": ["speedy"],
@@ -79,7 +79,7 @@ MODEL_CONFIGS = [
         # Clair Code doesn't work cleanly for Pochette Métis — use text search
         # + title filter to keep only Monogram Canvas version.
         "query": "Pochette Metis",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 1500,
         "canonical": "LV Pochette Métis",
         "title_must": ["pochette metis"],
@@ -88,7 +88,7 @@ MODEL_CONFIGS = [
     {
         # Text search — title_must ["alma", "bb"] filters out PM/MM/GM sizes.
         "query": "Alma BB",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 1200,
         "canonical": "LV Alma BB",
         "title_must": ["alma", "bb"],
@@ -97,7 +97,7 @@ MODEL_CONFIGS = [
     # ── Hermès — title filters (Clair Codes return 0 — material too specific) ──
     {
         "query": "Birkin 25",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 8000,
         "canonical": "Hermès Birkin 25",
         "title_must": ["birkin handbag", "25"],
@@ -105,7 +105,7 @@ MODEL_CONFIGS = [
     },
     {
         "query": "Birkin 30",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 8000,
         "canonical": "Hermès Birkin 30",
         "title_must": ["birkin handbag", "30"],
@@ -113,7 +113,7 @@ MODEL_CONFIGS = [
     },
     {
         "query": "Kelly 25",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 8000,
         "canonical": "Hermès Kelly 25",
         "title_must": ["kelly handbag", "25"],
@@ -121,7 +121,7 @@ MODEL_CONFIGS = [
     },
     {
         "query": "Kelly 28",
-        "max_listings": 50,
+        "max_listings": 100,
         "min_price": 8000,
         "canonical": "Hermès Kelly 28",
         "title_must": ["kelly handbag", "28"],
