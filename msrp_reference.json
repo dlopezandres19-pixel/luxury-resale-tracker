@@ -1,6 +1,6 @@
 {
-  "_README": "Precios de retail oficiales (MSRP) por modelo y región. Última actualización: September 10th, 2026. Source: LVMH webpage (LV/Dior — fuente primaria oficial). Hermès Birkin and Kelly prices are based on reputable price guides and boutique references, as these models are not consistently listed on the official Hermès website. Actualizar manualmente cuando haya un aumento de precio anunciado (usualmente 1-2 veces al año).",
-  "_last_verified": "2026-09-10",
+  "_README": "Precios de retail oficiales (MSRP) por modelo y región. Última actualización: September 18th, 2026. Source: LVMH webpage (LV/Dior — fuente primaria oficial). Hermès Birkin and Kelly prices are based on reputable price guides and boutique references, as these models are not consistently listed on the official Hermès website. Actualizar manualmente cuando haya un aumento de precio anunciado (usualmente 1-2 veces al año).",
+  "_last_verified": "2026-09-18",
   "models": {
     "Hermès Birkin 25": {
       "US": 13500,
@@ -66,6 +66,28 @@
         "US": "high",
         "EU": "high",
         "CN": "medium"
+      }
+    },
+    "LV Pochette Métis": {
+      "US": 2840,
+      "EU": 2300,
+      "CN": 20700,
+      "ref": "Monogram, M44875",
+      "_confidence": {
+        "US": "high",
+        "EU": "high",
+        "CN": "high"
+      }
+    },
+    "LV Alma BB": {
+      "US": 2000,
+      "EU": 1650,
+      "CN": 15100,
+      "ref": "Monogram, M46990",
+      "_confidence": {
+        "US": "high",
+        "EU": "high",
+        "CN": "high"
       }
     }
   },
