@@ -80,7 +80,7 @@ def scrape_one_model(canonical, query, region_cfg, token):
         "fetchProductDetails": False,
         **region_cfg,
     }
-    for attempt in range(1, 3):  # up to 2 attempts
+    for attempt in range(1, 4):  # up to 3 attempts
         try:
             items = apify_post(url, body, token)
             if len(items) > 0:
@@ -88,9 +88,9 @@ def scrape_one_model(canonical, query, region_cfg, token):
                 for item in items:
                     item["_canonicalModel"] = canonical
                 return items
-            elif attempt < 2:
-                print(f"  {canonical}: 0 listings on attempt {attempt} — retrying in 30s")
-                time.sleep(30)
+            elif attempt < 3:
+                print(f"  {canonical}: 0 listings on attempt {attempt} — retrying in 45s")
+                time.sleep(45)
             else:
                 print(f"  {canonical}: 0 listings after {attempt} attempts — skipping")
                 return []
