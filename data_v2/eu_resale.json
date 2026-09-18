@@ -48,12 +48,12 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 2.2382,
-      "vr_mean": 2.2107,
+      "vr_median": 2.2624,
+      "vr_mean": 2.2229,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 21487.0,
+      "price_median": 21719.0,
       "msrp_used": 9600,
       "currency": "EUR"
     }
@@ -83,12 +83,12 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 2.3071,
-      "vr_mean": 2.2136,
+      "vr_median": 2.281,
+      "vr_mean": 2.1736,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 22148.0,
+      "price_median": 21898.0,
       "msrp_used": 9600,
       "currency": "EUR"
     }
@@ -119,7 +119,7 @@
     {
       "date": "2026-09-18",
       "vr_median": 0.9417,
-      "vr_mean": 0.9488,
+      "vr_mean": 0.8936,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
@@ -153,12 +153,12 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 0.7521,
-      "vr_mean": 0.8171,
+      "vr_median": 0.7555,
+      "vr_mean": 0.8222,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1241.0,
+      "price_median": 1246.5,
       "msrp_used": 1650,
       "currency": "EUR"
     }
@@ -190,12 +190,12 @@
   "LV Pochette Métis": [
     {
       "date": "2026-09-18",
-      "vr_median": 0.5713,
-      "vr_mean": 0.5902,
+      "vr_median": 0.5791,
+      "vr_mean": 0.5975,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1314.0,
+      "price_median": 1332.0,
       "msrp_used": 2300,
       "currency": "EUR"
     }
