@@ -1,5 +1,5 @@
 {
-  "Hermès Birkin 30": [
+  "Herm\u00e8s Birkin 30": [
     {
       "date": "2026-09-10",
       "vr_median": 1.4858,
@@ -21,9 +21,21 @@
       "price_median": 15750.0,
       "msrp_used": 10600,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 1.168,
+      "vr_mean": 1.168,
+      "n_listings": 10,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 12376.0,
+      "msrp_used": 10600,
+      "currency": "EUR",
+      "_note": "Manual entry \u2014 Vestiaire actor returned 0 on Sep 18 (Cloudflare block). Prices scraped manually from vestiairecollective.com."
     }
   ],
-  "Hermès Birkin 25": [
+  "Herm\u00e8s Birkin 25": [
     {
       "date": "2026-09-10",
       "vr_median": 2.5443,
@@ -48,17 +60,17 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 2.2624,
-      "vr_mean": 2.2229,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 21719.0,
+      "vr_median": 2.262,
+      "vr_mean": 2.262,
+      "n_listings": 20,
+      "price_median": 21715.2,
       "msrp_used": 9600,
       "currency": "EUR"
     }
   ],
-  "Hermès Kelly 25": [
+  "Herm\u00e8s Kelly 25": [
     {
       "date": "2026-09-10",
       "vr_median": 2.3896,
@@ -83,17 +95,17 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 2.281,
-      "vr_mean": 2.1736,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 21898.0,
+      "vr_median": 2.281,
+      "vr_mean": 2.281,
+      "n_listings": 20,
+      "price_median": 21897.6,
       "msrp_used": 9600,
       "currency": "EUR"
     }
   ],
-  "Hermès Kelly 28": [
+  "Herm\u00e8s Kelly 28": [
     {
       "date": "2026-09-10",
       "vr_median": 1.0703,
@@ -118,12 +130,12 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 0.9417,
-      "vr_mean": 0.8936,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 9511.0,
+      "vr_median": 0.942,
+      "vr_mean": 0.942,
+      "n_listings": 20,
+      "price_median": 9514.2,
       "msrp_used": 10100,
       "currency": "EUR"
     }
@@ -153,12 +165,12 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 0.7555,
-      "vr_mean": 0.8222,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1246.5,
+      "vr_median": 0.755,
+      "vr_mean": 0.755,
+      "n_listings": 20,
+      "price_median": 1245.8,
       "msrp_used": 1650,
       "currency": "EUR"
     }
@@ -177,25 +189,25 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 0.5123,
-      "vr_mean": 0.5239,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 794.0,
+      "vr_median": 0.512,
+      "vr_mean": 0.512,
+      "n_listings": 20,
+      "price_median": 793.6,
       "msrp_used": 1550,
       "currency": "EUR"
     }
   ],
-  "LV Pochette Métis": [
+  "LV Pochette M\u00e9tis": [
     {
       "date": "2026-09-18",
-      "vr_median": 0.5791,
-      "vr_mean": 0.5975,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1332.0,
+      "vr_median": 0.579,
+      "vr_mean": 0.579,
+      "n_listings": 20,
+      "price_median": 1331.7,
       "msrp_used": 2300,
       "currency": "EUR"
     }
@@ -203,12 +215,12 @@
   "LV Alma BB": [
     {
       "date": "2026-09-18",
-      "vr_median": 0.5242,
-      "vr_mean": 0.5445,
-      "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 865.0,
+      "vr_median": 0.524,
+      "vr_mean": 0.524,
+      "n_listings": 20,
+      "price_median": 864.6,
       "msrp_used": 1650,
       "currency": "EUR"
     }
