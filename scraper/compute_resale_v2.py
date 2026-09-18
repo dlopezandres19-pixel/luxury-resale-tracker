@@ -34,15 +34,20 @@ MSRP_PATH = REPO_ROOT / "msrp_reference.json"
 # "neverfull mm" (not "neverfull") avoids matching GM/PM listings.
 # "speedy 25"    (not "speedy")    avoids matching Speedy 30/35/40.
 MODEL_ALIASES = {
-    "birkin 25":    "Hermès Birkin 25",
-    "birkin 30":    "Hermès Birkin 30",
-    "kelly 25":     "Hermès Kelly 25",
-    "kelly 28":     "Hermès Kelly 28",
-    "neverfull mm": "LV Neverfull MM",
-    "speedy 25":    "LV Speedy 25",
-    # SKU-based aliases for Xianyu (CN) — more precise than text keywords
-    "m46987":       "LV Neverfull MM",       # Neverfull MM Monogram
-    "m46977":       "LV Speedy 25",          # Speedy Bandoulière 25 Monogram
+    "birkin 25":        "Hermès Birkin 25",
+    "birkin 30":        "Hermès Birkin 30",
+    "kelly 25":         "Hermès Kelly 25",
+    "kelly 28":         "Hermès Kelly 28",
+    "neverfull mm":     "LV Neverfull MM",
+    "speedy 25":        "LV Speedy 25",
+    "pochette métis":   "LV Pochette Métis",
+    "pochette metis":   "LV Pochette Métis",
+    "alma bb":          "LV Alma BB",
+    # SKU-based aliases for Xianyu (CN)
+    "m46987":           "LV Neverfull MM",
+    "m46977":           "LV Speedy 25",
+    "lv pochette métis": "LV Pochette Métis",
+    "louis vuitton alma bb": "LV Alma BB",
 }
 
 # Xianyu-specific: reject listings whose title contains any of these —
@@ -58,6 +63,8 @@ XIANYU_MIN_PRICE = {
     "Hermès Kelly 28":  85000,
     "LV Neverfull MM":   9000,
     "LV Speedy 25":      9000,
+    "LV Pochette Métis": 8000,
+    "LV Alma BB":        3500,
 }
 
 
