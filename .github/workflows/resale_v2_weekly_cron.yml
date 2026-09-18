@@ -23,11 +23,11 @@ jobs:
         run: python scraper/run_rebag.py
         continue-on-error: true
 
-      - name: Scrape Vestiaire — EU (8 models, one call each)
-        env:
-          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python scraper/run_vestiaire_per_model.py --region EU
-        continue-on-error: true
+#      - name: Scrape Vestiaire — EU (8 models, one call each)
+#        env:
+#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+#        run: python scraper/run_vestiaire_per_model.py --region EU
+#        continue-on-error: true
 
       - name: Commit updated data
         run: |
