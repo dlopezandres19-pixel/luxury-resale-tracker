@@ -48,12 +48,12 @@
     },
     {
       "date": "2026-09-18",
-      "vr_median": 2.2969,
-      "vr_mean": 2.2513,
+      "vr_median": 2.2382,
+      "vr_mean": 2.2107,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 22050.0,
+      "price_median": 21487.0,
       "msrp_used": 9600,
       "currency": "EUR"
     }
@@ -78,6 +78,17 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 23362.5,
+      "msrp_used": 9600,
+      "currency": "EUR"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 2.3071,
+      "vr_mean": 2.2136,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 22148.0,
       "msrp_used": 9600,
       "currency": "EUR"
     }
@@ -143,7 +154,7 @@
     {
       "date": "2026-09-18",
       "vr_median": 0.7521,
-      "vr_mean": 0.814,
+      "vr_mean": 0.8171,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
@@ -163,18 +174,42 @@
       "price_median": 794.0,
       "msrp_used": 1550,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 0.5123,
+      "vr_mean": 0.5239,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 794.0,
+      "msrp_used": 1550,
+      "currency": "EUR"
     }
   ],
   "LV Pochette Métis": [
     {
       "date": "2026-09-18",
-      "vr_median": 0.5611,
-      "vr_mean": 0.5747,
+      "vr_median": 0.5713,
+      "vr_mean": 0.5902,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
-      "price_median": 1290.5,
+      "price_median": 1314.0,
       "msrp_used": 2300,
+      "currency": "EUR"
+    }
+  ],
+  "LV Alma BB": [
+    {
+      "date": "2026-09-18",
+      "vr_median": 0.5242,
+      "vr_mean": 0.5445,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 865.0,
+      "msrp_used": 1650,
       "currency": "EUR"
     }
   ]
