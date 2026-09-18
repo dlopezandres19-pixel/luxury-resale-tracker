@@ -1,5 +1,5 @@
 {
-  "Herm\u00e8s Birkin 30": [
+  "Hermès Birkin 30": [
     {
       "date": "2026-09-10",
       "vr_median": 1.3477,
@@ -23,9 +23,22 @@
       "msrp_used": 14900,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 1.5034,
+      "vr_mean": 1.5106,
+      "n_listings": 9,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 22400,
+      "msrp_used": 14900,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
-  "Herm\u00e8s Birkin 25": [
+  "Hermès Birkin 25": [
     {
       "date": "2026-09-10",
       "vr_median": 1.8322,
@@ -49,9 +62,22 @@
       "msrp_used": 13500,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 1.6531,
+      "vr_mean": 1.7925,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 22317.5,
+      "msrp_used": 13500,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
-  "Herm\u00e8s Kelly 25": [
+  "Hermès Kelly 25": [
     {
       "date": "2026-09-10",
       "vr_median": 1.9128,
@@ -75,9 +101,22 @@
       "msrp_used": 13700,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 1.7401,
+      "vr_mean": 1.7673,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 23840.0,
+      "msrp_used": 13700,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
-  "Herm\u00e8s Kelly 28": [
+  "Hermès Kelly 28": [
     {
       "date": "2026-09-10",
       "vr_median": 1.4049,
@@ -98,6 +137,19 @@
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
       "price_median": 20225.0,
+      "msrp_used": 14400,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 1.1932,
+      "vr_mean": 1.2808,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 17182.5,
       "msrp_used": 14400,
       "currency": "USD",
       "_source": "rebag"
@@ -143,6 +195,19 @@
     },
     {
       "date": "2026-09-14",
+      "vr_median": 0.7727,
+      "vr_mean": 0.7572,
+      "n_listings": 7,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1530,
+      "msrp_used": 1980,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-09-18",
       "vr_median": 0.7727,
       "vr_mean": 0.7572,
       "n_listings": 7,

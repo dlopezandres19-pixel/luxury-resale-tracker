@@ -1,4 +1,4 @@
- {
+{
   "Hermès Birkin 30": [
     {
       "date": "2026-09-10",
@@ -43,6 +43,17 @@
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 23736.5,
+      "msrp_used": 9600,
+      "currency": "EUR"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 2.2969,
+      "vr_mean": 2.2513,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 22050.0,
       "msrp_used": 9600,
       "currency": "EUR"
     }
@@ -93,6 +104,17 @@
       "price_median": 10770.0,
       "msrp_used": 10100,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 0.9417,
+      "vr_mean": 0.9488,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 9511.0,
+      "msrp_used": 10100,
+      "currency": "EUR"
     }
   ],
   "LV Speedy 25": [
@@ -117,6 +139,17 @@
       "price_median": 1227.5,
       "msrp_used": 1650,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-18",
+      "vr_median": 0.7521,
+      "vr_mean": 0.814,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1241.0,
+      "msrp_used": 1650,
+      "currency": "EUR"
     }
   ],
   "LV Neverfull MM": [
@@ -129,6 +162,19 @@
       "avg_days_to_sell": null,
       "price_median": 794.0,
       "msrp_used": 1550,
+      "currency": "EUR"
+    }
+  ],
+  "LV Pochette Métis": [
+    {
+      "date": "2026-09-18",
+      "vr_median": 0.5611,
+      "vr_mean": 0.5747,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1290.5,
+      "msrp_used": 2300,
       "currency": "EUR"
     }
   ]
