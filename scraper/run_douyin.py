@@ -107,7 +107,7 @@ def compute_brand_scores(items):
             "n_videos":         len(brand_items),
             "keyword":          keyword,
         }
-        print(f"  {brand}: score={score:.2f}M  views={total_views:,}  engagement={total_engagement:,}  n={len(brand_items)}")
+        print(f"  {brand}: n_videos={len(brand_items)}  engagement={total_engagement:,}")
 
     return scores
 
@@ -141,14 +141,14 @@ def main():
 
     url = f"https://api.apify.com/v2/acts/{DOUYIN_ACTOR}/run-sync-get-dataset-items"
 
-    # One call per brand so we can tag items reliably — natanielsantos actor
-    # doesn't always return the search keyword in the output fields
+    # One call per brand — tags items reliably.
+    # latest + last_week = videos published THIS week → captures weekly momentum (n_videos)
     print(f"Scraping Douyin for {len(BRAND_KEYWORDS)} brands ({MAX_ITEMS_PER_BRAND} videos each)...")
     all_items = []
     for brand, keyword in BRAND_KEYWORDS.items():
         body = {
             "searchTermsOrHashtags": [keyword],
-            "searchSortFilter": "most_liked",
+            "searchSortFilter": "latest",
             "searchPublishTimeFilter": "last_week",
             "maxItemsPerUrl": MAX_ITEMS_PER_BRAND,
             "scrapePlayCount": True,
@@ -158,14 +158,13 @@ def main():
         try:
             items = apify_post(url, body, token)
             print(f"  {brand} ({keyword}): {len(items)} videos")
-            # Tag each item with the brand keyword for reliable matching
             for item in items:
                 item["searchKeyword"] = keyword
             all_items.extend(items)
         except Exception as e:
             print(f"  {brand} ({keyword}): FAILED ({e}) — skipping")
             continue
-        time.sleep(5)  # small pause between calls
+        time.sleep(5)
 
     if not all_items:
         print("WARNING: zero videos returned across all brands.")
