@@ -9,6 +9,7 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+
     steps:
       - uses: actions/checkout@v4
 
@@ -27,18 +28,6 @@ jobs:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_vestiaire_per_model.py --region EU
         continue-on-error: true
-
-      - name: Scrape Xianyu — China Resale (1 call, 8 keywords)
-        env:
-          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python scraper/run_xianyu.py
-        continue-on-error: true
-
-#      - name: Scrape Douyin — China Social (4 brands, weekly engagement)
-#        env:
-#          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-#        run: python scraper/run_douyin.py
-#        continue-on-error: true
 
       - name: Commit updated data
         run: |
