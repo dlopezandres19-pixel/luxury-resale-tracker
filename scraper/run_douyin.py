@@ -34,13 +34,13 @@ DATA_DIR = REPO_ROOT / "data_v2"
 OUTPUT_FILE = DATA_DIR / "douyin_data.json"
 
 DOUYIN_ACTOR = "natanielsantos~douyin-scraper"
-MAX_ITEMS_PER_BRAND = 10  # per keyword search
+MAX_ITEMS_PER_BRAND = 50  # per keyword search
 
 # Brand keywords in Chinese — how consumers actually search on Douyin.
 # Also include English names as Douyin indexes both.
 BRAND_KEYWORDS = {
     "Hermès":        "爱马仕",
-    "Louis Vuitton": "Louis Vuitton",
+    "Louis Vuitton": "路易威登",
     "Cartier":       "卡地亚",
     "Gucci":         "古驰",
 }
@@ -140,29 +140,38 @@ def main():
     today = datetime.now(timezone.utc).date().isoformat()
 
     url = f"https://api.apify.com/v2/acts/{DOUYIN_ACTOR}/run-sync-get-dataset-items"
-    body = {
-        "searchTermsOrHashtags": list(BRAND_KEYWORDS.values()),
-        "searchSortFilter": "most_liked",
-        "searchPublishTimeFilter": "last_week",
-        "maxItemsPerUrl": MAX_ITEMS_PER_BRAND,
-        "scrapePlayCount": True,
-        "shouldDownloadVideos": False,
-        "shouldDownloadCovers": False,
-    }
 
+    # One call per brand so we can tag items reliably — natanielsantos actor
+    # doesn't always return the search keyword in the output fields
     print(f"Scraping Douyin for {len(BRAND_KEYWORDS)} brands ({MAX_ITEMS_PER_BRAND} videos each)...")
-    try:
-        items = apify_post(url, body, token)
-        print(f"  Total raw videos: {len(items)}")
-    except Exception as e:
-        print(f"  FAILED: {e} — not writing anything.")
+    all_items = []
+    for brand, keyword in BRAND_KEYWORDS.items():
+        body = {
+            "searchTermsOrHashtags": [keyword],
+            "searchSortFilter": "most_liked",
+            "searchPublishTimeFilter": "last_week",
+            "maxItemsPerUrl": MAX_ITEMS_PER_BRAND,
+            "scrapePlayCount": True,
+            "shouldDownloadVideos": False,
+            "shouldDownloadCovers": False,
+        }
+        try:
+            items = apify_post(url, body, token)
+            print(f"  {brand} ({keyword}): {len(items)} videos")
+            # Tag each item with the brand keyword for reliable matching
+            for item in items:
+                item["searchKeyword"] = keyword
+            all_items.extend(items)
+        except Exception as e:
+            print(f"  {brand} ({keyword}): FAILED ({e}) — skipping")
+            continue
+        time.sleep(5)  # small pause between calls
+
+    if not all_items:
+        print("WARNING: zero videos returned across all brands.")
         sys.exit(1)
 
-    if not items:
-        print("WARNING: zero videos returned — likely an upstream issue.")
-        sys.exit(1)
-
-    scores = compute_brand_scores(items)
+    scores = compute_brand_scores(all_items)
     if not scores:
         print("WARNING: no brands matched any videos — check keywords.")
         sys.exit(1)
