@@ -76,6 +76,25 @@ MODEL_CONFIGS = [
         "title_exclude": ["speedy 30", "speedy 35", "speedy 40",
                           "charm", "wallet", "insert", "key holder", "keyholder"],
     },
+    {
+        # Clair Code doesn't work cleanly for Pochette Métis — use text search
+        # + title filter to keep only Monogram Canvas version.
+        "query": "Pochette Metis",
+        "max_listings": 50,
+        "min_price": 1500,
+        "canonical": "LV Pochette Métis",
+        "title_must": ["pochette metis", "monogram canvas"],
+        "title_exclude": ["empreinte", "reverse", "giant", "mini", "east west"],
+    },
+    {
+        # Clair Code HB.LV.AA.MNCA.BB works perfectly for Alma BB Monogram Canvas.
+        "query": "HB.LV.AA.MNCA.BB",
+        "max_listings": 50,
+        "min_price": 1200,
+        "canonical": "LV Alma BB",
+        "title_must": ["alma"],
+        "title_exclude": [],
+    },
     # ── Hermès — title filters (Clair Codes return 0 — material too specific) ──
     {
         "query": "Birkin 25",
