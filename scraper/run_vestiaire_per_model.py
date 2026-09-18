@@ -70,7 +70,9 @@ def apify_post(url, body, token, timeout=1800):
 
 
 def scrape_one_model(canonical, query, region_cfg, token):
-    """One actor call per model with its own maxItems budget."""
+    """One actor call per model with its own maxItems budget.
+    Retries once if 0 results returned — Vestiaire occasionally blocks a
+    query on the first attempt but succeeds on retry."""
     url = f"https://api.apify.com/v2/acts/{VESTIAIRE_ACTOR}/run-sync-get-dataset-items"
     body = {
         "searchQueries": [query],
@@ -78,15 +80,24 @@ def scrape_one_model(canonical, query, region_cfg, token):
         "fetchProductDetails": False,
         **region_cfg,
     }
-    try:
-        items = apify_post(url, body, token)
-        print(f"  {canonical}: {len(items)} listings")
-        for item in items:
-            item["_canonicalModel"] = canonical
-        return items
-    except Exception as e:
-        print(f"  {canonical}: FAILED after retries ({e}) — skipping")
-        return []
+    for attempt in range(1, 3):  # up to 2 attempts
+        try:
+            items = apify_post(url, body, token)
+            if len(items) > 0:
+                print(f"  {canonical}: {len(items)} listings")
+                for item in items:
+                    item["_canonicalModel"] = canonical
+                return items
+            elif attempt < 2:
+                print(f"  {canonical}: 0 listings on attempt {attempt} — retrying in 30s")
+                time.sleep(30)
+            else:
+                print(f"  {canonical}: 0 listings after {attempt} attempts — skipping")
+                return []
+        except Exception as e:
+            print(f"  {canonical}: FAILED ({e}) — skipping")
+            return []
+    return []
 
 
 def main():
