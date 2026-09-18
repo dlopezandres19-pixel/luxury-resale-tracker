@@ -1,4 +1,4 @@
-{
+ {
   "Hermès Birkin 30": [
     {
       "date": "2026-09-10",
@@ -93,17 +93,6 @@
       "price_median": 10770.0,
       "msrp_used": 10100,
       "currency": "EUR"
-    },
-    {
-      "date": "2026-09-17",
-      "vr_median": 1.0068,
-      "vr_mean": 1.0078,
-      "n_listings": 20,
-      "n_sold_snapshot": 0,
-      "avg_days_to_sell": null,
-      "price_median": 10168.5,
-      "msrp_used": 10100,
-      "currency": "EUR"
     }
   ],
   "LV Speedy 25": [
@@ -122,17 +111,6 @@
       "date": "2026-09-14",
       "vr_median": 0.7439,
       "vr_mean": 0.8215,
-      "n_listings": 20,
-      "n_sold_snapshot": 0,
-      "avg_days_to_sell": null,
-      "price_median": 1227.5,
-      "msrp_used": 1650,
-      "currency": "EUR"
-    },
-    {
-      "date": "2026-09-17",
-      "vr_median": 0.7439,
-      "vr_mean": 0.8025,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
