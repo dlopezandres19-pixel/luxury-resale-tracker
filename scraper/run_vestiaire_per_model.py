@@ -47,6 +47,8 @@ VESTIAIRE_QUERIES = {
     "Hermès Kelly 28":  "Kelly 28",
     "LV Neverfull MM":  "Neverfull MM",
     "LV Speedy 25":     "Speedy Bandouliere 25",
+    "LV Pochette Métis": "Pochette Metis",
+    "LV Alma BB":       "Alma BB",
 }
 
 
