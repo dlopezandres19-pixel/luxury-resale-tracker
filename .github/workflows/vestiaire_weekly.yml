@@ -1,0 +1,42 @@
+name: Vestiaire EU — Weekly Scrape (self-healing)
+
+on:
+  schedule:
+    # 1st attempt: Mondays 05:47 UTC = 1:47am Miami (EDT)
+    - cron: '47 5 * * 1'
+    # Catch-up: Mondays 08:17 UTC = 4:17am Miami (EDT).
+    # Only re-scrapes models still missing today; costs ~$0 if all done.
+    - cron: '17 8 * * 1'
+  workflow_dispatch: {}
+
+concurrency:
+  group: resale-v2
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scrape Vestiaire — EU (skips models already saved today)
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: python scraper/run_vestiaire_per_model.py --region EU
+        continue-on-error: true
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data_v2/eu_resale.json
+          if git diff --staged --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "chore: vestiaire EU scrape $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push
