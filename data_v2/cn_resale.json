@@ -38,6 +38,19 @@
       "msrp_used": 115000,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 1.687,
+      "vr_mean": 3.1594,
+      "n_listings": 30,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 1.8,
+      "price_median": 194000.0,
+      "msrp_used": 115000,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
     }
   ],
   "Hermès Birkin 30": [
@@ -75,6 +88,19 @@
       "n_excluded_as_likely_replica": 87,
       "avg_days_to_sell": null,
       "avg_want_count": 2.3,
+      "price_median": 138000,
+      "msrp_used": 125000,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 1.104,
+      "vr_mean": 1.9002,
+      "n_listings": 19,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 2.9,
       "price_median": 138000,
       "msrp_used": 125000,
       "currency": "CNY",
@@ -120,6 +146,19 @@
       "msrp_used": 115000,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 1.1739,
+      "vr_mean": 1.3451,
+      "n_listings": 27,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 1.2,
+      "price_median": 135000,
+      "msrp_used": 115000,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
     }
   ],
   "Hermès Kelly 28": [
@@ -158,6 +197,19 @@
       "avg_days_to_sell": null,
       "avg_want_count": 2.6,
       "price_median": 106500.0,
+      "msrp_used": 108000,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.9074,
+      "vr_mean": 1.26,
+      "n_listings": 24,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 1.1,
+      "price_median": 98000.0,
       "msrp_used": 108000,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
@@ -202,6 +254,19 @@
       "msrp_used": 15100,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.8113,
+      "vr_mean": 0.8224,
+      "n_listings": 10,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 2.2,
+      "price_median": 12250.0,
+      "msrp_used": 15100,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
     }
   ],
   "LV Speedy 25": [
@@ -243,6 +308,19 @@
       "msrp_used": 15100,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.8208,
+      "vr_mean": 0.7946,
+      "n_listings": 8,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 17.9,
+      "price_median": 12393.5,
+      "msrp_used": 15100,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
     }
   ],
   "LV Pochette Métis": [
@@ -258,6 +336,19 @@
       "msrp_used": 20700,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.5797,
+      "vr_mean": 0.6082,
+      "n_listings": 11,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 15.4,
+      "price_median": 12000,
+      "msrp_used": 20700,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
     }
   ],
   "LV Alma BB": [
@@ -270,6 +361,19 @@
       "avg_days_to_sell": null,
       "avg_want_count": 6.9,
       "price_median": 9080,
+      "msrp_used": 15100,
+      "currency": "CNY",
+      "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.4305,
+      "vr_mean": 0.4211,
+      "n_listings": 18,
+      "n_excluded_as_likely_replica": 93,
+      "avg_days_to_sell": null,
+      "avg_want_count": 16.2,
+      "price_median": 6500.0,
       "msrp_used": 15100,
       "currency": "CNY",
       "_caveat": "Unauthenticated P2P marketplace — VR may include undetected replicas despite filtering"

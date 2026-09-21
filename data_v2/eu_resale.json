@@ -1,5 +1,5 @@
 {
-  "Herm\u00e8s Birkin 30": [
+  "Hermès Birkin 30": [
     {
       "date": "2026-09-10",
       "vr_median": 1.4858,
@@ -32,10 +32,21 @@
       "price_median": 12376.0,
       "msrp_used": 10600,
       "currency": "EUR",
-      "_note": "Manual entry \u2014 Vestiaire actor returned 0 on Sep 18 (Cloudflare block). Prices scraped manually from vestiairecollective.com."
+      "_note": "Manual entry — Vestiaire actor returned 0 on Sep 18 (Cloudflare block). Prices scraped manually from vestiairecollective.com."
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 1.4387,
+      "vr_mean": 1.474,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 15250.0,
+      "msrp_used": 10600,
+      "currency": "EUR"
     }
   ],
-  "Herm\u00e8s Birkin 25": [
+  "Hermès Birkin 25": [
     {
       "date": "2026-09-10",
       "vr_median": 2.5443,
@@ -70,7 +81,7 @@
       "currency": "EUR"
     }
   ],
-  "Herm\u00e8s Kelly 25": [
+  "Hermès Kelly 25": [
     {
       "date": "2026-09-10",
       "vr_median": 2.3896,
@@ -105,7 +116,7 @@
       "currency": "EUR"
     }
   ],
-  "Herm\u00e8s Kelly 28": [
+  "Hermès Kelly 28": [
     {
       "date": "2026-09-10",
       "vr_median": 1.0703,
@@ -173,6 +184,17 @@
       "price_median": 1245.8,
       "msrp_used": 1650,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.7645,
+      "vr_mean": 0.8666,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1261.5,
+      "msrp_used": 1650,
+      "currency": "EUR"
     }
   ],
   "LV Neverfull MM": [
@@ -197,9 +219,20 @@
       "price_median": 793.6,
       "msrp_used": 1550,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.4923,
+      "vr_mean": 0.484,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 763.0,
+      "msrp_used": 1550,
+      "currency": "EUR"
     }
   ],
-  "LV Pochette M\u00e9tis": [
+  "LV Pochette Métis": [
     {
       "date": "2026-09-18",
       "n_sold_snapshot": 0,
