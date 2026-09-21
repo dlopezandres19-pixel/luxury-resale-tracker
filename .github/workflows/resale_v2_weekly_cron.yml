@@ -1,9 +1,16 @@
-name: Resale V2 — Weekly Scrape (cron-driven, no webhook)
+name: Resale V2 — Weekly Scrape (Rebag, Xianyu, Douyin)
 
 on:
   schedule:
-    - cron: '0 8 * * 1'
+    # Mondays 05:17 UTC = 1:17am Miami (EDT) / 12:17am (EST).
+    # Off-the-hour minute + early slot: GitHub can delay scheduled runs 1-2h.
+    - cron: '17 5 * * 1'
   workflow_dispatch: {}
+
+# Shared with the Vestiaire workflow: never two scrapes at once.
+concurrency:
+  group: resale-v2
+  cancel-in-progress: false
 
 jobs:
   scrape:
@@ -23,19 +30,13 @@ jobs:
         run: python scraper/run_rebag.py
         continue-on-error: true
 
-      - name: Scrape Vestiaire — EU (8 models, one call each)
-        env:
-          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: python scraper/run_vestiaire_per_model.py --region EU
-        continue-on-error: true
-
       - name: Scrape Xianyu — China Resale (1 call, 8 keywords)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_xianyu.py
         continue-on-error: true
 
-      - name: Scrape Douyin — China Social (4 brands, weekly engagement)
+      - name: Scrape Douyin — China Social (4 brands, weekly video volume)
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
         run: python scraper/run_douyin.py
@@ -46,5 +47,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data_v2/
-          git diff --staged --quiet || git commit -m "chore: resale v2 weekly scrape $(date -u +%Y-%m-%d)"
+          if git diff --staged --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "chore: resale v2 weekly scrape $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
           git push
