@@ -82,13 +82,13 @@
     },
     {
       "date": "2026-09-21",
-      "vr_median": 1.9908,
-      "vr_mean": 1.9801,
+      "vr_median": 2.2604,
+      "vr_mean": 2.2482,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 21700.0,
-      "msrp_used": 10900,
+      "msrp_used": 9600,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
@@ -129,13 +129,13 @@
     },
     {
       "date": "2026-09-21",
-      "vr_median": 2.1442,
-      "vr_mean": 2.0919,
+      "vr_median": 2.3229,
+      "vr_mean": 2.2662,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 22300.0,
-      "msrp_used": 10400,
+      "msrp_used": 9600,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
@@ -282,13 +282,13 @@
     },
     {
       "date": "2026-09-21",
-      "vr_median": 0.7923,
-      "vr_mean": 0.871,
+      "vr_median": 0.5339,
+      "vr_mean": 0.587,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 1228.0,
-      "msrp_used": 1550,
+      "msrp_used": 2300,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
@@ -307,13 +307,13 @@
     },
     {
       "date": "2026-09-21",
-      "vr_median": 0.7192,
-      "vr_mean": 0.7725,
+      "vr_median": 0.5667,
+      "vr_mean": 0.6086,
       "n_listings": 20,
       "n_sold_snapshot": 0,
       "avg_days_to_sell": null,
       "price_median": 935.0,
-      "msrp_used": 1300,
+      "msrp_used": 1650,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
