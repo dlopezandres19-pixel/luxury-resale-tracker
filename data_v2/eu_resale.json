@@ -79,6 +79,18 @@
       "price_median": 21715.2,
       "msrp_used": 9600,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 1.9908,
+      "vr_mean": 1.9801,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 21700.0,
+      "msrp_used": 10900,
+      "currency": "EUR",
+      "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
   ],
   "Hermès Kelly 25": [
@@ -114,6 +126,18 @@
       "price_median": 21897.6,
       "msrp_used": 9600,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 2.1442,
+      "vr_mean": 2.0919,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 22300.0,
+      "msrp_used": 10400,
+      "currency": "EUR",
+      "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
   ],
   "Hermès Kelly 28": [
@@ -149,6 +173,18 @@
       "price_median": 9514.2,
       "msrp_used": 10100,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 1.0353,
+      "vr_mean": 1.0329,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 10457.0,
+      "msrp_used": 10100,
+      "currency": "EUR",
+      "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
   ],
   "LV Speedy 25": [
@@ -243,6 +279,18 @@
       "price_median": 1331.7,
       "msrp_used": 2300,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.7923,
+      "vr_mean": 0.871,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1228.0,
+      "msrp_used": 1550,
+      "currency": "EUR",
+      "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
   ],
   "LV Alma BB": [
@@ -256,6 +304,18 @@
       "price_median": 864.6,
       "msrp_used": 1650,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-21",
+      "vr_median": 0.7192,
+      "vr_mean": 0.7725,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 935.0,
+      "msrp_used": 1300,
+      "currency": "EUR",
+      "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
     }
   ]
 }
