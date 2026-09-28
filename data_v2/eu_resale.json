@@ -44,6 +44,17 @@
       "price_median": 15250.0,
       "msrp_used": 10600,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 1.4434,
+      "vr_mean": 1.4924,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 15300.0,
+      "msrp_used": 10600,
+      "currency": "EUR"
     }
   ],
   "Hermès Birkin 25": [
@@ -91,6 +102,17 @@
       "msrp_used": 9600,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 2.1979,
+      "vr_mean": 2.2875,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 21100.0,
+      "msrp_used": 9600,
+      "currency": "EUR"
     }
   ],
   "Hermès Kelly 25": [
@@ -138,6 +160,17 @@
       "msrp_used": 9600,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 2.1042,
+      "vr_mean": 2.1256,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 20200.0,
+      "msrp_used": 9600,
+      "currency": "EUR"
     }
   ],
   "Hermès Kelly 28": [
@@ -185,6 +218,17 @@
       "msrp_used": 10100,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 0.9595,
+      "vr_mean": 0.9544,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 9691.0,
+      "msrp_used": 10100,
+      "currency": "EUR"
     }
   ],
   "LV Speedy 25": [
@@ -231,6 +275,17 @@
       "price_median": 1261.5,
       "msrp_used": 1650,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 0.7797,
+      "vr_mean": 0.8668,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1286.5,
+      "msrp_used": 1650,
+      "currency": "EUR"
     }
   ],
   "LV Neverfull MM": [
@@ -266,6 +321,17 @@
       "price_median": 763.0,
       "msrp_used": 1550,
       "currency": "EUR"
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 0.4819,
+      "vr_mean": 0.571,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 747.0,
+      "msrp_used": 1550,
+      "currency": "EUR"
     }
   ],
   "LV Pochette Métis": [
@@ -291,6 +357,17 @@
       "msrp_used": 2300,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 0.5798,
+      "vr_mean": 0.6201,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 1333.5,
+      "msrp_used": 2300,
+      "currency": "EUR"
     }
   ],
   "LV Alma BB": [
@@ -316,6 +393,17 @@
       "msrp_used": 1650,
       "currency": "EUR",
       "_note": "Manual entry — Vestiaire Cloudflare block. n_listings capped at 20 for dashboard consistency."
+    },
+    {
+      "date": "2026-09-28",
+      "vr_median": 0.5345,
+      "vr_mean": 0.5682,
+      "n_listings": 20,
+      "n_sold_snapshot": 0,
+      "avg_days_to_sell": null,
+      "price_median": 882.0,
+      "msrp_used": 1650,
+      "currency": "EUR"
     }
   ]
 }
