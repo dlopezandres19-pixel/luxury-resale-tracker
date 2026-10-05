@@ -62,6 +62,19 @@
       "msrp_used": 14900,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 1.3591,
+      "vr_mean": 1.3595,
+      "n_listings": 9,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 20250,
+      "msrp_used": 14900,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Birkin 25": [
@@ -128,6 +141,19 @@
       "currency": "USD",
       "_source": "manual",
       "_note": "Manual entry — Rebag actor run returned 0 raw results for Birkin 25 on 2026-09-28 (upstream/actor fault, pre-filter, not a title/price filter issue). Verified via screenshots of live Rebag listings; prices captured manually from 24 listings."
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 2.3472,
+      "vr_mean": 2.2576,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 31687.5,
+      "msrp_used": 13500,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Kelly 25": [
@@ -193,6 +219,19 @@
       "msrp_used": 13700,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 2.0354,
+      "vr_mean": 2.0619,
+      "n_listings": 9,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 27885,
+      "msrp_used": 13700,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Kelly 28": [
@@ -255,6 +294,19 @@
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
       "price_median": 16802.5,
+      "msrp_used": 14400,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 1.2003,
+      "vr_mean": 1.3128,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 17285.0,
       "msrp_used": 14400,
       "currency": "USD",
       "_source": "rebag"
@@ -326,6 +378,19 @@
       "msrp_used": 2240,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 0.6797,
+      "vr_mean": 0.6743,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1522.5,
+      "msrp_used": 2240,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "LV Speedy 25": [
@@ -394,6 +459,19 @@
       "msrp_used": 1980,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 1.0215,
+      "vr_mean": 1.1086,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 2022.5,
+      "msrp_used": 1980,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "LV Pochette Métis": [
@@ -435,6 +513,19 @@
       "msrp_used": 2840,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 0.9208,
+      "vr_mean": 0.9056,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 2615.0,
+      "msrp_used": 2840,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "LV Alma BB": [
@@ -473,6 +564,19 @@
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
       "price_median": 2160,
+      "msrp_used": 2000,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-10-05",
+      "vr_median": 0.97,
+      "vr_mean": 0.999,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1940.0,
       "msrp_used": 2000,
       "currency": "USD",
       "_source": "rebag"

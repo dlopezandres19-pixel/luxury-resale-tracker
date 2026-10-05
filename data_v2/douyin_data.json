@@ -47,6 +47,18 @@
       "total_engagement": 14272,
       "n_videos": 8,
       "keyword": "爱马仕"
+    },
+    {
+      "date": "2026-10-05",
+      "score": 24803,
+      "total_views": 0,
+      "total_likes": 15800,
+      "total_comments": 57,
+      "total_shares": 1996,
+      "total_collects": 6950,
+      "total_engagement": 24803,
+      "n_videos": 7,
+      "keyword": "爱马仕"
     }
   ],
   "Dior": [
@@ -111,6 +123,18 @@
       "total_engagement": 9023,
       "n_videos": 5,
       "keyword": "卡地亚"
+    },
+    {
+      "date": "2026-10-05",
+      "score": 2230,
+      "total_views": 0,
+      "total_likes": 1792,
+      "total_comments": 39,
+      "total_shares": 211,
+      "total_collects": 188,
+      "total_engagement": 2230,
+      "n_videos": 6,
+      "keyword": "卡地亚"
     }
   ],
   "Gucci": [
@@ -161,6 +185,18 @@
       "total_engagement": 23408,
       "n_videos": 16,
       "keyword": "古驰"
+    },
+    {
+      "date": "2026-10-05",
+      "score": 41165,
+      "total_views": 0,
+      "total_likes": 26489,
+      "total_comments": 650,
+      "total_shares": 11437,
+      "total_collects": 2589,
+      "total_engagement": 41165,
+      "n_videos": 5,
+      "keyword": "古驰"
     }
   ],
   "Louis Vuitton": [
@@ -210,6 +246,18 @@
       "total_collects": 121,
       "total_engagement": 506,
       "n_videos": 3,
+      "keyword": "路易威登"
+    },
+    {
+      "date": "2026-10-05",
+      "score": 26,
+      "total_views": 0,
+      "total_likes": 22,
+      "total_comments": 0,
+      "total_shares": 2,
+      "total_collects": 2,
+      "total_engagement": 26,
+      "n_videos": 2,
       "keyword": "路易威登"
     }
   ]
