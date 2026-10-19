@@ -88,6 +88,19 @@
       "msrp_used": 14900,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 1.098,
+      "vr_mean": 1.2847,
+      "n_listings": 9,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 16360,
+      "msrp_used": 14900,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Birkin 25": [
@@ -180,6 +193,19 @@
       "msrp_used": 13500,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 1.8494,
+      "vr_mean": 2.0586,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 24967.5,
+      "msrp_used": 13500,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "Hermès Kelly 25": [
@@ -263,6 +289,19 @@
       "date": "2026-10-12",
       "vr_median": 1.9934,
       "vr_mean": 2.0651,
+      "n_listings": 9,
+      "n_listings_warning": true,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 27310,
+      "msrp_used": 13700,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 1.9934,
+      "vr_mean": 1.9945,
       "n_listings": 9,
       "n_listings_warning": true,
       "n_sold_snapshot": null,
@@ -362,6 +401,19 @@
       "msrp_used": 14400,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 1.2587,
+      "vr_mean": 1.3256,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 18125.0,
+      "msrp_used": 14400,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "LV Neverfull MM": [
@@ -453,6 +505,19 @@
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
       "price_median": 1612.5,
+      "msrp_used": 2240,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 0.7712,
+      "vr_mean": 0.742,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1727.5,
       "msrp_used": 2240,
       "currency": "USD",
       "_source": "rebag"
@@ -550,6 +615,19 @@
       "msrp_used": 1980,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 0.9848,
+      "vr_mean": 1.0444,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1950.0,
+      "msrp_used": 1980,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "LV Pochette Métis": [
@@ -617,6 +695,19 @@
       "msrp_used": 2840,
       "currency": "USD",
       "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 0.8627,
+      "vr_mean": 0.8509,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 2450.0,
+      "msrp_used": 2840,
+      "currency": "USD",
+      "_source": "rebag"
     }
   ],
   "LV Alma BB": [
@@ -681,6 +772,19 @@
       "n_sold_snapshot": null,
       "avg_days_to_sell": null,
       "price_median": 2085.0,
+      "msrp_used": 2000,
+      "currency": "USD",
+      "_source": "rebag"
+    },
+    {
+      "date": "2026-10-19",
+      "vr_median": 0.97,
+      "vr_mean": 0.9963,
+      "n_listings": 10,
+      "n_listings_warning": false,
+      "n_sold_snapshot": null,
+      "avg_days_to_sell": null,
+      "price_median": 1940.0,
       "msrp_used": 2000,
       "currency": "USD",
       "_source": "rebag"
